@@ -1,0 +1,73 @@
+/* ? Colours: */
+    
+$black: rgb(42, 42, 42)
+$white: rgb(239, 239, 239)
+$yellow: rgb(254, 204, 24)
+$blue: rgb(41, 81, 167)
+
+/* ? Hover Colours: */
+
+$hblack: rgba(42, 42, 42, .25)
+
+/* ? Sizing Units: */
+
+$unit: 4px
+$size: 6 *  $unit
+
+/* ? Overall: */
+
+*
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+
+.App
+    font-family: 'Montserrat', sans-serif
+    font-size: $size
+
+    display: flex
+    flex-direction: column
+
+/* ? Accessibility: */ 
+
+.hover
+    user-select: none
+
+    &:hover
+        cursor: pointer
+
+/* ? Header */
+
+.header
+    background: $white
+    border: $unit solid $blue
+    box-shadow: 0 2 * $unit $unit $hblack
+    padding: $size 2 * $size
+
+    display: flex
+    align-items: center
+    justify-content: space-between
+
+.calendar
+    font-size: 1.75 * $size
+    color: $black
+
+    position: relative
+    top: -$unit
+
+.name
+    font-size: 2 * $size
+    line-height: 3 * $size
+    font-family: 'Bangers', cursive
+    letter-spacing: .5 * $unit
+
+.btn
+    background: $blue
+    border: $unit solid $white
+    box-shadow: $unit 2 * $unit $unit $hblack
+    border-radius: .5 * $size
+    color: $white
+    padding: $size
+    font-size: $size
+    font-family: 'Montserrat', sans-serif
+    

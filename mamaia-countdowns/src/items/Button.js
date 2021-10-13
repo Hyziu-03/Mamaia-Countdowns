@@ -1,2 +1,2 @@
-const Button = () => <button className="btn hover">Set a Countdown!</button>
+const Button = () => <button className="btn hover" tabIndex='0'>Set a Countdown!</button>
 export default Button;

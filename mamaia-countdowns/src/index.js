@@ -1,11 +1,11 @@
-import ReactDOM from 'react-dom';
+import { render } from 'react-snapshot';
 import './index.min.css';
 
 import React from 'react';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
+render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,

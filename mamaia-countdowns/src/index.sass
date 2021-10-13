@@ -1,20 +1,20 @@
-/* ? Colours: */
-    
 $black: rgb(42, 42, 42)
 $white: rgb(239, 239, 239)
 $yellow: rgb(254, 204, 24)
 $blue: rgb(41, 81, 167)
 
-/* ? Hover Colours: */
-
 $hblack: rgba(42, 42, 42, .25)
-
-/* ? Sizing Units: */
+$hblue: rgb(11, 51, 117)
 
 $unit: 4px
 $size: 6 *  $unit
 
-/* ? Overall: */
+$shadow: $unit 2 * $unit $unit $hblack
+
+@mixin heading
+    font-size: 2 * $size
+    line-height: 3 * $size
+    font-family: 'Bangers', cursive
 
 *
     margin: 0
@@ -24,19 +24,17 @@ $size: 6 *  $unit
 .App
     font-family: 'Montserrat', sans-serif
     font-size: $size
+    background: $white
+    line-height: 150%
 
-    display: flex
-    flex-direction: column
-
-/* ? Accessibility: */ 
+    display: grid
+    gap: 2 * $size
 
 .hover
     user-select: none
 
     &:hover
         cursor: pointer
-
-/* ? Header */
 
 .header
     background: $white
@@ -56,18 +54,55 @@ $size: 6 *  $unit
     top: -$unit
 
 .name
-    font-size: 2 * $size
-    line-height: 3 * $size
-    font-family: 'Bangers', cursive
+    @include heading
+
     letter-spacing: .5 * $unit
+    transition: .25s all ease-out
+
+    &:hover
+        filter: drop-shadow($shadow)
 
 .btn
     background: $blue
     border: $unit solid $white
-    box-shadow: $unit 2 * $unit $unit $hblack
+    box-shadow: $shadow
     border-radius: .5 * $size
     color: $white
     padding: $size
     font-size: $size
     font-family: 'Montserrat', sans-serif
+    transition: .25s all ease-out
+
+    &:hover
+        background: $hblue
     
+.article
+    display: flex
+    justify-content: space-evenly
+    align-items: center
+
+.introduction
+    display: flex
+    flex-direction: column
+    align-items: center
+
+.heading
+    @include heading
+    
+    letter-spacing: .25 * $unit
+    text-align: center
+
+.text-content
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+
+.description
+    font-size: $size
+    margin: $size 0 1.5 * $size 0
+    max-width: 40ch
+
+.calendar
+    max-height: 400px
+    pointer-events: none

@@ -1,0 +1,47 @@
+// ? Main Colours:
+
+$black: rgb(42, 42, 42)
+$white: rgb(239, 239, 239)
+$yellow: rgb(254, 204, 24)
+$blue: rgb(41, 81, 167)
+
+// ? Hover Colours:
+
+$hblack: rgba(42, 42, 42, .25)
+$hblue: rgb(11, 51, 117)
+
+// ? Sizing Units:
+
+$unit: 4px
+$size: 6 *  $unit
+
+// ? Premade Components I:
+
+$shadow: $unit 2 * $unit $unit $hblack
+
+// ? Premade Components II:
+
+@mixin heading
+    font-size: 2 * $size
+    line-height: 3 * $size
+    font-family: 'Bangers', cursive
+
+@mixin reset
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+
+@mixin flex-center 
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+
+@mixin container 
+    font-family: 'Montserrat', sans-serif
+    font-size: $size
+    background: $white
+    line-height: 150%
+
+    display: grid
+    gap: 2 * $size

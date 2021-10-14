@@ -1,0 +1,93 @@
+@use 'libraries/mamaia' as *;   
+
+*
+    @include reset
+
+// ? Utility Selectors: 
+
+.App
+    @include container
+
+.hover
+    user-select: none
+
+    &:hover
+        cursor: pointer
+
+// ? Inline Components:
+
+.icon
+    font-size: 1.75 * $size
+    color: $black
+
+    position: relative
+    top: -$unit
+
+.name
+    @include heading
+
+    letter-spacing: .5 * $unit
+    transition: .25s all ease-out
+
+    &:hover
+        filter: drop-shadow($shadow)
+
+.btn
+    background: $blue
+    border: $unit solid $white
+    box-shadow: $shadow
+    border-radius: .5 * $size
+    color: $white
+    padding: $size
+    font-size: $size
+    font-family: 'Montserrat', sans-serif
+    transition: .25s all ease-out
+
+    &:hover
+        background: $hblue
+
+// ? Block Level Components: 
+
+.header
+    background: $white
+    border: $unit solid $blue
+    box-shadow: 0 2 * $unit $unit $hblack
+    padding: $size 2 * $size
+
+    display: flex
+    align-items: center
+    justify-content: space-between
+
+.main-content
+    display: grid
+    gap: 4 * $size
+
+.article
+    display: flex
+    justify-content: space-evenly
+    align-items: center
+
+.introduction, .explanation, .text-content
+    @include flex-center
+
+// ? Text Components: 
+
+.heading
+    @include heading
+    
+    letter-spacing: .25 * $unit
+    text-align: center
+
+.description
+    font-size: $size
+    margin: $size 0 1.5 * $size 0
+    max-width: 40ch
+
+// ? Illustrations:
+
+.calendar
+    max-height: 400px
+    pointer-events: none
+
+.work
+    max-width: 500px

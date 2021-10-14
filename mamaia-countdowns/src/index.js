@@ -1,5 +1,5 @@
 import { render } from 'react-snapshot';
-import './index.min.css';
+import './styles/index.min.css';
 
 import React from 'react';
 import App from './App';

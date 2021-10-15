@@ -45,3 +45,19 @@ $shadow: $unit 2 * $unit $unit $hblack
 
     display: grid
     gap: 2 * $size
+
+@mixin input 
+    background: $white
+    border: $unit solid $black
+    box-shadow: $shadow
+    border-radius: 4 * $unit
+    padding: .75 * $size
+    font-family: 'Montserrat', sans-serif
+    font-size: .75 * $size
+    min-width: 350px
+    margin: 2 * $unit 0
+
+@mixin textarea 
+    resize: none
+    min-height: 8 * $size
+    line-height: 150%

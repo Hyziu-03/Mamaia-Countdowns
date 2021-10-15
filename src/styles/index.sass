@@ -1,4 +1,4 @@
-@use '../libraries/mamaia' as *;   
+@import '../libraries/mamaia'
 
 *
     @include reset
@@ -46,6 +46,12 @@
     &:hover
         background: $hblue
 
+.input
+    @include input
+
+.textarea 
+    @include textarea
+
 // ? Block Level Components: 
 
 .header
@@ -67,9 +73,13 @@
     justify-content: space-evenly
     align-items: center
 
-.introduction, .explanation, .text-content
+.introduction, .explanation, .text-content, .biography
     @include flex-center
 
+.form
+    display: flex
+    flex-direction: column
+    
 // ? Text Components: 
 
 .heading
@@ -89,5 +99,5 @@
     max-height: 400px
     pointer-events: none
 
-.work
+.work, .creator
     max-width: 500px

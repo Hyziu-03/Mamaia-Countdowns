@@ -1,6 +1,6 @@
 const Explanation = (props) => {
     return (
-        <article className="text-section">
+        <article className="explanation">
             <h1 className="heading" tabIndex='0'>{props.heading}</h1>
             <p className="description" tabIndex='0'>{props.description[0]}</p>
             <p className="description" tabIndex='0'>{props.description[1]}</p>

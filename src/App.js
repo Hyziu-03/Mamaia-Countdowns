@@ -7,6 +7,7 @@ import Form from "./comps/Form";
 import Calendar from './img/calendar.svg';
 import Work from './img/work.svg';
 import Creator from './img/creator.png';
+import Footer from "./comps/Footer";
 
 function App() {
   return (
@@ -48,8 +49,9 @@ function App() {
             'Do you have any feedback on your mind? Do you want to grab a call to discuss how this app works? Are you passionate about user testing software?',
             'If so, I encourage you to fill in this form. I’ll be pleased to get to know you and have an interesting conversation. See you there!'
           ]}
-        />
+        /> 
       </main>
+      <Footer />
     </div>
   );
 }

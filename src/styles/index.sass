@@ -52,6 +52,40 @@
 .textarea 
     @include textarea
 
+.contact-links
+    display: flex
+    justify-content: space-around
+    width: 15vw
+
+i[disabled]
+    color: $hblack
+
+    &:hover
+        border-color: transparent
+        box-shadow: none
+        cursor: not-allowed
+
+.fab
+    font-size: 1.75 * $size
+    transition: .25s all ease-out
+    padding: .75 * $size
+    border: $unit solid transparent
+    border-radius: $size
+    margin: 0 2 * $unit 
+    color: $black
+
+    &:hover
+        cursor: pointer
+        border-color: $black
+        box-shadow: $shadow
+
+.copyright
+    max-width: 50vw
+    font-size: .75 * $size
+
+a
+    @include link
+
 // ? Block Level Components: 
 
 .header
@@ -59,6 +93,9 @@
     border: $unit solid $blue
     box-shadow: 0 2 * $unit $unit $hblack
     padding: $size 2 * $size
+    position: sticky
+    top: 0
+    z-index: 3
 
     display: flex
     align-items: center
@@ -79,6 +116,14 @@
 .form
     display: flex
     flex-direction: column
+    z-index: 1
+
+.footer
+    background: $yellow
+    padding: $size 3 * $size
+    display: flex
+    justify-content: space-around
+    align-items: center
     
 // ? Text Components: 
 
@@ -101,3 +146,10 @@
 
 .work, .creator
     max-width: 500px
+    pointer-events: none
+
+.background
+    position: absolute
+    right: 3.5vw
+    max-height: 500px
+    pointer-events: none

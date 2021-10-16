@@ -13,5 +13,5 @@ Objective list for the project:
 - Local Storage API use,
 - Font Awesome in React.js, 
 - Progressive Web App intergration,
-- CSS and JavaScript files preloadin HTML, 
+- CSS and JavaScript files preload in HTML, 
 - 48x48 pixels touch target for every clickable element on mobile.

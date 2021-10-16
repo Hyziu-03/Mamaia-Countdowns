@@ -1,5 +1,5 @@
 import Button from "../items/Button";
-import Background from '../img/form-background.svg';
+import Background from '../img/Background';
 
 const Form = (props) => {
     return (
@@ -21,4 +21,4 @@ const Form = (props) => {
     )
 }
 
-export default Form;
+export default Form; 

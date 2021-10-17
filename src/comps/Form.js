@@ -10,11 +10,11 @@ const Form = (props) => {
                 <p className="description" tabIndex='0'>{props.description[1]}</p>
                 <p className="description" tabIndex='0'>{props.description[2]}</p>
             </section>
-            <form action="" className="form">
+            <form action="https://formspree.io/f/xdoyvago" method="POST" className="form" id='form'>
                 <input type="text" name="text-input" id="text-input" className="input" placeholder="What is your name?"/>
-                <input type="email" name="email-input" id="email-input" className="input" placeholder="What is your email?"/>
-                <textarea placeholder="What do you want to say?" className="input textarea"/>
-                <Button message="Send Message!"/>
+                <input type="email" name="_replyto" id="email-input" className="input" placeholder="What is your email?"/>
+                <textarea placeholder="What do you want to say?" className="input textarea" id="textarea" name='message'/>
+                <Button message="Send Message!" type='submit'/>
             </form>
             <Background />
         </article>

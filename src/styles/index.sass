@@ -3,6 +3,9 @@
 *
     @include reset
 
+    &:focus
+        outline-offset: .5 * $size
+
 // ? Utility Selectors: 
 
 .App
@@ -13,6 +16,18 @@
 
     &:hover
         cursor: pointer
+
+// ? Scrollbar: 
+
+::-webkit-scrollbar 
+    width: $size
+    background: $white
+    border: .25 * $unit solid $black
+
+::-webkit-scrollbar-thumb
+    background: $yellow
+    border: .75 * $unit solid $black 
+    border-radius: .25 * $size
 
 // ? Inline Components:
 

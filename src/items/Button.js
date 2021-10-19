@@ -15,6 +15,6 @@ const validate = () => {
     }
 }
 
-const Button = (props) => <button className="btn hover" tabIndex='0' onClick={(event) => {event.preventDefault(); validate();}}>{props.message}</button>
+const Button = (props) => <button className="btn hover" tabIndex='0' onClick={validate}>{props.message}</button>
 
 export default Button;

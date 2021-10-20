@@ -8,6 +8,9 @@
 
 // ? Utility Selectors: 
 
+body
+    background: $white
+
 .App
     @include container
 
@@ -61,6 +64,9 @@
     &:hover
         background: $hblue
 
+.request
+    padding: 0 max(1.5 * $size, 0)
+
 .input
     @include input
 
@@ -111,6 +117,7 @@ a
     position: sticky
     top: 0
     z-index: 3
+    width: 100vw
 
     display: flex
     align-items: center
@@ -127,6 +134,7 @@ a
 
 .introduction, .explanation, .text-content, .biography
     @include flex-center
+    padding: 0 max(1.5 * $size, 0)
 
 .form
     display: flex
@@ -168,3 +176,25 @@ a
     right: 3.5vw
     max-height: 500px
     pointer-events: none
+
+// ? Media Queries:
+
+@media (max-width: 1250px) 
+    .calendar
+        max-height: 300px
+        @include responsive-img
+
+    .work, .creator
+        max-width: 400px
+        @include responsive-img
+
+@media (max-width: 950px) 
+    .article
+        flex-direction: column
+
+@media (max-width: 600px) 
+    .header
+        @include flex-center
+
+    .btn
+        display: none

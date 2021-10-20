@@ -40,7 +40,6 @@ $shadow: $unit 2 * $unit $unit $hblack
 @mixin container 
     font-family: 'Montserrat', sans-serif
     font-size: $size
-    background: $white
     line-height: 150%
 
     display: grid
@@ -65,3 +64,7 @@ $shadow: $unit 2 * $unit $unit $hblack
 @mixin link 
     color: inherit
     text-decoration: none
+
+@mixin responsive-img 
+    pointer-events: none
+    margin: 2 * $size 0

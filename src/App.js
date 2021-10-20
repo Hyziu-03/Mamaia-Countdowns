@@ -10,11 +10,15 @@ import Creator from './img/creator.png';
 import Footer from "./comps/Footer";
 
 document.addEventListener('keydown', (event) => {
-  if(event.key === 13) {
-    document.activeElement.click();
+  try {
+    if (event.key === 13) {
+      document.activeElement.click();
+    }
+  } catch(exception) {
+    throw new Error(exception);
   }
 });
-
+ 
 function App() {
   return (
     <div className="App">

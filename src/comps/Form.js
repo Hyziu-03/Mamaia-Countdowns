@@ -1,13 +1,37 @@
-import { useForm, ValidationError } from '@formspree/react';
+import { useRef } from "react";
+import nodemailer from 'nodemailer';
 
 import Button from "../items/Button";
 import Background from '../img/Background';
 
 const Form = (props) => {
-    const [state, handleSubmit] = useForm("xdoyvago");
+    const nameInput = useRef(null);
+    const emailInput = useRef(null);
+    const message = useRef(null);
 
-    if(state.succeeded) {
-        console.log('The from has been successfully sent.');
+    const send = () => {
+        const transporter = nodemailer.createTransport({
+            service: '',
+            auth: {
+                user: '',
+                pass: ''
+            }
+        });
+
+        const mailOptions = {
+            from: emailInput.value,
+            to: '',
+            subject: nameInput.value,
+            text: message.value
+        }
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Email sent: ' + info.response);
+            }
+        })
     }
 
     return (
@@ -18,10 +42,10 @@ const Form = (props) => {
                 <p className="description" tabIndex='0'>{props.description[1]}</p>
                 <p className="description" tabIndex='0'>{props.description[2]}</p>
             </section>
-            <form action="https://formspree.io/f/xdoyvago" method="POST" className="form" id='form' onSubmit={handleSubmit}>
-                <input type="text" name="name" id="text-input" className="input" placeholder="What is your name?"/>
-                <input type="email" name="email" id="email" className="input" placeholder="What is your email?"/>
-                <textarea placeholder="What do you want to say?" className="input textarea" id="message" name='message'/>
+            <form action="" method="POST" className="form" id='form' onSubmit={send}>
+                <input type="text" name="name" id="text-input" className="input" placeholder="What is your name?" ref={nameInput}/>
+                <input type="email" name="email" id="email" className="input" placeholder="What is your email?" ref={emailInput}/>
+                <textarea placeholder="What do you want to say?" className="input textarea" id="message" name='message' ref={message}/>
                 <Button message="Send Message!" origin='form'/>
             </form>
             <Background />

@@ -117,7 +117,7 @@ a
     position: sticky
     top: 0
     z-index: 3
-    width: 100vw
+    width: 100%
 
     display: flex
     align-items: center
@@ -188,13 +188,32 @@ a
         max-width: 400px
         @include responsive-img
 
+    .form
+        margin-right: 2 * $size
+
 @media (max-width: 950px) 
-    .article
+    .article, .footer
         flex-direction: column
 
-@media (max-width: 600px) 
+    .footer
+        padding-top: 1.5 * $size
+
+    .form 
+        margin-right: 0
+
+@media (max-width: 625px) 
     .header
         @include flex-center
 
     .btn
         display: none
+
+    .copyright
+        max-width: unset
+
+@media (max-width: 500px) 
+    .calendar
+        max-height: 250px
+
+    .work, .creator
+        max-width: 325px

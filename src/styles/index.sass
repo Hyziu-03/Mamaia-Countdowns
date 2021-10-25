@@ -8,6 +8,10 @@
 
 // ? Utility Selectors: 
 
+.touch-target
+    min-width: 48px
+    min-height: 48px
+
 body
     background: $white
 
@@ -173,9 +177,10 @@ a
 
 .background
     position: absolute
-    right: 3.5vw
+    right: 0
     max-height: 500px
     pointer-events: none
+    z-index: -1
 
 // ? Media Queries:
 
@@ -199,13 +204,16 @@ a
         padding-top: 1.5 * $size
 
     .form 
-        margin-right: 0
+        margin: 0 1.5 * $size
+
+    .background
+        display: none
 
 @media (max-width: 625px) 
     .header
         @include flex-center
 
-    .btn
+    .header .btn
         display: none
 
     .copyright

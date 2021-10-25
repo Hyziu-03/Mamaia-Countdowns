@@ -6,19 +6,12 @@ import Form from "./comps/Form";
 
 import Calendar from './img/calendar.svg';
 import Work from './img/work.svg';
-import Creator from './img/creator.png';
+import Creator from './img/creator.webp';
 import Footer from "./comps/Footer";
-
-document.addEventListener('keydown', (event) => {
-  try {
-    if (event.key === 13) {
-      document.activeElement.click();
-    }
-  } catch(exception) {
-    throw new Error(exception);
-  }
-});
  
+import { integrateTabIndex } from "./libraries/mamaia";
+integrateTabIndex();
+
 function App() {
   return (
     <div className="App">

@@ -13,10 +13,14 @@ const Button = (props) => {
                 isNotCorrect ? alert('Please, fill in all the information requested.') : isSent = true;
 
                 if (isSent) {
+                    let emailInformation = 'mailto:szymon.hyziak@protonmail.com?' + 'subject=' + textInput.value + ' | ' + emailInput.value + '&body=' + message.value;
+                    window.location.assign(emailInformation);
+
                     emailInput.value = '';
                     textInput.value = '';
                     message.value = '';
-                    alert('Your message has been sent successfully!');
+
+                    alert('Please wait for redirection to your mail app.');
                 }
             }
         } catch(exception) {
@@ -25,7 +29,7 @@ const Button = (props) => {
     }
 
     return (
-        <button className="btn hover" tabIndex='0' onClick={validate} type='submit'>{props.message}</button>
+        <button className="btn hover touch-target" tabIndex='0' onClick={validate} type='submit'>{props.message}</button>
     )
 }
 

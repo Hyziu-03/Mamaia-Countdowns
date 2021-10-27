@@ -3,11 +3,12 @@ import Introduction from "./comps/Introduction";
 import Explanation from "./comps/Explanation";
 import Biography from "./comps/Biography";
 import Form from "./comps/Form";
+import Footer from "./comps/Footer";
+import Mobile from "./comps/Mobile";
 
 import Calendar from './img/calendar.svg';
 import Work from './img/work.svg';
 import Creator from './img/creator.webp';
-import Footer from "./comps/Footer";
  
 import { integrateTabIndex } from "./libraries/mamaia";
 integrateTabIndex();
@@ -55,6 +56,7 @@ function App() {
         /> 
       </main>
       <Footer />
+      <Mobile />
     </div>
   );
 }

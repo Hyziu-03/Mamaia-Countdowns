@@ -1,5 +1,4 @@
-import Button from "../items/Button";
-import Background from '../img/Background';
+import Contact from "../items/Contact";
 
 const Form = (props) => {
     return (
@@ -10,13 +9,7 @@ const Form = (props) => {
                 <p className="description" tabIndex='0'>{props.description[1]}</p>
                 <p className="description" tabIndex='0'>{props.description[2]}</p>
             </section>
-            <form action="" method='' className="form" id='form' onSubmit={(event) => event.preventDefault()}>
-                <input type="text" name="name" id="text-input" className="input touch-target" placeholder="What is your name?"/>
-                <input type="email" name="email" id="email" className="input touch-target" placeholder="What is your email?"/>
-                <textarea placeholder="What do you want to say?" className="input textarea touch-target" id="message" name='message'/>
-                <Button message="Send Message!" origin='form'/>
-            </form>
-            <Background />
+            <Contact />
         </article>
     )
 }

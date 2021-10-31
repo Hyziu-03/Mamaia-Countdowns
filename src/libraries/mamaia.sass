@@ -68,3 +68,27 @@ $shadow: $unit 2 * $unit $unit $hblack
 @mixin responsive-img 
     pointer-events: none
     margin: 2 * $size 0
+
+@mixin touch-target
+    min-width: 48px
+    min-height: 48px
+
+@mixin hoverable 
+    user-select: none
+
+    &:hover
+        cursor: pointer
+
+@mixin btn 
+    background: $blue
+    border: $unit solid $white
+    box-shadow: $shadow
+    border-radius: .5 * $size
+    color: $white
+    padding: $size
+    font-size: $size
+    font-family: 'Montserrat', sans-serif
+    transition: .25s all ease-out
+
+    &:hover
+        background: $hblue

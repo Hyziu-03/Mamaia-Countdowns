@@ -9,8 +9,7 @@
 // ? Utility Selectors: 
 
 .touch-target
-    min-width: 48px
-    min-height: 48px
+    @include touch-target
 
 body
     background: $white
@@ -19,10 +18,7 @@ body
     @include container
 
 .hover
-    user-select: none
-
-    &:hover
-        cursor: pointer
+    @include hoverable
 
 // ? Scrollbar: 
 
@@ -55,18 +51,7 @@ body
         filter: drop-shadow($shadow)
 
 .btn
-    background: $blue
-    border: $unit solid $white
-    box-shadow: $shadow
-    border-radius: .5 * $size
-    color: $white
-    padding: $size
-    font-size: $size
-    font-family: 'Montserrat', sans-serif
-    transition: .25s all ease-out
-
-    &:hover
-        background: $hblue
+    @include btn
 
 .request
     padding: 0 max(1.5 * $size, 0)
@@ -144,6 +129,9 @@ a
     display: flex
     flex-direction: column
     z-index: 1
+    background: $yellow
+    border-radius: 75% 25% 25% 75% / 25% 51% 49% 75% 
+    padding: .75 * $size
 
 .footer
     background: $yellow
@@ -162,10 +150,17 @@ a
 
 .description
     font-size: $size
-    margin: .75 * $size 0 
+    margin: .75 * $size 0  $size 0
     max-width: 40ch
 
 // ? App Components:
+
+.mobile-container
+    position: fixed
+    left: 50%
+    top: 50%
+    transform: translate(-50%, -50%)
+    z-index: 3
 
 .fixed-header
     text-align: center

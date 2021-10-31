@@ -1,21 +1,5 @@
-## GITATTRIBUTES FOR WEB PROJECTS
-#
-# These settings are for any web project.
-#
-# Details per file setting:
-#   text    These files should be normalized (i.e. convert CRLF to LF).
-#   binary  These files are binary and should be left untouched.
-#
-# Note that binary is a macro for -text -diff.
-######################################################################
-
-# Auto detect
-##   Handle line endings automatically for files detected as
-##   text and leave all files detected as binary untouched.
-##   This will handle all files NOT defined below.
 *                 text=auto
 
-# Source code
 *.bash            text eol=lf
 *.bat             text eol=crlf
 *.cmd             text eol=crlf
@@ -50,10 +34,8 @@
 *.xml             text
 *.xhtml           text diff=html
 
-# Docker
 Dockerfile        text
 
-# Documentation
 *.ipynb           text
 *.markdown        text
 *.md              text
@@ -79,7 +61,6 @@ readme            text
 *README*          text
 TODO              text
 
-# Templates
 *.dot             text
 *.ejs             text
 *.haml            text
@@ -96,7 +77,6 @@ TODO              text
 *.twig            text
 *.vue             text
 
-# Configs
 *.cnf             text
 *.conf            text
 *.config          text
@@ -114,10 +94,8 @@ browserslist      text
 Makefile          text
 makefile          text
 
-# Heroku
 Procfile          text
 
-# Graphics
 *.ai              binary
 *.bmp             binary
 *.eps             binary
@@ -134,18 +112,13 @@ Procfile          text
 *.png             binary
 *.psb             binary
 *.psd             binary
-# SVG treated as an asset (binary) by default.
 *.svg             text
-# If you want to treat it as binary,
-# use the following line instead.
-# *.svg           binary
 *.svgz            binary
 *.tif             binary
 *.tiff            binary
 *.wbmp            binary
 *.webp            binary
 
-# Audio
 *.kar             binary
 *.m4a             binary
 *.mid             binary
@@ -154,7 +127,6 @@ Procfile          text
 *.ogg             binary
 *.ra              binary
 
-# Video
 *.3gpp            binary
 *.3gp             binary
 *.as              binary
@@ -173,7 +145,6 @@ Procfile          text
 *.swf             binary
 *.webm            binary
 
-# Archives
 *.7z              binary
 *.gz              binary
 *.jar             binary
@@ -181,19 +152,15 @@ Procfile          text
 *.tar             binary
 *.zip             binary
 
-# Fonts
 *.ttf             binary
 *.eot             binary
 *.otf             binary
 *.woff            binary
 *.woff2           binary
 
-# Executables
 *.exe             binary
 *.pyc             binary
 
-# RC files (like .babelrc or .eslintrc)
 *.*rc             text
 
-# Ignore files (like .npmignore or .gitignore)
 *.*ignore         text

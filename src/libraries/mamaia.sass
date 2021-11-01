@@ -79,16 +79,12 @@ $shadow: $unit 2 * $unit $unit $hblack
     &:hover
         cursor: pointer
 
-@mixin btn 
-    background: $blue
-    border: $unit solid $white
+@mixin btn($bg-color, $text-color, $border-color) 
+    background: $bg-color
+    border: $unit solid $border-color
     box-shadow: $shadow
     border-radius: .5 * $size
-    color: $white
-    padding: $size
+    color: $text-color
     font-size: $size
     font-family: 'Montserrat', sans-serif
     transition: .25s all ease-out
-
-    &:hover
-        background: $hblue

@@ -8,3 +8,4 @@ Mamaia Countdowns is a tool to ease your life. You can set countdowns for any ev
 
 - Use the Notification API,
 - Integrate the website with Progressive Web App,
+- Add documentation using JSDoc, https://jsdoc.app/index.html.

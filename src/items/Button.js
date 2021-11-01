@@ -31,7 +31,7 @@ const Button = (props) => {
     }
 
     return (
-        <button className="btn hover touch-target" tabIndex='0' onClick={validate} type='submit'><Link to='app'>{props.message}</Link></button>
+        <button className="btn hover touch-target" tabIndex='-1' onClick={validate} type='submit'><Link to='app'>{props.message}</Link></button>
     )
 }
 

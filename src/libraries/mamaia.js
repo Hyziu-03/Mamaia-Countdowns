@@ -9,3 +9,5 @@ export const integrateTabIndex = () => {
         }
     });
 };
+
+export const refresh = () => window.location.reload(false);

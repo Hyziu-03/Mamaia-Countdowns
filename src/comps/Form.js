@@ -10,12 +10,14 @@ const Form = (props) => {
                 <p className="description" tabIndex='0'>{props.description[1]}</p>
                 <p className="description" tabIndex='0'>{props.description[2]}</p>
             </section>
-            <Contact 
-                firstInput='What is your name?'
-                secondInput='What is your email?'
-                thirdInput='What do you want to say?'
-            />
-            <Button origin='form' message='Set a Countdown!'/>
+            <section className='contact-form-container'>
+                <Contact
+                    firstInput='What is your name?'
+                    secondInput='What is your email?'
+                    thirdInput='What do you want to say?'
+                />
+                <Button origin='form' message='Send a Message!' />
+            </section>
         </article>
     )
 }

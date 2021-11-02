@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import * as EmailValidator from 'email-validator';
 
 const Button = (props) => {
@@ -31,7 +30,7 @@ const Button = (props) => {
     }
 
     return (
-        <button className="btn hover touch-target" tabIndex='-1' onClick={validate} type='submit'><Link to='app'>{props.message}</Link></button>
+        <button className="btn hover touch-target" tabIndex='-1' onClick={validate} type='submit'>{props.message}</button>
     )
 }
 

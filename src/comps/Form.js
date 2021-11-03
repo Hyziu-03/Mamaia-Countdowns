@@ -14,6 +14,7 @@ const Form = (props) => {
                 <Contact
                     firstInput='What is your name?'
                     secondInput='What is your email?'
+                    secondInputType = 'email'
                     thirdInput='What do you want to say?'
                 />
                 <Button origin='form' message='Send a Message!' />

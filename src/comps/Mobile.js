@@ -4,11 +4,9 @@ import Button from "../items/Button";
 
 import { refresh } from '../libraries/mamaia';
 
-const readInformation = () => {
-    
-}
-
 const Mobile = () => {
+    let dateContent = document.getElementsByClassName('email')[1].value !== undefined ? document.getElementsByClassName('email')[1].value : 'Your date will show up here when you submit it.';
+
     return (
         <div className="mobile-container">
             <header className="fixed-header" onClick={refresh}><Name /></header>
@@ -17,21 +15,21 @@ const Mobile = () => {
                     <Contact 
                         firstInput='What is this event?'
                         secondInput='When does it start?'
+                        secondInputType = 'date'
                         thirdInput='What additional information do you have?'
                     />
-                    <span onClick={readInformation}>
+                    <span>
                         <Button message="Set a Countdown!" />
                     </span>
                 </article>
                 <article className="saved-countdowns">
-                    <h1 className="heading">Christmas 2021</h1>
-                    <p className="description">This event starts on 24th December 2021.</p>
-                    <p className="description">Duis auctor nunc sed tellus facilisis suscipit. In eu placerat sapien. Sed porttitor elit a tellus euismod, vel ornare dolor euismod.</p>
-                    <p className="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vitae nibh eros. Nam lobortis scelerisque turpis ultrices pellentesque. Quisque convallis nec mi in luctus.</p>
+                    <h1 className="heading"></h1>
+                    <p className="description"></p>
+                    <p className="description"></p>
                     <section className="btn-container">
                         <button className="arrow-btn">
                             <i className="fas fa-long-arrow-alt-left"></i>
-                                </button>
+                        </button>
                         <button className="arrow-btn">
                             <i className="fas fa-long-arrow-alt-right"></i>
                         </button>

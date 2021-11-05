@@ -1,3 +1,5 @@
+// ? This file is optimised for version 1.0
+
 import * as EmailValidator from 'email-validator';
 
 const Button = (props) => {
@@ -5,21 +7,22 @@ const Button = (props) => {
         try {
             if (props.origin === 'form') {
                 let isSent = false;
+
                 const emailInput = document.getElementById('email');
                 const textInput = document.getElementById('text-input');
-                const message = document.getElementById('message');
+                const messageInput = document.getElementById('message');
 
-                let isNotCorrect = EmailValidator.validate(emailInput.value) === false || textInput.value === '' || message.value === '';
+                let isNotCorrect = EmailValidator.validate(emailInput.value) === false || textInput.value === '' || messageInput.value === '';
                 isNotCorrect ? alert('Please, fill in all the information requested.') : isSent = true;
 
                 if (isSent) {
                     // eslint-disable-next-line
-                    let emailInformation = 'mailto:szymon.hyziak@protonmail.com?' + 'subject=' + textInput.value + ' | ' + emailInput.value + '&body=' + message.value;
+                    let emailInformation = 'mailto:szymon.hyziak@protonmail.com?' + 'subject=' + textInput.value + ' | ' + emailInput.value + '&body=' + messageInput.value;
                     window.location.assign(emailInformation);
 
                     emailInput.value = '';
                     textInput.value = '';
-                    message.value = '';
+                    messageInput.value = '';
 
                     alert('Please wait for redirection to your mail app.');
                 }

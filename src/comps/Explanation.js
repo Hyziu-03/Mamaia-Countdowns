@@ -1,3 +1,5 @@
+// ? This file is optimised for version 1.0
+
 const Explanation = (props) => {
     return (
         <article className="explanation">

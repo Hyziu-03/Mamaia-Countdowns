@@ -1,3 +1,7 @@
+// ? This file is optimised for version 1.0
+
+// ? Components:
+
 import Header from "./comps/Header";
 import Introduction from "./comps/Introduction";
 import Explanation from "./comps/Explanation";
@@ -5,9 +9,13 @@ import Biography from "./comps/Biography";
 import Form from "./comps/Form";
 import Footer from "./comps/Footer";
 
+// ? Illustrations:
+
 import Calendar from './img/calendar.svg';
 import Work from './img/work.svg';
 import Creator from './img/creator.webp';
+
+// ? External Scripts:
 
 import { integrateTabIndex } from "./libraries/mamaia";
 integrateTabIndex();
@@ -60,3 +68,5 @@ function App() {
 }
 
 export default App;
+
+// ? Can we get rid of <article> elements?

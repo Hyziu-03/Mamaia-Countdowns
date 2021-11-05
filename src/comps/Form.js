@@ -1,3 +1,5 @@
+// ? This file is optimised for version 1.0
+
 import Button from "../items/Button";
 import Contact from "../items/Contact";
 
@@ -24,3 +26,5 @@ const Form = (props) => {
 }
 
 export default Form; 
+
+// ? Can we get rid of the <article> element?

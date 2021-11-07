@@ -6,6 +6,7 @@ const Button = (props) => {
     const validate = () => {
         try {
             if (props.origin === 'form') {
+
                 let isSent = false;
 
                 const emailInput = document.getElementById('email');
@@ -16,6 +17,7 @@ const Button = (props) => {
                 isNotCorrect ? alert('Please, fill in all the information requested.') : isSent = true;
 
                 if (isSent) {
+                    
                     // eslint-disable-next-line
                     let emailInformation = 'mailto:szymon.hyziak@protonmail.com?' + 'subject=' + textInput.value + ' | ' + emailInput.value + '&body=' + messageInput.value;
                     window.location.assign(emailInformation);

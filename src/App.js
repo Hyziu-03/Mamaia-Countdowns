@@ -17,7 +17,7 @@ import Creator from './img/creator.webp';
 
 // ? External Scripts:
 
-import { integrateTabIndex } from "./libraries/mamaia";
+import { integrateTabIndex } from "./libraries/reusable";
 integrateTabIndex();
 
 function App() {

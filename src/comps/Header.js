@@ -3,7 +3,7 @@
 import { Link } from "react-router-dom";
 import Button from "../items/Button";
 import Name from "../items/Name";
-import { refresh } from '../libraries/mamaia';
+import { refresh } from '../libraries/reusable';
 
 const Header = () => {
     return (

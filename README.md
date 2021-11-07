@@ -6,11 +6,6 @@ Mamaia Countdowns is a tool to ease your life. You can set countdowns for any ev
 
 ## Task list for the PWA
 
-### What does not work well>
-
-- Correct readability od mamaia.sass,
-- Correct readability od mamaia.js.
-
 ### Which technologies are yet to be used?
 
 - Use the Notification API.

@@ -15,16 +15,7 @@ $hblue: rgb(11, 51, 117)
 $unit: 4px
 $size: 6 *  $unit
 
-// ? Premade Components I:
-
-$shadow: $unit 2 * $unit $unit $hblack
-
-// ? Premade Components II:
-
-@mixin heading
-    font-size: 2 * $size
-    line-height: 3 * $size
-    font-family: 'Bangers', cursive
+// ? Utilities:
 
 @mixin reset
     margin: 0
@@ -36,6 +27,27 @@ $shadow: $unit 2 * $unit $unit $hblack
     flex-direction: column
     align-items: center
     justify-content: center
+
+@mixin touch-target
+    min-width: 48px
+    min-height: 48px
+
+@mixin hoverable 
+    user-select: none
+
+    &:hover
+        cursor: pointer
+
+// ? Styles:
+
+$shadow: $unit 2 * $unit $unit $hblack
+
+// ? Components:
+
+@mixin heading
+    font-size: 2 * $size
+    line-height: 3 * $size
+    font-family: 'Bangers', cursive
 
 @mixin container 
     font-family: 'Montserrat', sans-serif
@@ -68,16 +80,6 @@ $shadow: $unit 2 * $unit $unit $hblack
 @mixin responsive-img 
     pointer-events: none
     margin: 2 * $size 0
-
-@mixin touch-target
-    min-width: 48px
-    min-height: 48px
-
-@mixin hoverable 
-    user-select: none
-
-    &:hover
-        cursor: pointer
 
 @mixin btn($bg-color, $text-color, $border-color) 
     background: $bg-color

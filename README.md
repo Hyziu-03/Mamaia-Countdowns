@@ -6,10 +6,6 @@ Mamaia Countdowns is a tool to ease your life. You can set countdowns for any ev
 
 ## Task list for the PWA
 
-### Which technologies are yet to be used?
-
-- Use the Notification API.
-
 ### What is to correct about SEO?
 
 - Check for broken images, videos, and descriptive alt texts,
@@ -19,3 +15,4 @@ Mamaia Countdowns is a tool to ease your life. You can set countdowns for any ev
 ### What is to correct about file structure?
 
 - Remove unused code from index.sass.
+

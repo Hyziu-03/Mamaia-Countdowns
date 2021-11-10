@@ -4,15 +4,12 @@
 
 Mamaia Countdowns is a tool to ease your life. You can set countdowns for any event you want. No matter if it’s Christmas or an important exam to take!
 
-## Task list for the PWA
+## What is yet to be corrected?
 
-### What is to correct about SEO?
+- Web app manifest does not meet the installability requirements: <https://web.dev/installable-manifest/?utm_source=lighthouse&utm_medium=devtools>
 
-- Check for broken images, videos, and descriptive alt texts,
-- Check for broken links, h-tags, and cannibalisation,
-- Ensure clear description of services, products, or purpose.
+- Does not register a service worker that controls page and start_url: <https://web.dev/service-worker/?utm_source=lighthouse&utm_medium=devtools>
 
-### What is to correct about file structure?
+- Does not redirect HTTP traffic to HTTPS: <https://web.dev/redirects-http/?utm_source=lighthouse&utm_medium=devtools>
 
-- Remove unused code from index.sass.
-
+- Manifest doesn't have a maskable icon: <https://web.dev/maskable-icon-audit/?utm_source=lighthouse&utm_medium=devtools>

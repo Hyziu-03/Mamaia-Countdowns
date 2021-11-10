@@ -30,7 +30,7 @@ function App() {
             heading="Can’t remember dates?"
             description="Mamaia Countdowns is a tool to ease your life. You can set countdowns for any event you want. No matter if it’s Christmas or an important exam to take!" 
           />
-          <img src={Calendar} alt="" className="calendar" />
+          <img src={Calendar} alt="Illustration showing a young man holding a giant pencil. He is standing in front of a calendar and he is looking at the horizon." className="calendar" />
         </article>
         <article className="article">
             <Explanation
@@ -40,7 +40,7 @@ function App() {
               , 'All your countdowns will be stored in the memory of your device, so please don’t clear it for this app, as you might lose all your work.'
               ]} 
             />
-          <img src={Work} alt="" className="work" />
+          <img src={Work} alt="Illustration showing a young man sitting at the desk. He is working on a laptop with coffee by side." className="work" />
         </article>
         <article className="article">
           <Biography 
@@ -51,7 +51,7 @@ function App() {
               'If you want to contact me work-wise don’t hesitate to reach me through LinkedIn. Any donations via PayPal are welcome. Links below!'
             ]}
           />
-          <img src={Creator} alt="" className="creator" />
+          <img src={Creator} alt="Headshot of the creator - Szymon Hyziak." className="creator" />
         </article>
         <Form 
           heading='How can you help?'

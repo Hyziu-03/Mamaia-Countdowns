@@ -8,8 +8,8 @@ import { refresh } from '../libraries/reusable';
 
 if(localStorage.getItem('totalNumber') === null) {
     localStorage.setItem('totalNumber', 1);
-    localStorage.setItem('event0name', 'Your date will show up here when you submit it.');
-    localStorage.setItem('event0date', "The event's name will show up here when you submit it.");
+    localStorage.setItem('event0name', "The event 's name will show up here when you submit it.");
+    localStorage.setItem('event0date', "Your date will show up here when you submit it.");
     localStorage.setItem('event0description', "Additional information about the event will show up here when you submit it.");
 }  
 
@@ -27,7 +27,7 @@ const handleSubmit = () => {
 
     let newEventNumber = localStorage.getItem('totalNumber') - 1;
     localStorage.setItem('event' + newEventNumber + 'name', nameInput[1].value);
-    localStorage.setItem('event' + newEventNumber + 'date', emailInput[1].value);
+    localStorage.setItem('event' + newEventNumber + 'date', 'This event will happen on ' + emailInput[1].value);
     localStorage.setItem('event' + newEventNumber + 'description', descriptionInput[1].value);
 
     alert('Your event has been saved!');

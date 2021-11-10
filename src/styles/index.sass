@@ -1,3 +1,5 @@
+// ? Utility Selectors: 
+
 @import '../libraries/reusable'
 
 *
@@ -5,8 +7,6 @@
 
     &:focus
         outline-offset: .5 * $size
-
-// ? Utility Selectors: 
 
 .touch-target
     @include touch-target
@@ -111,7 +111,6 @@ a
     top: 0
     z-index: 3
     width: 100%
-
     display: flex
     align-items: center
     justify-content: space-between
@@ -130,9 +129,7 @@ a
     padding: 0 max(1.5 * $size, 0)
 
 .contact-form-container
-    display: flex
-    align-items: center
-    flex-direction: column
+    @include flex-center
 
 .form
     display: flex
@@ -166,19 +163,16 @@ a
 // ? App Components: 
 
 .mobile-container
-    position: fixed
-    left: 50%
-    top: 50%
-    transform: translate(-50%, -50%)
+    @include position-center
     z-index: 3
     background: $white
     width: 100%
     height: 100%
-    overflow: hidden
 
     .contact-form-container
         position: relative
         top: .75 * $size
+        margin: 0 1.5 * $size
 
 .fixed-header
     text-align: center
@@ -193,15 +187,14 @@ a
     display: flex
     flex-direction: column
     font-family: 'Montserrat', sans-rerif
-    margin-left: 3 * $size
     min-width: 40%
+    margin: 0 1.5 * $size
 
     .heading
         margin: .75 * $size 0
 
     .description
         margin: .5 * $size 0
-
 
 .btn-container
     display: flex
@@ -227,17 +220,12 @@ a
 .calendar
     max-height: 400px
     pointer-events: none
+    max-width: 40%
 
 .work, .creator
     max-width: 500px
     pointer-events: none
-
-.background
-    position: absolute
-    right: 0
-    max-height: 500px
-    pointer-events: none
-    z-index: -1
+    max-width: 40%
 
 // ? Media Queries:
 
@@ -250,8 +238,6 @@ a
         max-width: 400px
         @include responsive-img
 
-    .form
-        margin-right: 2 * $size
 
 @media (max-width: 950px) 
     .article, .footer
@@ -263,8 +249,16 @@ a
     .form 
         margin: 0 1.5 * $size
 
-    .background
-        display: none
+    .mobile-content 
+        flex-direction: column 
+
+    .contact-form-container
+        order: 2
+
+    .saved-countdowns
+        order: 1
+        margin: 2 * $size 0
+        max-width: 75%
 
 @media (max-width: 625px) 
     .header

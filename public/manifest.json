@@ -3,23 +3,42 @@
   "name": "Mamaia Countdowns",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "maskable_icon_x64.png",
+      "sizes": "64x64",
+      "type": "image/png",
+      "purpose": "maskable"
     },
     {
-      "src": "logo192.png",
+      "src": "maskable_icon_x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "maskable_icon_x24.png",
+      "sizes": "24x24",
+      "type": "image/png"
+    },
+    {
+      "src": "maskable_icon_x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "maskable_icon_x192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "maskable_icon_x512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "./app",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#fecc18",
+  "background_color": "#efefef",
+  "prefer_related_applications": false,
+  "orientation": "portrait-primary",
+  "description": "With Mamaia you can set countdowns for any event you want. No matter if it’s Christmas or an important exam to take!"
 }

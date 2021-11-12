@@ -2,48 +2,15 @@ import { useState } from 'react';
 import Name from "../items/Name";
 import Contact from "../items/Contact";
 import Button from "../items/Button";
-import { refresh } from '../libraries/reusable';
+
+import { refresh, localStorageMock } from '../libraries/reusable';
+global.localStorage = localStorageMock;
 
 // ? Initialise event counter on first load:
-
-try {
-    if (typeof window !== 'undefined') {
-        if (localStorage.getItem('totalNumber') === null) {
-            localStorage.setItem('totalNumber', 1);
-            localStorage.setItem('event0name', "The event 's name will show up here when you submit it.");
-            localStorage.setItem('event0date', "Your date will show up here when you submit it.");
-            localStorage.setItem('event0description', "Additional information about the event will show up here when you submit it.");
-        }
-    }
-} catch(error) {
-    throw new Error(error);
-}
 
 let emailInput = document.getElementsByClassName('email');
 let nameInput = document.getElementsByClassName('text-input');
 let descriptionInput = document.getElementsByClassName('message');
-
-const handleSubmit = () => {
-    try {
-        if (typeof window !== 'undefined') {
-            // ? Save the new number of events to the local storage:
-
-            let currentNumber = parseInt(localStorage.getItem('totalNumber'));
-            localStorage.setItem("totalNumber", ++currentNumber);
-
-            // ? Save all of the new data to the local storage:
-
-            let newEventNumber = localStorage.getItem('totalNumber') - 1;
-            localStorage.setItem('event' + newEventNumber + 'name', nameInput[1].value);
-            localStorage.setItem('event' + newEventNumber + 'date', 'This event will happen on ' + emailInput[1].value);
-            localStorage.setItem('event' + newEventNumber + 'description', descriptionInput[1].value);
-
-            alert('Your event has been saved!');
-        }
-    } catch(error) {
-        throw new Error(error);
-    }
-}
 
 const Mobile = () => {
     let [eventNumber, update] = useState(0);
@@ -56,9 +23,42 @@ const Mobile = () => {
         }
     }
 
-    const correctState = (direction) => {
         try {
-            if (typeof window !== 'undefined') {
+            if (localStorage.getItem('totalNumber') === null) {
+                localStorage.setItem('totalNumber', 1);
+                localStorage.setItem('event0name', "The event 's name will show up here when you submit it.");
+                localStorage.setItem('event0date', "Your date will show up here when you submit it.");
+                localStorage.setItem('event0description', "Additional information about the event will show up here when you submit it.");
+            }
+
+        } catch (error) {
+            throw new Error(error);
+        }
+
+        const handleSubmit = () => {
+            try {
+
+                // ? Save the new number of events to the local storage:
+
+                let currentNumber = parseInt(localStorage.getItem('totalNumber'));
+                localStorage.setItem("totalNumber", ++currentNumber);
+
+                // ? Save all of the new data to the local storage:
+
+                let newEventNumber = localStorage.getItem('totalNumber') - 1;
+                localStorage.setItem('event' + newEventNumber + 'name', nameInput[1].value);
+                localStorage.setItem('event' + newEventNumber + 'date', 'This event will happen on ' + emailInput[1].value);
+                localStorage.setItem('event' + newEventNumber + 'description', descriptionInput[1].value);
+
+                alert('Your event has been saved!');
+
+            } catch (error) {
+                throw new Error(error);
+            }
+        }
+
+        const correctState = (direction) => {
+            try {
                 // ? Check if the current event number is valid, correct it if it is not:
 
                 let valid = true;
@@ -80,15 +80,16 @@ const Mobile = () => {
                         update(++eventNumber);
                     }
                 }
-            }
-        } catch(error) {
-            throw new Error(error);
-        }
-    }
 
-    let renderedName = localStorage.getItem('event' + eventNumber + 'name') || '';
-    let renderedDate = localStorage.getItem('event' + eventNumber + 'date') || '';
-    let renderedDescription = localStorage.getItem('event' + eventNumber + 'description') || '';
+            } catch (error) {
+                throw new Error(error);
+            }
+        }
+
+        let renderedName = localStorage.getItem('event' + eventNumber + 'name') || '';
+        let renderedDate = localStorage.getItem('event' + eventNumber + 'date') || '';
+        let renderedDescription = localStorage.getItem('event' + eventNumber + 'description') || '';
+    
 
     return (
         <div className="mobile-container">

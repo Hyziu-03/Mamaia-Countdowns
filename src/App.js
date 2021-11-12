@@ -20,10 +20,6 @@ import Creator from './img/creator.webp';
 import { integrateTabIndex } from "./libraries/reusable";
 integrateTabIndex();
 
-if (typeof window.ethereum.autoRefreshOnNetworkChange !== "undefined") {
-  window.ethereum.autoRefreshOnNetworkChange = false;
-}
-
 // ? Service Worker Registration:
 
 if ('serviceWorker' in navigator) {

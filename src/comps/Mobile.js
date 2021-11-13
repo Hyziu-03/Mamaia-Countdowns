@@ -8,8 +8,6 @@ import Button from "../items/Button";
 
 import { useState } from 'react';
 import { refresh } from '../libraries/reusable';
-import 'localstorage-polyfill';
-global['localStorage'] = localStorage;
 
 // ? Initialise event counter on first load:
 

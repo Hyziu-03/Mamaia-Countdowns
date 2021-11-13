@@ -1,10 +1,15 @@
-import { useState } from 'react';
+// ? Components:
+
 import Name from "../items/Name";
 import Contact from "../items/Contact";
 import Button from "../items/Button";
 
-import { refresh, localStorageMock } from '../libraries/reusable';
-global.localStorage = localStorageMock;
+// ? External Scripts:
+
+import { useState } from 'react';
+import { refresh } from '../libraries/reusable';
+import 'localstorage-polyfill';
+global['localStorage'] = localStorage;
 
 // ? Initialise event counter on first load:
 
@@ -18,78 +23,77 @@ const Mobile = () => {
     const validate = () => {
         try {
             emailInput[1].value === '' || nameInput.value === '' || descriptionInput.value === '' ? alert('Please, fill in all the information requested.') : handleSubmit();
-        } catch(error) {
+        } catch (error) {
             throw new Error(error);
         }
     }
 
+    try {
+        if (localStorage.getItem('totalNumber') === null) {
+            localStorage.setItem('totalNumber', 1);
+            localStorage.setItem('event0name', "The event 's name will show up here when you submit it.");
+            localStorage.setItem('event0date', "Your date will show up here when you submit it.");
+            localStorage.setItem('event0description', "Additional information about the event will show up here when you submit it.");
+        }
+
+    } catch (error) {
+        throw new Error(error);
+    }
+
+    const handleSubmit = () => {
         try {
-            if (localStorage.getItem('totalNumber') === null) {
-                localStorage.setItem('totalNumber', 1);
-                localStorage.setItem('event0name', "The event 's name will show up here when you submit it.");
-                localStorage.setItem('event0date', "Your date will show up here when you submit it.");
-                localStorage.setItem('event0description', "Additional information about the event will show up here when you submit it.");
+
+            // ? Save the new number of events to the local storage:
+
+            let currentNumber = parseInt(localStorage.getItem('totalNumber'));
+            localStorage.setItem("totalNumber", ++currentNumber);
+
+            // ? Save all of the new data to the local storage:
+
+            let newEventNumber = localStorage.getItem('totalNumber') - 1;
+            localStorage.setItem('event' + newEventNumber + 'name', nameInput[1].value);
+            localStorage.setItem('event' + newEventNumber + 'date', 'This event will happen on ' + emailInput[1].value);
+            localStorage.setItem('event' + newEventNumber + 'description', descriptionInput[1].value);
+
+            alert('Your event has been saved!');
+
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
+    const correctState = (direction) => {
+        try {
+            // ? Check if the current event number is valid, correct it if it is not:
+
+            let valid = true;
+
+            if (eventNumber < 0) {
+                valid = false;
+            }
+
+            if (eventNumber > localStorage.getItem('totalNumber') - 1) {
+                valid = false;
+            }
+
+            if (!valid) {
+                if (direction === 'right') {
+                    update(--eventNumber);
+                }
+
+                if (direction === 'left') {
+                    update(++eventNumber);
+                }
             }
 
         } catch (error) {
             throw new Error(error);
         }
+    }
 
-        const handleSubmit = () => {
-            try {
-
-                // ? Save the new number of events to the local storage:
-
-                let currentNumber = parseInt(localStorage.getItem('totalNumber'));
-                localStorage.setItem("totalNumber", ++currentNumber);
-
-                // ? Save all of the new data to the local storage:
-
-                let newEventNumber = localStorage.getItem('totalNumber') - 1;
-                localStorage.setItem('event' + newEventNumber + 'name', nameInput[1].value);
-                localStorage.setItem('event' + newEventNumber + 'date', 'This event will happen on ' + emailInput[1].value);
-                localStorage.setItem('event' + newEventNumber + 'description', descriptionInput[1].value);
-
-                alert('Your event has been saved!');
-
-            } catch (error) {
-                throw new Error(error);
-            }
-        }
-
-        const correctState = (direction) => {
-            try {
-                // ? Check if the current event number is valid, correct it if it is not:
-
-                let valid = true;
-
-                if (eventNumber < 0) {
-                    valid = false;
-                }
-
-                if (eventNumber > localStorage.getItem('totalNumber') - 1) {
-                    valid = false;
-                }
-
-                if (!valid) {
-                    if (direction === 'right') {
-                        update(--eventNumber);
-                    }
-
-                    if (direction === 'left') {
-                        update(++eventNumber);
-                    }
-                }
-
-            } catch (error) {
-                throw new Error(error);
-            }
-        }
-
-        let renderedName = localStorage.getItem('event' + eventNumber + 'name') || '';
-        let renderedDate = localStorage.getItem('event' + eventNumber + 'date') || '';
-        let renderedDescription = localStorage.getItem('event' + eventNumber + 'description') || '';
-    
+    let renderedName = localStorage.getItem('event' + eventNumber + 'name') || '';
+    let renderedDate = localStorage.getItem('event' + eventNumber + 'date') || '';
+    let renderedDescription = localStorage.getItem('event' + eventNumber + 'description') || '';
 
     return (
         <div className="mobile-container">

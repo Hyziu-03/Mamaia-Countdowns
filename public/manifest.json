@@ -34,7 +34,7 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "./app",
+  "start_url": "./set-countdown",
   "display": "standalone",
   "theme_color": "#fecc18",
   "background_color": "#efefef",

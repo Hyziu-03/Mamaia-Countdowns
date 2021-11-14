@@ -11,7 +11,7 @@ const Header = () => {
             <span onClick={refresh}>
                 <Name />
             </span> 
-            <Link to='app'>
+            <Link to='set-countdown'>
                 <Button message="Set a Countdown!"/>
             </Link>
         </header>

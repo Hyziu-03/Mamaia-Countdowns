@@ -1,6 +1,9 @@
-// ? This file is optimised for version 1.0
-
 import * as EmailValidator from 'email-validator';
+import DOMPurify from 'dompurify';
+
+const emailInput = document.getElementById('email');
+const textInput = document.getElementById('text-input');
+const messageInput = document.getElementById('message');
 
 const Button = (props) => {
     const validate = () => {
@@ -8,18 +11,13 @@ const Button = (props) => {
             if (props.origin === 'form') {
 
                 let isSent = false;
-
-                const emailInput = document.getElementById('email');
-                const textInput = document.getElementById('text-input');
-                const messageInput = document.getElementById('message');
-
                 let isNotCorrect = EmailValidator.validate(emailInput.value) === false || textInput.value === '' || messageInput.value === '';
                 isNotCorrect ? alert('Please, fill in all the information requested.') : isSent = true;
 
                 if (isSent) {
                     
                     // eslint-disable-next-line
-                    let emailInformation = 'mailto:szymon.hyziak@protonmail.com?' + 'subject=' + textInput.value + ' | ' + emailInput.value + '&body=' + messageInput.value;
+                    let emailInformation = 'mailto:szymon.hyziak@protonmail.com?' + 'subject=' + DOMPurify.sanitize(textInput.value) + ' | ' + DOMPurify.sanitize(emailInput.value) + '&body=' + DOMPurify.sanitize(messageInput.value);
                     window.location.assign(emailInformation);
 
                     emailInput.value = '';

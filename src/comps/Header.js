@@ -1,5 +1,3 @@
-// ? This file is optimised for version 1.0
-
 import { Link } from "react-router-dom";
 import Button from "../items/Button";
 import Name from "../items/Name";

@@ -1,5 +1,3 @@
-// ? This file is optimised for version 1.0
-
 // ? External Scripts:
 
 import { integrateTabIndex } from "./libraries/reusable";
@@ -17,8 +15,6 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-function App() {
-  return '';
-}
+const App = () => false;
 
 export default App;

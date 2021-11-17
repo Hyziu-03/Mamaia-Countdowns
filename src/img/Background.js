@@ -1,5 +1,3 @@
-// ? This file is optimised for version 1.0
-
 const Background = () => {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" width="620" height="612" fill="none" viewBox="0 0 620 612" className="background">

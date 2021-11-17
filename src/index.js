@@ -1,5 +1,3 @@
-// ? This file is optimised for version 1.0
-
 import App from './App';
 import React from 'react';
 import { render } from 'react-snapshot';

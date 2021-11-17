@@ -1,5 +1,4 @@
 *                 text=auto
-
 *.bash            text eol=lf
 *.bat             text eol=crlf
 *.cmd             text eol=crlf
@@ -33,9 +32,7 @@
 *.tsx             text
 *.xml             text
 *.xhtml           text diff=html
-
 Dockerfile        text
-
 *.ipynb           text
 *.markdown        text
 *.md              text
@@ -60,7 +57,6 @@ NEWS              text
 readme            text
 *README*          text
 TODO              text
-
 *.dot             text
 *.ejs             text
 *.haml            text
@@ -76,7 +72,6 @@ TODO              text
 *.tpl             text
 *.twig            text
 *.vue             text
-
 *.cnf             text
 *.conf            text
 *.config          text
@@ -93,9 +88,7 @@ package-lock.json text -diff
 browserslist      text
 Makefile          text
 makefile          text
-
 Procfile          text
-
 *.ai              binary
 *.bmp             binary
 *.eps             binary
@@ -118,7 +111,6 @@ Procfile          text
 *.tiff            binary
 *.wbmp            binary
 *.webp            binary
-
 *.kar             binary
 *.m4a             binary
 *.mid             binary
@@ -126,7 +118,6 @@ Procfile          text
 *.mp3             binary
 *.ogg             binary
 *.ra              binary
-
 *.3gpp            binary
 *.3gp             binary
 *.as              binary
@@ -144,23 +135,18 @@ Procfile          text
 *.swc             binary
 *.swf             binary
 *.webm            binary
-
 *.7z              binary
 *.gz              binary
 *.jar             binary
 *.rar             binary
 *.tar             binary
 *.zip             binary
-
 *.ttf             binary
 *.eot             binary
 *.otf             binary
 *.woff            binary
 *.woff2           binary
-
 *.exe             binary
 *.pyc             binary
-
 *.*rc             text
-
 *.*ignore         text

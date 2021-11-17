@@ -1,5 +1,3 @@
-// ? This file is optimised for version 1.0
-
 const Footer = () => {
     return (
         <footer className="footer">

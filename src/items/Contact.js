@@ -1,5 +1,3 @@
-// ? This file is optimised for version 1.0
-
 const Contact = (props) => {
     return (
         <form action="" method='' className="form article" id='form' onSubmit={(event) => event.preventDefault()} autoComplete='off'>

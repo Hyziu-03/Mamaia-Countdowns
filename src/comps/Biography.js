@@ -1,5 +1,3 @@
-// ? This file is optimised for version 1.0
-
 const Biography = (props) => {
     return (
         <article className="biography">

@@ -1,5 +1,3 @@
-// ? This file is optimised for version 1.0
-
 import Button from "../items/Button";
 import Contact from "../items/Contact";
 

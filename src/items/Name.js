@@ -1,5 +1,3 @@
-// ? This file is optimised for version 1.0
-
 import { Link } from "react-router-dom";
 
 const displayName = window.innerWidth < 950 ? 'Mamaia' : 'Mamaia Countdowns';

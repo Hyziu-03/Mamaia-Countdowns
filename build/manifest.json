@@ -34,12 +34,13 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "/",
+  "start_url": "./set-countdown",
   "display": "standalone",
   "theme_color": "#fecc18",
   "background_color": "#efefef",
   "prefer_related_applications": false,
   "orientation": "portrait-primary",
   "description": "With Mamaia you can set countdowns for any event you want. No matter if it’s Christmas or an important exam to take!",
-  "scope": "."
+  "scope": ".",
+  "id": "./set-countdown"
 }

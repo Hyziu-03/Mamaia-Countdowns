@@ -1,12 +1,18 @@
 import * as EmailValidator from 'email-validator';
 import DOMPurify from 'dompurify';
 
-const emailInput = document.getElementById('email');
-const textInput = document.getElementById('text-input');
-const messageInput = document.getElementById('message');
+var emailInput = undefined;
+var textInput = undefined;
+var messageInput = undefined;
+
+window.addEventListener('DOMContentLoaded', () => {
+    emailInput = document.getElementById('email')[0];
+    textInput = document.getElementById('text-input')[0];
+    messageInput = document.getElementById('message')[0];
+});
 
 const Button = (props) => {
-    const validate = () => {
+    const validateMessage = () => {
         try {
             if (props.origin === 'form') {
 
@@ -33,7 +39,7 @@ const Button = (props) => {
     }
 
     return (
-        <button className="btn hover touch-target" tabIndex='-1' onClick={validate} type='submit'>{props.message}</button>
+        <button className="btn hover touch-target" tabIndex='-1' onClick={validateMessage} type='submit'>{props.message}</button>
     )
 }
 

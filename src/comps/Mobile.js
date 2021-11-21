@@ -11,16 +11,22 @@ import { refresh } from '../libraries/reusable';
 
 // ? Initialise event counter on first load:
 
-let emailInput = document.getElementsByClassName('email');
-let nameInput = document.getElementsByClassName('text-input');
-let descriptionInput = document.getElementsByClassName('message');
+var emailInput = undefined;
+var nameInput = undefined;
+var descriptionInput = undefined;
+
+window.addEventListener('DOMContentLoaded', () => {
+    emailInput = document.getElementById('email')[0];
+    nameInput = document.getElementById('text-input')[0];
+    descriptionInput = document.getElementById('message')[0];
+});
 
 const Mobile = () => {
     let [eventNumber, update] = useState(0);
 
     const validate = () => {
         try {
-            emailInput[1].value === '' || nameInput.value === '' || descriptionInput.value === '' ? alert('Please, fill in all the information requested.') : handleSubmit();
+            emailInput.value === '' || nameInput.value === '' || descriptionInput.value === '' ? alert('Please, fill in all the information requested.') : handleSubmit();
         } catch (error) {
             throw new Error(error);
         }

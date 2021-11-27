@@ -12,18 +12,21 @@ import { refresh } from '../libraries/reusable';
 // ? Initialise the local storage on first load:
 
 try {
+
     if (localStorage.getItem('totalNumber') === null) {
         localStorage.setItem('totalNumber', 1);
         localStorage.setItem('event0name', "The event 's name will show up here when you submit it.");
         localStorage.setItem('event0date', "Your date will show up here when you submit it.");
         localStorage.setItem('event0description', "Additional information about the event will show up here when you submit it.");
     }
+
 } catch (error) {
     throw new Error(error);
 }
 
 const saveData = () => {
     try {
+
         // ? Save the new number of events to the local storage:
 
         let currentNumber = parseInt(localStorage.getItem('totalNumber'));
@@ -45,7 +48,9 @@ const saveData = () => {
 
 const inspectInputs = () => {
     try {
+
         document.getElementsByClassName('email')[0].value === '' || document.getElementsByClassName('text-input')[0].value === '' || document.getElementsByClassName('message')[0].value === '' ? alert('Please, fill in all the information requested.') : saveData();
+    
     } catch (error) {
         throw new Error(error);
     }
@@ -56,6 +61,7 @@ const Mobile = () => {
 
     const correctState = (direction) => {
         try {
+            
             // ? Check if the current event number is valid, correct it if it is not:
 
             let valid = true;

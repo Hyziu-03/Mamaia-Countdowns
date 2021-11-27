@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import Button from '../items/Button';
-
 const Introduction = (props) => {
     return (
         <article className="introduction">
@@ -14,5 +13,4 @@ const Introduction = (props) => {
         </article>
     )
 }
-
 export default Introduction;

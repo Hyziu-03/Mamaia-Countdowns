@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
-
 const displayName = window.innerWidth < 950 ? 'Mamaia' : 'Mamaia Countdowns';
-
 const Name = () => {
     return (
         <Link to='/'>

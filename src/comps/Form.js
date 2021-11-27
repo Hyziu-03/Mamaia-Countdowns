@@ -24,5 +24,3 @@ const Form = (props) => {
 }
 
 export default Form; 
-
-// ? Can we get rid of the <article> element?

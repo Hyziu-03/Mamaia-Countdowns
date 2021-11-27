@@ -92,4 +92,4 @@ const Home = () => {
 
 export default Home;
 
-// ? Can we get rid of <article> elements?
+// ? Can we get rid of the <article> elements?

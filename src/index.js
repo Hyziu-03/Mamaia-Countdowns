@@ -1,13 +1,13 @@
 import App from './App';
 import React from 'react';
-import { render } from 'react-snapshot';
+import ReactDOM from 'react-dom'
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './styles/index.min.css';
 import Mobile from "./comps/Mobile";
 import Home from './comps/Home';
 
-render(
+ReactDOM.render(
   <React.StrictMode>
     <Router>
       <App />

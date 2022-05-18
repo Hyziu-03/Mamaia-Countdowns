@@ -96,3 +96,30 @@ $shadow: $unit 2 * $unit $unit $hblack
     font-size: $size
     font-family: 'Montserrat', sans-serif
     transition: .25s all ease-out
+
+@mixin font-awesome-icon 
+    font-size: 1.75 * $size
+    transition: .25s all ease-out
+    padding: .75 * $size
+    border: $unit solid transparent
+    border-radius: $size
+    margin: 0 2 * $unit 
+    color: $black
+
+    &:hover
+        cursor: pointer
+        border-color: $black
+        box-shadow: $shadow
+
+@mixin header 
+    background: $white
+    border: $unit solid $blue
+    box-shadow: 0 2 * $unit $unit $hblack
+    padding: $size 2 * $size
+    position: fixed
+    top: 0
+    z-index: 3  
+    width: 100%
+    display: flex
+    align-items: center
+    justify-content: space-between

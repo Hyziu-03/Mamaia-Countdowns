@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom'
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './styles/index.css';
-import App from './comps/App.jsx';
-import Home from './comps/Home';
+import App from './components/App.jsx';
+import Home from './components/Home.jsx';
 
 ReactDOM.render(
   <React.StrictMode>

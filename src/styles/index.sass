@@ -1,6 +1,127 @@
-// ? Utility Selectors: 
+// Colours:
 
-@import '../libraries/reusable'
+$black: rgb(42, 42, 42)
+$white: rgb(239, 239, 239)
+$yellow: rgb(254, 204, 24)
+$blue: rgb(41, 81, 167)
+$hblack: rgba(42, 42, 42, .25)
+$hblue: rgb(11, 51, 117)
+
+// Sizing Units:
+
+$unit: 4px
+$size: 6 *  $unit
+
+// ? Utilities:
+
+@mixin reset
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+
+@mixin flex-center 
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+
+@mixin touch-target
+    min-width: 48px
+    min-height: 48px
+
+@mixin hoverable 
+    user-select: none
+
+    &:hover
+        cursor: pointer
+
+@mixin position-center 
+    position: absolute
+    left: 50%
+    top: 50%
+    transform: translate(-50%, -50%)
+
+// ? Styles:
+
+$shadow: $unit 2 * $unit $unit $hblack
+
+// ? Components:
+
+@mixin heading
+    font-size: 2 * $size
+    line-height: 3 * $size
+    font-family: 'Bangers', cursive
+
+@mixin container 
+    font-family: 'Montserrat', sans-serif
+    font-size: $size
+    line-height: 150%
+
+    display: grid
+    gap: 2 * $size
+
+@mixin input 
+    background: $white
+    border: $unit solid $black
+    box-shadow: $shadow
+    border-radius: 4 * $unit
+    padding: .75 * $size
+    font-family: 'Montserrat', sans-serif
+    font-size: .75 * $size
+    min-width: 350px
+    margin: 2 * $unit 0
+
+@mixin textarea 
+    resize: none
+    min-height: 8 * $size
+    line-height: 150%
+
+@mixin link 
+    color: inherit
+    text-decoration: none
+
+@mixin responsive-img 
+    pointer-events: none
+    margin: 2 * $size 0
+
+@mixin btn($bg-color, $text-color, $border-color) 
+    background: $bg-color
+    border: $unit solid $border-color
+    box-shadow: $shadow
+    border-radius: .5 * $size
+    color: $text-color
+    font-size: $size
+    font-family: 'Montserrat', sans-serif
+    transition: .25s all ease-out
+
+@mixin font-awesome-icon 
+    font-size: 1.75 * $size
+    transition: .25s all ease-out
+    padding: .75 * $size
+    border: $unit solid transparent
+    border-radius: $size
+    margin: 0 2 * $unit 
+    color: $black
+
+    &:hover
+        cursor: pointer
+        border-color: $black
+        box-shadow: $shadow
+
+@mixin header 
+    background: $white
+    border: $unit solid $blue
+    box-shadow: 0 2 * $unit $unit $hblack
+    padding: $size 2 * $size
+    position: fixed
+    top: 0
+    z-index: 3  
+    width: 100%
+    display: flex
+    align-items: center
+    justify-content: space-between
+    
+// ? Utility Selectors: 
 
 *
     @include reset
@@ -44,7 +165,6 @@ body
 
 .name
     @include heading
-
     letter-spacing: .5 * $unit
     transition: .25s all ease-out
 
@@ -98,7 +218,7 @@ a
 .main-content
     display: grid
     gap: 4 * $size
-    margin-top: 7.5 * $size
+    margin-top: 5 * $size
 
 .article
     display: flex
@@ -107,7 +227,6 @@ a
 
 .introduction, .explanation, .text-content, .biography
     @include flex-center
-    padding: 0 max(1.5 * $size, 0)
 
 .contact-form-container
     @include flex-center
@@ -134,12 +253,12 @@ a
     
     letter-spacing: .25 * $unit
     text-align: center
-    max-width: 30ch
+    max-width: 35ch
 
 .description
     font-size: $size
-    margin: .75 * $size 0  $size 0
-    max-width: 40ch
+    margin: .75 * $size $size $size $size
+    max-width: 35ch
 
 // ? App Components: 
 
@@ -197,27 +316,18 @@ a
 
 // ? Illustrations:
 
-.calendar
-    max-height: 400px
+.work, .creator, .calendar
     pointer-events: none
-    max-width: 40%
-
-.work, .creator
-    max-width: 500px
-    pointer-events: none
-    max-width: 40%
 
 // ? Media Queries:
 
 @media (max-width: 1250px) 
-    .calendar
-        max-height: 300px
+    .work, .creator, .calendar
         @include responsive-img
 
-    .work, .creator
-        max-width: 400px
-        @include responsive-img
-
+@media (max-width: 1000px) 
+    .work, .creator, .calendar
+        width: 500px
 
 @media (max-width: 950px) 
     .article, .footer
@@ -250,9 +360,6 @@ a
     .copyright
         max-width: unset
 
-@media (max-width: 500px) 
-    .calendar
-        max-height: 250px
-
-    .work, .creator
-        max-width: 325px
+@media (max-width: 350px)
+    .work, .creator, .calendar
+        max-width: 300px

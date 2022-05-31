@@ -1,29 +1,3 @@
-import * as EmailValidator from 'email-validator';
-import DOMPurify from 'dompurify';
-
-const Button = (props) => {
-    const prepareEmail = () => {
-        try {
-            if(props.origin !== 'form') return;
-
-            let username = document.getElementsByClassName('text-input')[0];
-            let email = document.getElementsByClassName('email')[0];
-            let message = document.getElementsByClassName('message')[0];
-
-            let isSent = false;
-            (EmailValidator.validate(email.value) === false || username.value === '' || message.value === '') ? alert('Please, fill in all the information requested.'): isSent = true;
-           
-            if (!isSent) return;
-            
-            // eslint-disable-next-line
-            let emailData = 'mailto:szymon.hyziak@protonmail.com?' + 'subject=' + DOMPurify.sanitize(username.value) + ' from ' + DOMPurify.sanitize(email.value) + '&body=' + DOMPurify.sanitize(message.value);
-            window.location.assign(emailData);
-            alert('Please wait for redirection to your mail app.');
-        } catch(error) {
-            throw new Error(error);
-        }
-    }
-    return <button className="btn hover touch-target" tabIndex='-1' type='submit' onClick={prepareEmail}>{props.message}</button>;
-}
+const Button = (props) => <button className="btn hover touch-target" tabIndex='-1' type='submit'>{props.message}</button>;
 
 export default Button;

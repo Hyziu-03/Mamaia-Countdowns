@@ -1,11 +1,26 @@
 import Header from "./Header.jsx";
 import Introduction from "./Introduction.jsx";
-import Form from "./Form.jsx";
 import Footer from "./Footer.jsx";
 import Calendar from '../images/calendar.svg';
 import Work from '../images/work.svg';
 import Creator from '../images/creator.webp';
 import Paragraph from "./Paragraph";
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyCmNk2q3k4i3dV9ZG2ZfZeTKnum70UaVas",
+    authDomain: "mamaia-countdowns.firebaseapp.com",
+    projectId: "mamaia-countdowns",
+    storageBucket: "mamaia-countdowns.appspot.com",
+    messagingSenderId: "616823378468",
+    appId: "1:616823378468:web:dc9e7312d9c95f94b1feb1",
+    measurementId: "G-NZJKV7EEZM"
+};
+
+const app = initializeApp(firebaseConfig);
+// eslint-disable-next-line no-unused-vars
+const analytics = getAnalytics(app);
 
 const Home = () => {
     return (
@@ -45,7 +60,7 @@ const Home = () => {
                         description={[
                             "Hello, I'm Szymon Hyziak - 18 years old high school student from Poland. I've been developing websites for over a year and I'm thrilled to show you another one.",
                             "I've got a background in IT, that’s related to my high school. I also fancy UI Design and photography.",
-                            "If you want to contact me work-wise don’t hesitate to reach me through LinkedIn. Any donations via PayPal are welcome. Links below!",
+                            "If you want to contact me work-wise don’t hesitate to reach me through LinkedIn. Links below!",
                         ]}
                         className='biography'
                     />
@@ -58,18 +73,7 @@ const Home = () => {
             </main>
             <Footer />
         </div>
-    )
+    );
 }
 
 export default Home;
-
-/*
-    <Form
-        heading="How can you help?"
-        description={[
-            "As it’s the first version of Mamaia Countdowns™ I still have many ideas and room for the app’s improvement.",
-            "Do you have any feedback on your mind? Do you want to grab a call to discuss how this app works? Are you passionate about user testing software?",
-            "If so, I encourage you to fill in this form. I’ll be pleased to get to know you and have an interesting conversation. See you there!",
-        ]}
-    />
-*/

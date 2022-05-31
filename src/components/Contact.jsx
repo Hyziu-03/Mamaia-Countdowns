@@ -5,7 +5,7 @@ const Contact = (props) => {
             <input type={props.secondInputType} name="email" id="email" className="input touch-target email" placeholder={props.secondInput}/>
             <textarea placeholder={props.thirdInput} className="input textarea touch-target message" id="message" name='message'/>
         </form>
-    )
+    );
 }
 
 export default Contact;

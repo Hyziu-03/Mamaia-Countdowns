@@ -6,7 +6,7 @@ const Paragraph = (props) => {
         <p className='description' tabIndex='0'>{props.description[1]}</p>
         <p className='description' tabIndex='0'>{props.description[2]}</p>
     </article>
-  )
+  );
 }
 
 export default Paragraph;

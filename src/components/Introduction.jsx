@@ -12,6 +12,6 @@ const Introduction = (props) => {
                 <Button message='Set a Countdown!'/>
             </Link>
         </article>
-    )
+    );
 }
 export default Introduction;

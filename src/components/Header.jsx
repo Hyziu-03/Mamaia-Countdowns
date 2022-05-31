@@ -10,7 +10,7 @@ const Header = () => {
                 <Button message='Set a Countdown!'/>
             </Link>
         </header>
-    )
+    );
 }
 
 export default Header;

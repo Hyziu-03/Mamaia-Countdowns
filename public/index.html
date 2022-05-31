@@ -12,7 +12,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Montserrat:wght@300&display=swap" rel="stylesheet" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Montserrat:wght@300&display=swap" rel="stylesheet" crossorigin>
   <link rel="icon" href="%PUBLIC_URL%/favicon.png" />
   <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.png" />
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
@@ -24,7 +24,21 @@
   <div id="root"></div>
   <script src="https://kit.fontawesome.com/d1ae74e7ee.js" crossorigin="anonymous"></script>
   <script>
-    if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
+    const registerServiceWorker = async () => {
+      if ('serviceWorker' in navigator) {
+        try {
+          const registration = await navigator.serviceWorker.register('service-worker.js', {
+            scope: '.'
+          });
+          if (registration.installing) console.log('Service worker is being installed');
+          else if (registration.waiting) console.log('Service worker has been installed');
+          else if (registration.active) console.log('Service worker is active');
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    };
+    registerServiceWorker();
   </script>
 </body>
 </html>

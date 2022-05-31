@@ -1,5 +1,5 @@
 // Colours:
-
+    
 $black: rgb(42, 42, 42)
 $white: rgb(239, 239, 239)
 $yellow: rgb(254, 204, 24)
@@ -7,17 +7,20 @@ $blue: rgb(41, 81, 167)
 $hblack: rgba(42, 42, 42, .25)
 $hblue: rgb(11, 51, 117)
 
-// Sizing Units:
+// Sizing:
 
 $unit: 4px
 $size: 6 *  $unit
 
-// ? Utilities:
+// Utilities:
 
 @mixin reset
     margin: 0
     padding: 0
     box-sizing: border-box
+
+    &:focus
+        outline-offset: .25 * $size
 
 @mixin flex-center 
     display: flex
@@ -41,22 +44,19 @@ $size: 6 *  $unit
     top: 50%
     transform: translate(-50%, -50%)
 
-// ? Styles:
-
 $shadow: $unit 2 * $unit $unit $hblack
 
-// ? Components:
+// Components:
 
 @mixin heading
-    font-size: 2 * $size
-    line-height: 3 * $size
-    font-family: 'Bangers', cursive
+    font-size: 1.5 * $size
+    line-height: 2 * $size
+    font-family: 'Roboto Slab', cursive
 
 @mixin container 
     font-family: 'Montserrat', sans-serif
     font-size: $size
     line-height: 150%
-
     display: grid
     gap: 2 * $size
 
@@ -120,14 +120,33 @@ $shadow: $unit 2 * $unit $unit $hblack
     display: flex
     align-items: center
     justify-content: space-between
-    
-// ? Utility Selectors: 
+
+@mixin form 
+    display: flex
+    flex-direction: column
+    z-index: 1
+    background: $yellow
+    border-radius: 75% 25% 25% 75% / 25% 51% 49% 75% 
+    padding: .75 * $size
+
+@mixin footer 
+    background: $yellow
+    padding: $size 3 * $size
+    display: flex
+    justify-content: space-around
+    align-items: center
+
+@mixin interface 
+    display: flex
+    flex-direction: column
+    font-family: 'Montserrat', sans-rerif
+    min-width: 75%
+    margin: 0 1.5 * $size
+
+// Utilities: 
 
 *
     @include reset
-
-    &:focus
-        outline-offset: .5 * $size
 
 .touch-target
     @include touch-target
@@ -142,7 +161,7 @@ body
 .hover
     @include hoverable
 
-// ? Scrollbar: 
+// Scrollbar: 
 
 ::-webkit-scrollbar 
     width: $size
@@ -154,19 +173,19 @@ body
     border: .75 * $unit solid $black 
     border-radius: .25 * $size
 
-// ? Inline Components:
+// Components:
 
 .icon
-    font-size: 1.75 * $size
+    font-size: 1.5 * $size
     color: $black
-
     position: relative
     top: -$unit
 
 .name
     @include heading
-    letter-spacing: .5 * $unit
     transition: .25s all ease-out
+    display: inline-flex
+    align-items: baseline
 
     &:hover
         filter: drop-shadow($shadow)
@@ -192,14 +211,6 @@ body
     justify-content: space-around
     width: 15vw
 
-i[disabled]
-    color: $hblack
-
-    &:hover
-        border-color: transparent
-        box-shadow: none
-        cursor: not-allowed
-
 .fab
     @include font-awesome-icon
 
@@ -210,15 +221,13 @@ i[disabled]
 a
     @include link
 
-// ? Block Level Components: 
-
 .header
     @include header
 
 .main-content
     display: grid
     gap: 4 * $size
-    margin-top: 5 * $size
+    margin-top: 4 * $size
 
 .article
     display: flex
@@ -232,21 +241,13 @@ a
     @include flex-center
 
 .form
-    display: flex
-    flex-direction: column
-    z-index: 1
-    background: $yellow
-    border-radius: 75% 25% 25% 75% / 25% 51% 49% 75% 
-    padding: .75 * $size
+    @include form
+
+.text-section
+    margin: $size 
 
 .footer
-    background: $yellow
-    padding: $size 3 * $size
-    display: flex
-    justify-content: space-around
-    align-items: center
-    
-// ? Text Components: 
+    @include footer
 
 .heading
     @include heading
@@ -259,8 +260,6 @@ a
     font-size: $size
     margin: .75 * $size $size $size $size
     max-width: 35ch
-
-// ? App Components: 
 
 .mobile-container
     @include position-center
@@ -283,11 +282,7 @@ a
     justify-content: center
 
 .saved-countdowns
-    display: flex
-    flex-direction: column
-    font-family: 'Montserrat', sans-rerif
-    min-width: 75%
-    margin: 0 1.5 * $size
+    @include interface 
 
     .heading
         margin: .75 * $size 0
@@ -314,52 +309,5 @@ a
 .fa-long-arrow-alt-left, .fa-long-arrow-alt-right
     font-size: 1.75 * $size
 
-// ? Illustrations:
-
 .work, .creator, .calendar
     pointer-events: none
-
-// ? Media Queries:
-
-@media (max-width: 1250px) 
-    .work, .creator, .calendar
-        @include responsive-img
-
-@media (max-width: 1000px) 
-    .work, .creator, .calendar
-        width: 500px
-
-@media (max-width: 950px) 
-    .article, .footer
-        flex-direction: column
-
-    .footer
-        padding-top: 1.5 * $size
-
-    .form 
-        margin: 0 1.5 * $size
-
-    .mobile-content 
-        flex-direction: column 
-
-    .contact-form-container
-        order: 2
-
-    .saved-countdowns
-        order: 1
-        margin: 2 * $size 0
-        max-width: 75%
-
-@media (max-width: 625px) 
-    .header
-        @include flex-center
-
-    .header .btn
-        display: none
-
-    .copyright
-        max-width: unset
-
-@media (max-width: 350px)
-    .work, .creator, .calendar
-        max-width: 300px

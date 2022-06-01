@@ -2,6 +2,7 @@
     
 $black: rgb(42, 42, 42)
 $white: rgb(239, 239, 239)
+$hwhite: rgb(205, 205, 205)
 $yellow: rgb(254, 204, 24)
 $blue: rgb(41, 81, 167)
 $hblack: rgba(42, 42, 42, .25)
@@ -110,13 +111,7 @@ $shadow: $unit 2 * $unit $unit $hblack
 
 @mixin header 
     background: $white
-    border: $unit solid $blue
-    box-shadow: 0 2 * $unit $unit $hblack
     padding: $size 2 * $size
-    position: fixed
-    top: 0
-    z-index: 3  
-    width: 100%
     display: flex
     align-items: center
     justify-content: space-between
@@ -130,7 +125,6 @@ $shadow: $unit 2 * $unit $unit $hblack
     padding: .75 * $size
 
 @mixin footer 
-    background: $yellow
     padding: $size 3 * $size
     display: flex
     justify-content: space-around
@@ -197,6 +191,12 @@ body
     &:hover
         background: $hblue
     
+.secondary-btn
+    @include btn($white, $blue, $blue)
+
+    &:hover
+        background: $hwhite
+
 .request
     padding: 0 max(1.5 * $size, 0)
 
@@ -215,7 +215,7 @@ body
     @include font-awesome-icon
 
 .copyright
-    max-width: 50vw
+    max-width: 70vw
     font-size: .75 * $size
 
 a
@@ -224,10 +224,13 @@ a
 .header
     @include header
 
+.header-buttons .btn
+    margin: 0 $unit * 4
+
 .main-content
     display: grid
     gap: 4 * $size
-    margin-top: 4 * $size
+    margin-top: -3 * $size 
 
 .article
     display: flex
@@ -300,7 +303,7 @@ a
     @include hoverable
     padding: .5 * $size
     width: 25%
-    margin: 0 .25 * $size
+    margin: 0 4 * $unit
 
     &:hover 
         background: $blue

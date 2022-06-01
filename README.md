@@ -1,4 +1,4 @@
-# Mamaia Countdowns 1.2.15
+# Mamaia Countdowns 1.3.1
 
 ## Can't remember dates?
 

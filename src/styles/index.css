@@ -52,10 +52,8 @@ body {
 }
 
 .icon {
-  font-size: 36px;
+  font-size: 42px;
   color: #2a2a2a;
-  position: relative;
-  top: -4px;
 }
 
 .name {
@@ -67,9 +65,6 @@ body {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-box-align: baseline;
-      -ms-flex-align: baseline;
-          align-items: baseline;
 }
 
 .name:hover {
@@ -79,7 +74,7 @@ body {
 
 .btn {
   background: #2951a7;
-  border: 4px solid #efefef;
+  border-color: transparent;
   -webkit-box-shadow: 4px 8px 4px rgba(42, 42, 42, 0.25);
           box-shadow: 4px 8px 4px rgba(42, 42, 42, 0.25);
   border-radius: 12px;
@@ -97,7 +92,7 @@ body {
 
 .secondary-btn {
   background: #efefef;
-  border: 4px solid #2951a7;
+  border-color: transparent;
   -webkit-box-shadow: 4px 8px 4px rgba(42, 42, 42, 0.25);
           box-shadow: 4px 8px 4px rgba(42, 42, 42, 0.25);
   border-radius: 12px;
@@ -118,7 +113,7 @@ body {
 
 .input {
   background: #efefef;
-  border: 4px solid #2a2a2a;
+  border-color: transparent;
   -webkit-box-shadow: 4px 8px 4px rgba(42, 42, 42, 0.25);
           box-shadow: 4px 8px 4px rgba(42, 42, 42, 0.25);
   border-radius: 16px;
@@ -139,27 +134,29 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  width: 15vw;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-.fab {
-  font-size: 42px;
-  -webkit-transition: .25s all ease-out;
-  transition: .25s all ease-out;
-  padding: 18px;
-  border: 4px solid transparent;
-  border-radius: 24px;
-  margin: 0 8px;
-  color: #2a2a2a;
+.brand-icon {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  margin: 0 16px;
+  -webkit-transition: .25s all ease;
+  transition: .25s all ease;
+  border-radius: 50%;
+  drop-shadow: 4px 8px 4px rgba(42, 42, 42, 0.25);
 }
 
-.fab:hover {
+.brand-icon:hover {
   cursor: pointer;
-  border-color: #2a2a2a;
-  -webkit-box-shadow: 4px 8px 4px rgba(42, 42, 42, 0.25);
-          box-shadow: 4px 8px 4px rgba(42, 42, 42, 0.25);
+}
+
+.brand-icon:hover {
+  background: #fecc18;
 }
 
 .copyright {
@@ -352,8 +349,12 @@ a {
 }
 
 .arrow-btn {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   background: #efefef;
-  border: 4px solid #2951a7;
+  border-color: transparent;
   -webkit-box-shadow: 4px 8px 4px rgba(42, 42, 42, 0.25);
           box-shadow: 4px 8px 4px rgba(42, 42, 42, 0.25);
   border-radius: 12px;
@@ -362,13 +363,9 @@ a {
   font-family: 'Montserrat', sans-serif;
   -webkit-transition: .25s all ease-out;
   transition: .25s all ease-out;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
   padding: 12px;
   width: 25%;
-  margin: 0 16px;
+  margin: 8px;
 }
 
 .arrow-btn:hover {
@@ -376,11 +373,10 @@ a {
 }
 
 .arrow-btn:hover {
-  background: #2951a7;
-  color: #efefef;
+  background: #cdcdcd;
 }
 
-.fa-long-arrow-alt-left, .fa-long-arrow-alt-right {
+.arrow {
   font-size: 42px;
 }
 

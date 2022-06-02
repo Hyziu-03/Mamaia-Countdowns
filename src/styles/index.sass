@@ -63,7 +63,7 @@ $shadow: $unit 2 * $unit $unit $hblack
 
 @mixin input 
     background: $white
-    border: $unit solid $black
+    border-color: transparent
     box-shadow: $shadow
     border-radius: 4 * $unit
     padding: .75 * $size
@@ -85,29 +85,15 @@ $shadow: $unit 2 * $unit $unit $hblack
     pointer-events: none
     margin: 2 * $size 0
 
-@mixin btn($bg-color, $text-color, $border-color) 
+@mixin btn($bg-color, $text-color) 
     background: $bg-color
-    border: $unit solid $border-color
+    border-color: transparent
     box-shadow: $shadow
     border-radius: .5 * $size
     color: $text-color
     font-size: $size
     font-family: 'Montserrat', sans-serif
     transition: .25s all ease-out
-
-@mixin font-awesome-icon 
-    font-size: 1.75 * $size
-    transition: .25s all ease-out
-    padding: .75 * $size
-    border: $unit solid transparent
-    border-radius: $size
-    margin: 0 2 * $unit 
-    color: $black
-
-    &:hover
-        cursor: pointer
-        border-color: $black
-        box-shadow: $shadow
 
 @mixin header 
     background: $white
@@ -170,29 +156,26 @@ body
 // Components:
 
 .icon
-    font-size: 1.5 * $size
+    font-size: 1.75 * $size
     color: $black
-    position: relative
-    top: -$unit
 
 .name
     @include heading
     transition: .25s all ease-out
     display: inline-flex
-    align-items: baseline
 
     &:hover
         filter: drop-shadow($shadow)
 
 .btn
-    @include btn($blue, $white, $white)
+    @include btn($blue, $white)
     padding: $size
 
     &:hover
         background: $hblue
     
 .secondary-btn
-    @include btn($white, $blue, $blue)
+    @include btn($white, $blue)
 
     &:hover
         background: $hwhite
@@ -208,11 +191,17 @@ body
 
 .contact-links
     display: flex
-    justify-content: space-around
-    width: 15vw
+    justify-content: center
 
-.fab
-    @include font-awesome-icon
+.brand-icon
+    @include hoverable
+    margin: 0 $unit * 4
+    transition: .25s all ease
+    border-radius: 50%
+    drop-shadow: $shadow
+
+    &:hover
+        background: $yellow
 
 .copyright
     max-width: 70vw
@@ -299,17 +288,16 @@ a
     margin-top: $size
 
 .arrow-btn
-    @include btn($white, $blue, $blue)
     @include hoverable
+    @include btn($white, $blue)
     padding: .5 * $size
     width: 25%
-    margin: 0 4 * $unit
+    margin: $unit * 2 
 
-    &:hover 
-        background: $blue
-        color: $white
+    &:hover
+        background: $hwhite
 
-.fa-long-arrow-alt-left, .fa-long-arrow-alt-right
+.arrow
     font-size: 1.75 * $size
 
 .work, .creator, .calendar

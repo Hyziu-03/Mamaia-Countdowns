@@ -90,8 +90,8 @@ const App = () => {
                         {localStorage.getItem('event' + eventNumber + 'description')}
                     </p>
                     <section className='btn-container'>
-                        <button className='arrow-btn' onClick={() => {update(--eventNumber); correctState('left');}}><i className='fas fa-long-arrow-alt-left'></i></button>
-                        <button className='arrow-btn' onClick={() => {update(++eventNumber); correctState('right');}}><i className='fas fa-long-arrow-alt-right'></i></button>
+                        <button className='arrow-btn' onClick={() => { update(--eventNumber); correctState('left'); }}><span className='material-symbols-rounded'>arrow_back</span></button>
+                        <button className='arrow-btn' onClick={() => { update(++eventNumber); correctState('right'); }}><span className='material-symbols-rounded arrow'>arrow_forward</span></button>
                     </section>
                 </article>
             </main>

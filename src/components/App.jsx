@@ -41,7 +41,7 @@ const inspectInputs = () => {
     }
 }
 
-initialiseStorage()
+initialiseStorage();
 
 const App = () => {
     let [eventNumber, update] = useState(0);
@@ -65,7 +65,8 @@ const App = () => {
     return (
         <section className='mobile-container'>
             <header className='fixed-header' onClick={refresh}>
-                <Name />
+                <Name /> 
+                <Button message='Sync Your Events' className='secondary-btn' src='secondary' type='button'/>
             </header>
             <main className='mobile-content'>
                 <article className='contact-form-container'>
@@ -76,7 +77,7 @@ const App = () => {
                         thirdInput='What additional information do you have?'
                     />
                     <span onClick={inspectInputs}>
-                        <Button message='Set a Countdown!' />
+                        <Button message='Set a Countdown!' type='submit'/>
                     </span>
                 </article>
                 <article className='saved-countdowns'>
@@ -90,8 +91,8 @@ const App = () => {
                         {localStorage.getItem('event' + eventNumber + 'description')}
                     </p>
                     <section className='btn-container'>
-                        <button className='arrow-btn' onClick={() => { update(--eventNumber); correctState('left'); }}><span className='material-symbols-rounded'>arrow_back</span></button>
-                        <button className='arrow-btn' onClick={() => { update(++eventNumber); correctState('right'); }}><span className='material-symbols-rounded arrow'>arrow_forward</span></button>
+                        <button className='arrow-btn' onClick={() => { update(--eventNumber); correctState('left'); }}><span className='icon arrow'>arrow_back</span></button>
+                        <button className='arrow-btn' onClick={() => { update(++eventNumber); correctState('right'); }}><span className='icon arrow'>arrow_forward</span></button>
                     </section>
                 </article>
             </main>

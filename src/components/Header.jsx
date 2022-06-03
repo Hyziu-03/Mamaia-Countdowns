@@ -10,7 +10,6 @@ const Header = () => {
                 <Link to='set-countdown'>
                     <Button message='Set a Countdown!' />
                 </Link>
-                <Button message='Sync Your Events' className='secondary-btn' src='secondary'/>
             </section>
         </header>
     );

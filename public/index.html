@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=0.75, minimum-scale=0.75, user-scalable=no" />
+  <meta name="viewport" content="width=device-width" />
   <meta name="theme-color" content="#fecc18" />
   <meta name="description" content="Mamaia Countdowns is a tool to ease your life. You can set countdowns for any event you want. No matter if it’s Christmas or an important exam to take!" />
   <meta name="keywords" content="" />
@@ -26,14 +26,14 @@
   <script src="https://kit.fontawesome.com/d1ae74e7ee.js" crossorigin="anonymous"></script>
   <script>
     const registerServiceWorker = async () => {
-      if ('serviceWorker' in navigator) {
+      if ("serviceWorker" in navigator) {
         try {
-          const registration = await navigator.serviceWorker.register('service-worker.js', {
-            scope: '.'
+          const registration = await navigator.serviceWorker.register("service-worker.js", {
+            scope: "."
           });
-          if (registration.installing) console.log('Service worker is being installed');
-          else if (registration.waiting) console.log('Service worker has been installed');
-          else if (registration.active) console.log('Service worker is active');
+          if (registration.installing) console.log("Service worker is being installed");
+          else if (registration.waiting) console.log("Service worker has been installed");
+          else if (registration.active) console.log("Service worker is active");
         } catch (error) {
           console.error(error);
         }

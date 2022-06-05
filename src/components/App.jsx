@@ -5,7 +5,6 @@ import { useState } from 'react';
 import { refresh } from '../scripts/scripts';
 import DOMPurify from 'dompurify';
 import { initializeApp } from 'firebase/app';
-import { GoogleAuthProvider, getAuth, signInWithRedirect, getRedirectResult, onAuthStateChanged } from "firebase/auth";
 
 const firebaseConfig = {
     apiKey: 'AIzaSyCmNk2q3k4i3dV9ZG2ZfZeTKnum70UaVas',
@@ -19,21 +18,6 @@ const firebaseConfig = {
 
 // eslint-disable-next-line no-unused-vars
 const app = initializeApp(firebaseConfig);
-
-const authenticate = () => {
-    const auth = getAuth();
-    auth.languageCode = 'pl';
-
-    onAuthStateChanged(auth, (user) => {
-        if (!user) {
-            const provider = new GoogleAuthProvider();
-
-            signInWithRedirect(auth, provider);
-            getRedirectResult(auth)
-                .catch((error) => console.error(error));
-        }
-    });
-}
 
 const initialiseStorage = () => {
     try {
@@ -81,8 +65,6 @@ initialiseStorage();
 const App = () => {
     let [eventNumber, update] = useState(0);
 
-    authenticate();
-
     const correctState = (direction) => {
         try {
             let valid = true;
@@ -98,12 +80,12 @@ const App = () => {
             throw new Error(error);
         }
     }
-    
+
     return (
         <section className='mobile-container'>
             <header className='fixed-header' onClick={refresh}>
-                <Name /> 
-            </header>
+                <Name /> <span className='indicator icon done'>done</span>
+            </header> 
             <main className='mobile-content'>
                 <article className='contact-form-container'>
                     <Contact 

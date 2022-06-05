@@ -247,7 +247,7 @@ a {
           flex-direction: column;
   z-index: 1;
   background: #fecc18;
-  border-radius: 75% 75% 25% 75% / 25% 51% 49% 75%;
+  border-radius: 25% 75% 75% 75%;
   padding: 18px;
 }
 
@@ -390,5 +390,98 @@ a {
 
 .work, .creator, .calendar {
   pointer-events: none;
+}
+
+.indicator {
+  border-radius: 50%;
+  border: 4px solid transparent;
+  height: 64px;
+  width: 64px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-weight: bold;
+  -webkit-transition: .25s all ease;
+  transition: .25s all ease;
+}
+
+.indicator:hover {
+  background: #cdcdcd;
+  cursor: pointer;
+}
+
+.close {
+  color: red;
+  border-color: red;
+}
+
+.done {
+  color: green;
+  border-color: green;
+}
+
+@media (max-width: 1200px) {
+  .article {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .calendar, .work, .creator {
+    margin-top: 48px;
+  }
+  .introduction {
+    margin-top: 48px;
+  }
+  .description {
+    margin: 18px 96px 24px 96px;
+  }
+  .description, .heading {
+    max-width: 50ch;
+  }
+}
+
+@media (max-width: 1100px) {
+  .mobile-content {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+  }
+  #events-name, #events-date, #events-description {
+    width: 75vw;
+    text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .arrow-btn {
+    width: 105px;
+  }
+}
+
+@media (max-width: 500px) {
+  .input {
+    min-width: 250px;
+  }
+  .fixed-header {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .indicator {
+    margin-top: 24px;
+  }
+  .contact-form-container, .mobile-container {
+    margin: 0 !important;
+    margin-bottom: 48px !important;
+  }
 }
 /*# sourceMappingURL=index.css.map */

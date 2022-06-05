@@ -1,5 +1,5 @@
-import LinkedInIcon from "./LinkedInIcon";
-import GitHubIcon from "./GitHubIcon";
+import LinkedInIcon from './LinkedInIcon';
+import GitHubIcon from './GitHubIcon';
 
 const Footer = () => {
     return (

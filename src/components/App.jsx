@@ -1,10 +1,11 @@
 import Name from './Name.jsx';
 import Contact from './Contact.jsx';
 import Button from './Button.jsx';
-import { useState } from 'react';
 import { refresh } from '../scripts/scripts';
 import DOMPurify from 'dompurify';
 import { initializeApp } from 'firebase/app';
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import { getDatabase, ref, set } from "firebase/database";
 
 const firebaseConfig = {
     apiKey: 'AIzaSyCmNk2q3k4i3dV9ZG2ZfZeTKnum70UaVas',
@@ -16,36 +17,53 @@ const firebaseConfig = {
     measurementId: 'G-NZJKV7EEZM'
 };
 
-// eslint-disable-next-line no-unused-vars
 const app = initializeApp(firebaseConfig);
+// eslint-disable-next-line no-unused-vars
+const database = getDatabase(app);
 
-const initialiseStorage = () => {
-    try {
-        if (localStorage.getItem('totalNumber') !== null) return;
+const auth = getAuth();
+auth.languageCode = 'pl';
 
-        localStorage.setItem('totalNumber', 1);
-        localStorage.setItem('event0name', "The event 's name will show up here when you submit it.");
-        localStorage.setItem('event0date', 'Your date will show up here when you submit it.');
-        localStorage.setItem('event0description', 'Additional information about the event will show up here when you submit it.');
-    } catch (error) {
-        throw new Error(error);
+const login = () => {
+    const user = auth.currentUser; 
+    
+    if(user === null) {
+        const provider = new GoogleAuthProvider();
+
+        signInWithPopup(auth, provider)
+            .catch((error) => console.error(error));
+    }
+}
+
+const authenticate = (user) => {
+    const icon = document.getElementById('icon');
+
+    let result = user ? 'done' : 'close';
+    if(result === 'close') login();
+
+    if(result === 'done') {
+        icon.classList.add('done');
+        icon.classList.remove('close');
+        icon.innerText = 'done';
+    }
+    else {
+        icon.classList.add('close');
+        icon.classList.remove('done');
+        icon.innerText = 'close';
     }
 }
 
 const saveData = () => {
     try {
-        let currentNumber = parseInt(localStorage.getItem('totalNumber'));
-        localStorage.setItem('totalNumber', ++currentNumber);
-        
-        let eventName = DOMPurify.sanitize(document.getElementsByClassName('text-input')[0].value);;
-        let eventDate = DOMPurify.sanitize(document.getElementsByClassName('email')[0].value);
-        let eventDescription = DOMPurify.sanitize(document.getElementsByClassName('message')[0].value);
+        const id = auth.currentUser.uid;
+        const db = getDatabase();
 
-        let newEventNumber = localStorage.getItem('totalNumber') - 1;
-        localStorage.setItem('event' + newEventNumber + 'name', eventName);
-        localStorage.setItem('event' + newEventNumber + 'date', 'This event will happen on ' + eventDate);
-        localStorage.setItem('event' + newEventNumber + 'description', eventDescription);
-        
+        set(ref(db, id + '/event/'), {
+            name: DOMPurify.sanitize(document.getElementsByClassName('text-input')[0].value),
+            date: DOMPurify.sanitize(document.getElementsByClassName('email')[0].value),
+            description: DOMPurify.sanitize(document.getElementsByClassName('message')[0].value)
+        });
+
         alert('Your event has been saved!');
     } catch (error) {
         throw new Error(error);
@@ -60,31 +78,11 @@ const inspectInputs = () => {
     }
 }
 
-initialiseStorage();
-
 const App = () => {
-    let [eventNumber, update] = useState(0);
-
-    const correctState = (direction) => {
-        try {
-            let valid = true;
-
-            if (eventNumber < 0)  valid = false;
-            if (eventNumber > localStorage.getItem('totalNumber') - 1)  valid = false;
-            
-            if (valid) return;
-
-            if (direction === 'right') update(--eventNumber);
-            if (direction === 'left') update(++eventNumber);
-        } catch (error) {
-            throw new Error(error);
-        }
-    }
-
     return (
         <section className='mobile-container'>
-            <header className='fixed-header' onClick={refresh}>
-                <Name /> <span className='indicator icon done'>done</span>
+            <header className='fixed-header'>
+                <Name onClick={refresh}/> <span onClick={authenticate} id='icon' className='indicator icon close'>close</span>
             </header> 
             <main className='mobile-content'>
                 <article className='contact-form-container'>
@@ -99,18 +97,12 @@ const App = () => {
                     </span>
                 </article>
                 <article className='saved-countdowns'>
-                    <h1 className='heading' id='events-name'>
-                        {localStorage.getItem('event' + eventNumber + 'name')}
-                    </h1>
-                    <p className='description' id='events-date'>
-                        {localStorage.getItem('event' + eventNumber + 'date')}
-                    </p>
-                    <p className='description' id='events-description'>
-                        {localStorage.getItem('event' + eventNumber + 'description')}
-                    </p>
+                    <h1 className='heading' id='events-name'></h1>
+                    <p className='description' id='events-date'></p>
+                    <p className='description' id='events-description'></p>
                     <section className='btn-container'>
-                        <button className='arrow-btn' onClick={() => { update(--eventNumber); correctState('left'); }}><span className='icon arrow'>arrow_back</span></button>
-                        <button className='arrow-btn' onClick={() => { update(++eventNumber); correctState('right'); }}><span className='icon arrow'>arrow_forward</span></button>
+                        <button className='arrow-btn'><span className='icon arrow'>arrow_back</span></button>
+                        <button className='arrow-btn'><span className='icon arrow'>arrow_forward</span></button>
                     </section>
                 </article>
             </main>

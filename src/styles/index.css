@@ -73,6 +73,7 @@ body {
 }
 
 .btn {
+  padding: 24px 48px;
   background: #2951a7;
   border-color: transparent;
   -webkit-box-shadow: 4px 8px 4px rgba(42, 42, 42, 0.25);
@@ -83,7 +84,6 @@ body {
   font-family: 'Montserrat', sans-serif;
   -webkit-transition: .25s all ease-out;
   transition: .25s all ease-out;
-  padding: 24px;
 }
 
 .btn:hover {
@@ -91,6 +91,7 @@ body {
 }
 
 .secondary-btn {
+  padding: 24px 48px;
   background: #efefef;
   border-color: transparent;
   -webkit-box-shadow: 4px 8px 4px rgba(42, 42, 42, 0.25);
@@ -361,6 +362,7 @@ a {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  padding: 24px 48px;
   background: #efefef;
   border-color: transparent;
   -webkit-box-shadow: 4px 8px 4px rgba(42, 42, 42, 0.25);
@@ -417,13 +419,69 @@ a {
 }
 
 .close {
-  color: red;
-  border-color: red;
+  color: #d64e52;
+  border-color: #d64e52;
 }
 
 .done {
-  color: green;
-  border-color: green;
+  color: #006955;
+  border-color: #006955;
+}
+
+.loader-container {
+  width: 100vw;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg) scale(1.25);
+            transform: rotate(180deg) scale(1.25);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg) scale(1.25);
+            transform: rotate(180deg) scale(1.25);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+.loader {
+  -webkit-animation: spin 1s infinite;
+          animation: spin 1s infinite;
+  width: 64px;
+  height: 64px;
+  border: solid 8px #2951a7;
+  border-radius: 50%;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  display: block;
 }
 
 @media (max-width: 1200px) {

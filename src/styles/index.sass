@@ -7,6 +7,8 @@ $yellow: rgb(254, 204, 24)
 $blue: rgb(41, 81, 167)
 $hblack: rgba(42, 42, 42, .25)
 $hblue: rgb(11, 51, 117)
+$green: rgb(0, 105, 85)
+$red: rgb(214, 78, 82)
 
 // Sizing:
 
@@ -86,6 +88,7 @@ $shadow: $unit 2 * $unit $unit $hblack
     margin: 2 * $size 0
 
 @mixin btn($bg-color, $text-color) 
+    padding: $size 2 * $size 
     background: $bg-color
     border-color: transparent
     box-shadow: $shadow
@@ -169,7 +172,6 @@ body
 
 .btn
     @include btn($blue, $white)
-    padding: $size
 
     &:hover
         background: $hblue
@@ -320,12 +322,37 @@ a
         cursor: pointer 
 
 .close
-    color: red 
-    border-color: red
+    color: $red 
+    border-color: $red
 
 .done 
-    color: green 
-    border-color: green 
+    color: $green 
+    border-color: $green 
+
+.loader-container
+    width: 100vw
+    height: 100vh
+    display: flex
+    justify-content: center
+    align-items: center 
+
+@keyframes spin 
+    0%
+        transform: rotate(0deg)
+    50%
+        transform: rotate(180deg) scale(1.25)
+    100% 
+        transform: rotate(360deg)
+
+.loader
+    animation: spin 1s infinite 
+    width: 64px
+    height: 64px
+    border: solid $unit * 2 $blue
+    border-radius: 50%
+    border-top-color: transparent 
+    border-bottom-color: transparent
+    display: block 
 
 // Responsiveness:
 

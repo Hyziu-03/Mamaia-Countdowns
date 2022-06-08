@@ -5,7 +5,7 @@ import { refresh } from '../scripts/scripts';
 import DOMPurify from 'dompurify';
 import { initializeApp } from 'firebase/app';
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
-import { getDatabase, ref, set } from "firebase/database";
+import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: 'AIzaSyCmNk2q3k4i3dV9ZG2ZfZeTKnum70UaVas',
@@ -19,7 +19,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 // eslint-disable-next-line no-unused-vars
-const database = getDatabase(app);
+const db = getFirestore(app);
 
 const auth = getAuth();
 auth.languageCode = 'pl';
@@ -36,34 +36,36 @@ const login = () => {
 }
 
 const authenticate = (user) => {
-    const icon = document.getElementById('icon');
+    try {
+        const icon = document.getElementById('icon');
 
-    let result = user ? 'done' : 'close';
-    if(result === 'close') login();
+        let result = user ? 'done' : 'close';
+        if (result === 'close') login();
 
-    if(result === 'done') {
-        icon.classList.add('done');
-        icon.classList.remove('close');
-        icon.innerText = 'done';
-    }
-    else {
-        icon.classList.add('close');
-        icon.classList.remove('done');
-        icon.innerText = 'close';
+        if (result === 'done') {
+            icon.classList.add('done');
+            icon.classList.remove('close');
+            icon.innerText = 'done';
+        }
+        else {
+            icon.classList.add('close');
+            icon.classList.remove('done');
+            icon.innerText = 'close';
+        }
+    } catch(error) {
+        console.error(error);
     }
 }
 
-const saveData = () => {
+const saveData = async() => {
     try {
         const id = auth.currentUser.uid;
-        const db = getDatabase();
-
-        set(ref(db, id + '/event/'), {
+        // eslint-disable-next-line no-unused-vars
+        const newEvent = await addDoc(collection(db, id), {
             name: DOMPurify.sanitize(document.getElementsByClassName('text-input')[0].value),
             date: DOMPurify.sanitize(document.getElementsByClassName('email')[0].value),
             description: DOMPurify.sanitize(document.getElementsByClassName('message')[0].value)
         });
-
         alert('Your event has been saved!');
     } catch (error) {
         throw new Error(error);
@@ -72,9 +74,24 @@ const saveData = () => {
 
 const inspectInputs = () => {
     try {
-        document.getElementsByClassName('email')[0].value === '' || document.getElementsByClassName('text-input')[0].value === '' || document.getElementsByClassName('message')[0].value === '' ? alert('Please, fill in all the information requested.') : saveData();
+        const emailIsEmpty = document.getElementsByClassName('email')[0].value === '';
+        const dateIsEmpty = document.getElementsByClassName('text-input')[0].value === '';
+        const informationIsEmpty = document.getElementsByClassName('message')[0].value === '';
+        const condition = emailIsEmpty || dateIsEmpty || informationIsEmpty;
+        condition ? alert('Please, fill in all the information requested.') : saveData();
     } catch (error) {
         throw new Error(error);
+    }
+}
+
+const readData = async () => {
+    try {
+        let events = [];
+        const id = '65sx06pnuWh020P0Or7NEPWwZHo1';
+        const querySnapshot = await getDocs(collection(db, id));
+        querySnapshot.forEach((event) => events.push(event.data()));
+    } catch(error) {
+        console.error(error);
     }
 }
 

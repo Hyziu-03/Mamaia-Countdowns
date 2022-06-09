@@ -46,11 +46,13 @@ const authenticate = (user) => {
             icon.classList.add('done');
             icon.classList.remove('close');
             icon.innerText = 'done';
+            console.log('You are logged in as ' + auth.currentUser.displayName);
         }
         else {
             icon.classList.add('close');
             icon.classList.remove('done');
             icon.innerText = 'close';
+            console.log('You are looged out')
         }
     } catch(error) {
         console.error(error);
@@ -90,12 +92,22 @@ const readData = async () => {
         const id = '65sx06pnuWh020P0Or7NEPWwZHo1';
         const querySnapshot = await getDocs(collection(db, id));
         querySnapshot.forEach((event) => events.push(event.data()));
+        return events;
     } catch(error) {
         console.error(error);
     }
 }
 
-const App = () => {
+const printEvents = () => {
+    let receivedEvents = null;
+    // eslint-disable-next-line no-unused-vars
+    const data = readData()
+        .then((result) => receivedEvents = result)
+        .then(() => console.log('Here are the events, now do what you want'))
+        .then(() => console.log(receivedEvents))
+}
+
+const App = () => { 
     return (
         <section className='mobile-container'>
             <header className='fixed-header'>

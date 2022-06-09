@@ -1,6 +1,6 @@
 {
   "name": "mamaia-countdowns",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
@@ -9,6 +9,7 @@
     "ansi-html-community": "0.0.8",
     "browserslist": "^4.20.3",
     "dompurify": "^2.3.8",
+    "ejs": "^3.1.8",
     "email-validator": "^2.0.4",
     "firebase": "^9.8.2",
     "glob-parent": "^6.0.2",

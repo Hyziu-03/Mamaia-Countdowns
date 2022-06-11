@@ -6,11 +6,9 @@ const Header = () => {
     return (
         <header className='header'>
             <Name />
-            <section className='header-buttons'>
-                <Link to='set-countdown'>
-                    <Button message='Set a Countdown!' />
-                </Link>
-            </section>
+            <Link to='set-countdown'>
+                <Button message='Set a Countdown!' />
+            </Link>
         </header>
     );
 }

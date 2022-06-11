@@ -2,10 +2,11 @@ import Name from './Name.jsx';
 import Contact from './Contact.jsx';
 import Button from './Button.jsx';
 import { refresh } from '../scripts/scripts';
+import { useEffect } from 'react';
 import DOMPurify from 'dompurify';
 import { initializeApp } from 'firebase/app';
-import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
-import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
+import { getFirestore, collection, addDoc, getDocs } from 'firebase/firestore';
 
 const firebaseConfig = {
     apiKey: 'AIzaSyCmNk2q3k4i3dV9ZG2ZfZeTKnum70UaVas',
@@ -89,7 +90,7 @@ const inspectInputs = () => {
 const readData = async () => {
     try {
         let events = [];
-        const id = '65sx06pnuWh020P0Or7NEPWwZHo1';
+        const id = auth.currentUser.uid;
         const querySnapshot = await getDocs(collection(db, id));
         querySnapshot.forEach((event) => events.push(event.data()));
         return events;
@@ -98,16 +99,9 @@ const readData = async () => {
     }
 }
 
-const printEvents = () => {
-    let receivedEvents = null;
-    // eslint-disable-next-line no-unused-vars
-    const data = readData()
-        .then((result) => receivedEvents = result)
-        .then(() => console.log('Here are the events, now do what you want'))
-        .then(() => console.log(receivedEvents))
-}
-
 const App = () => { 
+    useEffect(() => document.querySelector('#icon').click(), []);
+
     return (
         <section className='mobile-container'>
             <header className='fixed-header'>
@@ -126,9 +120,9 @@ const App = () => {
                     </span>
                 </article>
                 <article className='saved-countdowns'>
-                    <h1 className='heading' id='events-name'></h1>
-                    <p className='description' id='events-date'></p>
-                    <p className='description' id='events-description'></p>
+                    <h1 className='heading' id='events-name'>Donec libero enim</h1>
+                    <p className='description' id='events-date'>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                    <p className='description' id='events-description'>Proin ullamcorper elementum lobortis. Nulla laoreet purus et nisl gravida maximus. Phasellus congue consectetur egestas. Suspendisse sit amet imperdiet enim</p>
                     <section className='btn-container'>
                         <button className='arrow-btn'><span className='icon arrow'>arrow_back</span></button>
                         <button className='arrow-btn'><span className='icon arrow'>arrow_forward</span></button>

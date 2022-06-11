@@ -25,12 +25,6 @@ $size: 6 *  $unit
     &:focus
         outline-offset: .25 * $size
 
-@mixin flex-center 
-    display: flex
-    flex-direction: column
-    align-items: center
-    justify-content: center
-
 @mixin touch-target
     min-width: 48px
     min-height: 48px
@@ -47,14 +41,23 @@ $size: 6 *  $unit
     top: 50%
     transform: translate(-50%, -50%)
 
+@mixin flex-center 
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+
+@mixin link 
+    color: inherit
+    text-decoration: none
+
+@mixin responsive-img 
+    pointer-events: none
+    margin: 2 * $size 0
+
 $shadow: $unit 2 * $unit $unit $hblack
 
 // Components:
-
-@mixin heading
-    font-size: 1.5 * $size
-    line-height: 2 * $size
-    font-family: 'Roboto Slab', cursive
 
 @mixin container 
     font-family: 'Montserrat', sans-serif
@@ -62,6 +65,33 @@ $shadow: $unit 2 * $unit $unit $hblack
     line-height: 150%
     display: grid
     gap: 2 * $size
+
+@mixin header 
+    background: $white
+    padding: $size 2 * $size
+    display: flex
+    align-items: center
+    justify-content: space-between
+
+@mixin heading
+    font-size: 1.5 * $size
+    line-height: 2 * $size
+    font-family: 'Roboto Slab', cursive
+
+@mixin interface 
+    display: flex
+    flex-direction: column
+    font-family: 'Montserrat', sans-rerif
+    min-width: 75%
+    margin: 0 1.5 * $size
+
+@mixin footer 
+    padding: $size 3 * $size
+    display: flex
+    justify-content: space-around
+    align-items: center
+
+// Form components:
 
 @mixin input 
     background: $white
@@ -79,14 +109,6 @@ $shadow: $unit 2 * $unit $unit $hblack
     min-height: 8 * $size
     line-height: 150%
 
-@mixin link 
-    color: inherit
-    text-decoration: none
-
-@mixin responsive-img 
-    pointer-events: none
-    margin: 2 * $size 0
-
 @mixin btn($bg-color, $text-color) 
     padding: $size 2 * $size 
     background: $bg-color
@@ -98,13 +120,6 @@ $shadow: $unit 2 * $unit $unit $hblack
     font-family: 'Montserrat', sans-serif
     transition: .25s all ease-out
 
-@mixin header 
-    background: $white
-    padding: $size 2 * $size
-    display: flex
-    align-items: center
-    justify-content: space-between
-
 @mixin form 
     display: flex
     flex-direction: column
@@ -112,19 +127,6 @@ $shadow: $unit 2 * $unit $unit $hblack
     background: $yellow
     border-radius: 25% 75% 75% 75% 
     padding: .75 * $size
-
-@mixin footer 
-    padding: $size 3 * $size
-    display: flex
-    justify-content: space-around
-    align-items: center
-
-@mixin interface 
-    display: flex
-    flex-direction: column
-    font-family: 'Montserrat', sans-rerif
-    min-width: 75%
-    margin: 0 1.5 * $size
 
 // Utilities: 
 
@@ -181,6 +183,8 @@ body
 
     &:hover
         background: $hwhite
+
+/* * * * * * * */
 
 .request
     padding: 0 max(1.5 * $size, 0)
@@ -252,6 +256,7 @@ a
     font-size: $size
     margin: .75 * $size $size $size $size
     max-width: 35ch
+    text-align: justify
 
 .mobile-container
     @include position-center
@@ -275,6 +280,9 @@ a
     display: flex
     align-items: center
     justify-content: center
+
+#events-name, #events-date, #events-description
+    margin: $unit * 5 0 
 
 .saved-countdowns
     @include interface 
@@ -306,6 +314,8 @@ a
 .work, .creator, .calendar
     pointer-events: none
 
+/* * * * * * * */
+
 .indicator
     border-radius: 50%
     border: $unit solid transparent 
@@ -329,13 +339,6 @@ a
     color: $green 
     border-color: $green 
 
-.loader-container
-    width: 100vw
-    height: 100vh
-    display: flex
-    justify-content: center
-    align-items: center 
-
 @keyframes spin 
     0%
         transform: rotate(0deg)
@@ -343,6 +346,13 @@ a
         transform: rotate(180deg) scale(1.25)
     100% 
         transform: rotate(360deg)
+
+.loader-container
+    width: 100vw
+    height: 100vh
+    display: flex
+    justify-content: center
+    align-items: center 
 
 .loader
     animation: spin 1s infinite 

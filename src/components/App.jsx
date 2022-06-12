@@ -1,11 +1,12 @@
 import Name from './Name.jsx';
 import Contact from './Contact.jsx';
 import Button from './Button.jsx';
+import NavigationArrows from './NavigationArrows.jsx';
 import { refresh } from '../scripts/scripts';
 import { useEffect } from 'react';
 import DOMPurify from 'dompurify';
 import { initializeApp } from 'firebase/app';
-import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
+import { GoogleAuthProvider, getAuth, signInWithPopup, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, collection, addDoc, getDocs } from 'firebase/firestore';
 
 const firebaseConfig = {
@@ -25,6 +26,14 @@ const db = getFirestore(app);
 const auth = getAuth();
 auth.languageCode = 'pl';
 
+const getUserId = () => {
+    try {
+        return auth.currentUser.uid;
+    } catch(error) {
+        console.error(error);
+    }
+}
+
 const login = () => {
     const user = auth.currentUser; 
     
@@ -41,19 +50,17 @@ const authenticate = (user) => {
         const icon = document.getElementById('icon');
 
         let result = user ? 'done' : 'close';
-        if (result === 'close') login();
+        result === 'close' && login();
 
         if (result === 'done') {
             icon.classList.add('done');
             icon.classList.remove('close');
             icon.innerText = 'done';
-            console.log('You are logged in as ' + auth.currentUser.displayName);
         }
         else {
             icon.classList.add('close');
             icon.classList.remove('done');
             icon.innerText = 'close';
-            console.log('You are looged out')
         }
     } catch(error) {
         console.error(error);
@@ -62,9 +69,8 @@ const authenticate = (user) => {
 
 const saveData = async() => {
     try {
-        const id = auth.currentUser.uid;
         // eslint-disable-next-line no-unused-vars
-        const newEvent = await addDoc(collection(db, id), {
+        const newEvent = await addDoc(collection(db, getUserId()), {
             name: DOMPurify.sanitize(document.getElementsByClassName('text-input')[0].value),
             date: DOMPurify.sanitize(document.getElementsByClassName('email')[0].value),
             description: DOMPurify.sanitize(document.getElementsByClassName('message')[0].value)
@@ -87,20 +93,53 @@ const inspectInputs = () => {
     }
 }
 
+let names = [], dates = [], descriptions = [], events = [];
+
 const readData = async () => {
     try {
-        let events = [];
-        const id = auth.currentUser.uid;
-        const querySnapshot = await getDocs(collection(db, id));
+        const querySnapshot = await getDocs(collection(db, getUserId()));
         querySnapshot.forEach((event) => events.push(event.data()));
-        return events;
+    } catch(error) {
+        console.error(error);
+    }
+}
+
+const pullEvents = () => {
+    try {
+        const pullBtn = document.getElementById('pull-btn');
+        const btnContainer = document.querySelector('.btn-container');
+        pullBtn.onclick = () => btnContainer.innerHTML = <NavigationArrows />;
     } catch(error) {
         console.error(error);
     }
 }
 
 const App = () => { 
-    useEffect(() => document.querySelector('#icon').click(), []);
+    useEffect(() => {
+        try {
+            document.querySelector('#icon').click();
+        } catch(error) {
+            console.log(error);
+        }
+    }, []);  
+
+    onAuthStateChanged(auth, (user) => {
+        try {
+            user && document.querySelector('#icon').click()
+        } catch(error) {
+            console.error(error);
+        }
+    }); 
+
+    readData()
+        .then(() => events.forEach((element) => {
+            names.push(element.name);
+            descriptions.push(element.description);
+            dates.push(element.date);
+        }))
+        .catch((error) => console.error(error));
+
+    pullEvents();
 
     return (
         <section className='mobile-container'>
@@ -124,8 +163,7 @@ const App = () => {
                     <p className='description' id='events-date'>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
                     <p className='description' id='events-description'>Proin ullamcorper elementum lobortis. Nulla laoreet purus et nisl gravida maximus. Phasellus congue consectetur egestas. Suspendisse sit amet imperdiet enim</p>
                     <section className='btn-container'>
-                        <button className='arrow-btn'><span className='icon arrow'>arrow_back</span></button>
-                        <button className='arrow-btn'><span className='icon arrow'>arrow_forward</span></button>
+                        <Button id='pull-btn' message='Pull events from the database' />
                     </section>
                 </article>
             </main>

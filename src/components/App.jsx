@@ -1,13 +1,12 @@
 import Name from './Name.jsx';
 import Contact from './Contact.jsx';
 import Button from './Button.jsx';
-import NavigationArrows from './NavigationArrows.jsx';
 import { refresh } from '../scripts/scripts';
 import { useEffect } from 'react';
 import DOMPurify from 'dompurify';
 import { initializeApp } from 'firebase/app';
 import { GoogleAuthProvider, getAuth, signInWithPopup, onAuthStateChanged } from 'firebase/auth';
-import { getFirestore, collection, addDoc, getDocs } from 'firebase/firestore';
+import { getFirestore, collection, addDoc, getDocs, query } from 'firebase/firestore';
 
 const firebaseConfig = {
     apiKey: 'AIzaSyCmNk2q3k4i3dV9ZG2ZfZeTKnum70UaVas',
@@ -69,8 +68,9 @@ const authenticate = (user) => {
 
 const saveData = async() => {
     try {
+        const id = await getUserId();
         // eslint-disable-next-line no-unused-vars
-        const newEvent = await addDoc(collection(db, getUserId()), {
+        const newEvent = await addDoc(collection(db, id), {
             name: DOMPurify.sanitize(document.getElementsByClassName('text-input')[0].value),
             date: DOMPurify.sanitize(document.getElementsByClassName('email')[0].value),
             description: DOMPurify.sanitize(document.getElementsByClassName('message')[0].value)
@@ -93,26 +93,17 @@ const inspectInputs = () => {
     }
 }
 
-let names = [], dates = [], descriptions = [], events = [];
-
-const readData = async () => {
-    try {
-        const querySnapshot = await getDocs(collection(db, getUserId()));
-        querySnapshot.forEach((event) => events.push(event.data()));
-    } catch(error) {
-        console.error(error);
-    }
+const getEvents = async() => {
+    const id = getUserId();
+    const data = query(collection(db, id));
+    const events = [];
+    const snapshot = await getDocs(data);
+    snapshot.forEach((doc) => events.push(doc.data()));
+    return events;
 }
 
-const pullEvents = () => {
-    try {
-        const pullBtn = document.getElementById('pull-btn');
-        const btnContainer = document.querySelector('.btn-container');
-        pullBtn.onclick = () => btnContainer.innerHTML = <NavigationArrows />;
-    } catch(error) {
-        console.error(error);
-    }
-}
+let userEvents = [];
+const receiveEvents = () => getEvents().then(result => userEvents = result);
 
 const App = () => { 
     useEffect(() => {
@@ -130,16 +121,6 @@ const App = () => {
             console.error(error);
         }
     }); 
-
-    readData()
-        .then(() => events.forEach((element) => {
-            names.push(element.name);
-            descriptions.push(element.description);
-            dates.push(element.date);
-        }))
-        .catch((error) => console.error(error));
-
-    pullEvents();
 
     return (
         <section className='mobile-container'>
@@ -163,8 +144,9 @@ const App = () => {
                     <p className='description' id='events-date'>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
                     <p className='description' id='events-description'>Proin ullamcorper elementum lobortis. Nulla laoreet purus et nisl gravida maximus. Phasellus congue consectetur egestas. Suspendisse sit amet imperdiet enim</p>
                     <section className='btn-container'>
-                        <Button id='pull-btn' message='Pull events from the database' />
-                    </section>
+                        <button className='arrow-btn'><span className='icon arrow'>arrow_back</span></button> 
+                        <button className='arrow-btn'><span className='icon arrow'>arrow_forward</span></button>
+                    </section>                    
                 </article>
             </main>
         </section>

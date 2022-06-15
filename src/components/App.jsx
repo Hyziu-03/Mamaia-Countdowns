@@ -2,11 +2,13 @@ import Name from './Name.jsx';
 import Contact from './Contact.jsx';
 import Button from './Button.jsx';
 import { refresh } from '../scripts/scripts';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import DOMPurify from 'dompurify';
 import { initializeApp } from 'firebase/app';
 import { GoogleAuthProvider, getAuth, signInWithPopup, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, collection, addDoc, getDocs, query } from 'firebase/firestore';
+import AppNavigation from './AppNavigation.jsx';
+import ReactDOM from 'react-dom';
 
 const firebaseConfig = {
     apiKey: 'AIzaSyCmNk2q3k4i3dV9ZG2ZfZeTKnum70UaVas',
@@ -105,6 +107,12 @@ const getEvents = async() => {
 let userEvents = [];
 const receiveEvents = () => getEvents().then(result => userEvents = result);
 
+const displayEvents = () => {
+    const btnContainer = document.querySelector('.btn-container');
+    ReactDOM.render(<AppNavigation />, btnContainer);
+    receiveEvents().then(() => { return userEvents }); 
+}
+
 const App = () => { 
     useEffect(() => {
         try {
@@ -136,16 +144,15 @@ const App = () => {
                         thirdInput='What additional information do you have?'
                     />
                     <span onClick={inspectInputs}>
-                        <Button message='Set a Countdown!' />
+                        <Button message='Set a Countdown!' id='app-form-btn'/>
                     </span>
                 </article>
                 <article className='saved-countdowns'>
-                    <h1 className='heading' id='events-name'>Donec libero enim</h1>
-                    <p className='description' id='events-date'>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                    <p className='description' id='events-description'>Proin ullamcorper elementum lobortis. Nulla laoreet purus et nisl gravida maximus. Phasellus congue consectetur egestas. Suspendisse sit amet imperdiet enim</p>
-                    <section className='btn-container'>
-                        <button className='arrow-btn'><span className='icon arrow'>arrow_back</span></button> 
-                        <button className='arrow-btn'><span className='icon arrow'>arrow_forward</span></button>
+                    <h1 className='heading' id='events-name'>The event 's name will show up here when you pull it from the database.</h1>
+                    <p className='description' id='events-date'>The date will show up here when you pull it from the database.</p>
+                    <p className='description' id='events-description'>Additional information about the event will show up here if you pull it from the database.</p>
+                    <section className='btn-container' onClick={displayEvents}>
+                        <Button message="Pull data from the database "/>
                     </section>                    
                 </article>
             </main>

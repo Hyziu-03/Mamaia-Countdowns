@@ -1,4 +1,4 @@
-import Creator from '../images/creator.webp';
+import Creator from '../../images/creator.webp';
 import Paragraph from '../Paragraph';
 
 const AuthorSection = () => {

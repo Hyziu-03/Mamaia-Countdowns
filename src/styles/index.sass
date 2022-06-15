@@ -203,7 +203,6 @@ body
 
 .contact-form-container
     @include flex-center
-    margin-top: $unit * 8 !important
 
 .form
     @include form
@@ -223,13 +222,11 @@ body
     height: 100%
 
     .contact-form-container
-        position: relative
-        top: .75 * $size
         margin: 0 1.5 * $size 2 * $size 1.5 * $size
 
 .fixed-header
     text-align: center
-    margin: 1.5 * $size 0 $size * 0.5 0
+    margin: 1.5 * $size 0 $size * 2 0
     display: flex
     align-items: center
     justify-content: space-evenly
@@ -255,14 +252,18 @@ body
 .btn-container
     display: flex
     justify-content: center
-    margin-top: $size
+    margin: $size 0
+
+.arrow-navigation-container
+    display: flex
+    justify-content: center
 
 .arrow-btn
     @include hoverable
     @include btn($white, $blue)
-    padding: .5 * $size
-    width: 25%
     margin: $unit * 2 
+    display: flex
+    justify-content: center
 
     &:hover
         background: $hwhite
@@ -415,3 +416,9 @@ a
     .contact-form-container, .mobile-container
         margin: 0 !important
         margin-bottom: $size * 2 !important
+
+    .form
+         border-radius: 15% 35% 35% 35% 
+
+    #app-form-btn
+        padding: $size

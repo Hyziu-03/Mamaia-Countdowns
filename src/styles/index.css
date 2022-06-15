@@ -159,7 +159,6 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin-top: 32px !important;
 }
 
 .form {
@@ -207,14 +206,12 @@ body {
 }
 
 .mobile-container .contact-form-container {
-  position: relative;
-  top: 18px;
   margin: 0 36px 48px 36px;
 }
 
 .fixed-header {
   text-align: center;
-  margin: 36px 0 12px 0;
+  margin: 36px 0 48px 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -270,7 +267,16 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin-top: 24px;
+  margin: 24px 0;
+}
+
+.arrow-navigation-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .arrow-btn {
@@ -289,9 +295,13 @@ body {
   font-family: 'Montserrat', sans-serif;
   -webkit-transition: .25s all ease-out;
   transition: .25s all ease-out;
-  padding: 12px;
-  width: 25%;
   margin: 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .arrow-btn:hover {
@@ -546,6 +556,12 @@ a {
   .contact-form-container, .mobile-container {
     margin: 0 !important;
     margin-bottom: 48px !important;
+  }
+  .form {
+    border-radius: 15% 35% 35% 35%;
+  }
+  #app-form-btn {
+    padding: 24px;
   }
 }
 /*# sourceMappingURL=index.css.map */

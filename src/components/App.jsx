@@ -1,14 +1,14 @@
 import Name from './Name.jsx';
 import Contact from './Contact.jsx';
 import Button from './Button.jsx';
-import { refresh } from '../scripts/scripts';
-import React, { useEffect } from 'react';
+import AppNavigation from './AppNavigation.jsx';
+import ReactDOM from 'react-dom';
 import DOMPurify from 'dompurify';
+import { useEffect } from 'react';
+import { refresh } from '../scripts/scripts';
 import { initializeApp } from 'firebase/app';
 import { GoogleAuthProvider, getAuth, signInWithPopup, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, collection, addDoc, getDocs, query } from 'firebase/firestore';
-import AppNavigation from './AppNavigation.jsx';
-import ReactDOM from 'react-dom';
 
 const firebaseConfig = {
     apiKey: 'AIzaSyCmNk2q3k4i3dV9ZG2ZfZeTKnum70UaVas',
@@ -37,10 +37,8 @@ const getUserId = () => {
 
 const login = () => {
     const user = auth.currentUser; 
-    
     if(user === null) {
         const provider = new GoogleAuthProvider();
-
         signInWithPopup(auth, provider)
             .catch((error) => console.error(error));
     }
@@ -49,10 +47,8 @@ const login = () => {
 const authenticate = (user) => {
     try {
         const icon = document.getElementById('icon');
-
         let result = user ? 'done' : 'close';
         result === 'close' && login();
-
         if (result === 'done') {
             icon.classList.add('done');
             icon.classList.remove('close');
@@ -140,12 +136,10 @@ const App = () => {
                     <Contact 
                         firstInput='What is this event?'
                         secondInput='When does it start?'
-                        secondInputType = 'date'
+                        secondInputType='date'
                         thirdInput='What additional information do you have?'
                     />
-                    <span onClick={inspectInputs}>
-                        <Button message='Set a Countdown!' id='app-form-btn'/>
-                    </span>
+                    <span onClick={inspectInputs}><Button message='Set a Countdown!' id='app-form-btn'/></span>
                 </article>
                 <article className='saved-countdowns'>
                     <h1 className='heading' id='events-name'>The event 's name will show up here when you pull it from the database.</h1>
@@ -157,7 +151,7 @@ const App = () => {
                 </article>
             </main>
         </section>
-    )
+    );
 }
 
 export default App; 

@@ -1,5 +1,5 @@
-import Introduction from '../Introduction.jsx';
-import Calendar from '../../images/calendar.svg';
+import Introduction from './Introduction.jsx';
+import Calendar from '../images/calendar.svg';
 
 const IntroductorySection = () => {
   return (

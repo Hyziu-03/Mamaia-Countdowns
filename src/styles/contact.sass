@@ -1,0 +1,35 @@
+@use 'module'
+
+@mixin input 
+    background: $white
+    border-color: transparent
+    box-shadow: $shadow
+    border-radius: 4 * $unit
+    padding: .75 * $size
+    font-family: 'Montserrat', sans-serif
+    font-size: .75 * $size
+    min-width: 350px
+    margin: 2 * $unit 0
+
+@mixin textarea 
+    resize: none
+    min-height: 8 * $size
+    line-height: 150%
+
+@mixin form 
+    display: flex
+    flex-direction: column
+    z-index: 1
+    background-color: $yellow 
+    border-radius: 25% 75% 75% 75% 
+    padding: .75 * $size
+
+.form
+    @include form
+
+.input
+    @include input
+
+.textarea 
+    @include textarea
+    

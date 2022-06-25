@@ -1,0 +1,414 @@
+// Sizing units
+
+$unit: 4px
+$size: 6 *  $unit
+
+// Colours
+
+$black: rgb(42, 42, 42)
+$hblack: rgba(42, 42, 42, .25)
+$white: rgb(239, 239, 239)
+$hwhite: rgb(205, 205, 205)
+$blue: rgb(41, 81, 167)
+$hblue: rgb(11, 51, 117)
+$yellow: rgb(254, 204, 24)
+$green: rgb(0, 105, 85)
+$red: rgb(214, 78, 82)
+    
+// Utilities
+
+$shadow: $unit 2 * $unit $unit $hblack
+
+@mixin link 
+    color: inherit
+    text-decoration: none
+
+@mixin reset
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+
+    &:focus
+        outline-offset: .25 * $size
+
+@mixin hoverable 
+    user-select: none
+
+    &:hover
+        cursor: pointer
+
+@mixin touch-target
+    min-width: 48px
+    min-height: 48px
+
+@mixin position-center 
+    position: absolute
+    left: 50%
+    top: 50%
+    transform: translate(-50%, -50%)
+
+@mixin flex-center 
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+
+@mixin responsive-img 
+    pointer-events: none
+    margin: 2 * $size 0
+
+a
+    @include link
+
+*
+    @include reset
+
+body
+    background: $white
+    overflow-x: hidden
+
+.hover
+    @include hoverable
+
+.touch-target
+    @include touch-target
+
+// Components
+
+@mixin container 
+    font-family: 'Montserrat', sans-serif
+    font-size: $size
+    line-height: 150%
+    display: grid
+    gap: 2 * $size
+
+@mixin header 
+    background: $white
+    padding: $size 2 * $size
+    display: flex
+    align-items: center
+    justify-content: space-between
+
+@mixin heading
+    font-size: 1.5 * $size
+    line-height: 2 * $size
+    font-family: 'Roboto Slab', cursive
+
+@mixin btn($bg-color, $text-color) 
+    padding: $size 2 * $size 
+    background: $bg-color
+    border-color: transparent
+    box-shadow: $shadow
+    border-radius: .5 * $size
+    color: $text-color
+    font-size: $size
+    font-family: 'Montserrat', sans-serif 
+
+@mixin form 
+    display: flex
+    flex-direction: column
+    z-index: 1
+    background-color: $yellow 
+    border-radius: 25% 75% 75% 75% 
+    padding: .75 * $size
+
+@mixin input 
+    background: $white
+    border-color: transparent
+    box-shadow: $shadow
+    border-radius: 4 * $unit
+    padding: .75 * $size
+    font-family: 'Montserrat', sans-serif
+    font-size: .75 * $size
+    min-width: 350px
+    margin: 2 * $unit 0
+
+@mixin textarea 
+    resize: none
+    min-height: 8 * $size
+    line-height: 150%
+
+@mixin footer 
+    padding: $size 3 * $size
+    display: flex
+    justify-content: space-around
+    align-items: center
+
+@mixin interface 
+    display: flex
+    flex-direction: column
+    font-family: 'Montserrat', sans-rerif
+    min-width: 75%
+    margin: 0 1.5 * $size
+
+// Scrollbar
+
+::-webkit-scrollbar 
+    width: $size
+    background: $white
+
+::-webkit-scrollbar-thumb
+    background: $yellow
+    border: .5 * $unit solid $black 
+    border-radius: .25 * $size
+
+// Loader.jsx
+
+@keyframes spin 
+    0%
+        transform: rotate(0deg)
+    50%
+        transform: rotate(180deg) scale(1.25)
+    100% 
+        transform: rotate(360deg)
+
+.loader-container
+    width: 100vw
+    height: 100vh
+    display: flex
+    justify-content: center
+    align-items: center 
+
+.loader
+    animation: spin 1s infinite 
+    width: 64px
+    height: 64px
+    border: solid $unit * 2 $blue
+    border-radius: 50%
+    border-top-color: transparent 
+    border-bottom-color: transparent
+    display: block 
+
+// Home.jsx 
+
+.App
+    @include container
+
+.main-content
+    display: grid
+    gap: 4 * $size
+    margin-top: -3 * $size 
+
+// App.jsx
+
+.mobile-container
+    @include position-center
+    z-index: 3
+    background: $white
+    height: 100%
+
+    .contact-form-container
+        margin: 0 1.5 * $size 2 * $size 1.5 * $size
+
+.fixed-header
+    text-align: center
+    margin: 1.5 * $size 0 $size * 2 0
+    display: flex
+    align-items: center
+    justify-content: space-evenly
+
+.icon
+    font-size: 1.75 * $size
+    font-family: 'Material Symbols Rounded'
+
+.indicator
+    border-radius: 50%
+    border: $unit solid transparent 
+    height: 64px
+    width: 64px
+    display: flex
+    justify-content: center
+    align-items: center 
+    font-weight: bold 
+    transition: .25s all ease
+
+    &:hover
+        background: $hwhite
+        cursor: pointer 
+
+.close
+    color: $red 
+    border-color: $red
+
+.done 
+    color: $green 
+    border-color: $green 
+
+.contact-form-container
+    @include flex-center
+
+.mobile-content
+    display: flex
+    align-items: center
+    justify-content: center
+
+.saved-countdowns
+    @include interface 
+
+    .heading
+        margin: .75 * $size 0
+
+    .description
+        margin: .5 * $size 0
+
+#events-name, #events-date, #events-description
+    margin: $unit * 5 0 
+
+.btn-container
+    display: flex
+    justify-content: center
+    margin: $size 0
+
+// AppNavigation.jsx 
+
+.arrow-navigation-container
+    display: flex
+    justify-content: center
+
+.arrow-btn
+    @include hoverable
+    @include btn($white, $blue)
+    margin: $unit * 2 
+    display: flex
+    justify-content: center
+
+    &:hover
+        background: $hwhite
+
+.arrow
+    font-size: 1.75 * $size
+
+// Header.jsx 
+
+.header
+    @include header
+
+// Name.jsx
+
+.name
+    @include heading
+    transition: .25s all ease-out
+    display: inline-flex
+
+    &:hover
+        filter: drop-shadow($shadow)  
+    
+// Button.jsx
+
+.btn
+    @include btn($blue, $white)
+
+    &:hover
+        background: $hblue
+
+// Paragraph.jsx
+
+.heading
+    @include heading
+    letter-spacing: .25 * $unit
+    text-align: center
+    max-width: 35ch
+
+.description
+    font-size: $size
+    margin: .75 * $size $size $size $size
+    max-width: 35ch
+    text-align: justify
+
+// Form.jsx
+
+.form
+    @include form
+
+.input
+    @include input 
+    
+.textarea 
+    @include textarea
+
+// Footer.jsx 
+
+.footer
+    @include footer
+
+.copyright
+    font-size: .75 * $size
+
+.contact-links
+    display: flex
+    justify-content: center
+
+// GitHubIcon.jsx, LinkedInIcon.jsx 
+
+.brand-icon
+    @include hoverable
+    margin: 0 $unit * 4
+    transition: .25s all ease
+    border-radius: 50%
+    drop-shadow: $shadow
+
+    &:hover
+        background: $yellow
+    
+// IntroductorySection.jsx, DescriptiveSection.jsx, AuthorSection.jsx
+
+.article
+    display: flex
+    justify-content: space-evenly
+    align-items: center
+
+.introduction, .explanation, .text-content, .biography
+    @include flex-center
+
+.work, .creator, .calendar
+    pointer-events: none
+
+// Responsiveness
+
+@media (max-width: 1200px)
+    .article
+        flex-direction: column 
+
+    .calendar, .work, .creator
+        margin-top: $size * 2
+
+    .introduction
+        margin-top: $size * 2
+
+    .description
+        margin: 18px 96px 24px 96px
+
+    .description, .heading
+        max-width: 50ch
+        
+@media (max-width: 1100px)
+    .mobile-content
+        flex-direction: column-reverse
+
+    #events-name, #events-date, #events-description
+        width: 75vw
+        text-align: center 
+
+@media (max-width: 600px)
+    .arrow-btn
+        width: 105px
+
+@media (max-width: 500px)
+    .input
+        min-width: 250px
+
+    .fixed-header
+        flex-direction: column
+
+    .indicator
+        margin-top: $size 
+
+    .contact-form-container, .mobile-container
+        margin: 0 !important
+        margin-bottom: $size * 2 !important
+
+    .form
+        border-radius: 15% 35% 35% 35% 
+
+    #app-form-btn
+        padding: $size

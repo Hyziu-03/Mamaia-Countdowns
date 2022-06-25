@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import Button from './Button';
 
 const Introduction = (props) => {
+    console.log("Introduction.jsx");
+
     return (
         <article className='introduction'>
             <section className='text-section'>

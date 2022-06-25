@@ -29,6 +29,8 @@ auth.languageCode = 'pl';
 
 const getUserId = () => {
     try {
+        console.log("getUserId()");
+
         return auth.currentUser.uid;
     } catch(error) {
         console.error(error);
@@ -36,6 +38,8 @@ const getUserId = () => {
 }
 
 const login = () => {
+    console.log("login()");
+
     const user = auth.currentUser; 
     if(user === null) {
         const provider = new GoogleAuthProvider();
@@ -46,6 +50,8 @@ const login = () => {
 
 const authenticate = (user) => {
     try {
+        console.log("authenticate()");
+
         const icon = document.getElementById('icon');
         let result = user ? 'done' : 'close';
         result === 'close' && login();
@@ -66,6 +72,8 @@ const authenticate = (user) => {
 
 const saveData = async() => {
     try {
+        console.log("saveData()");
+
         const id = await getUserId();
         // eslint-disable-next-line no-unused-vars
         const newEvent = await addDoc(collection(db, id), {
@@ -81,6 +89,8 @@ const saveData = async() => {
 
 const inspectInputs = () => {
     try {
+        console.log("inspectInputs()");
+
         const emailIsEmpty = document.getElementsByClassName('email')[0].value === '';
         const dateIsEmpty = document.getElementsByClassName('text-input')[0].value === '';
         const informationIsEmpty = document.getElementsByClassName('message')[0].value === '';
@@ -92,6 +102,8 @@ const inspectInputs = () => {
 }
 
 const getEvents = async() => {
+    console.log("getEvents()");
+
     const id = getUserId();
     const data = query(collection(db, id));
     const events = [];
@@ -101,15 +113,23 @@ const getEvents = async() => {
 }
 
 let userEvents = [];
-const receiveEvents = () => getEvents().then(result => userEvents = result);
+const receiveEvents = () => {
+    console.log("userEvents()");
+    
+    getEvents().then(result => userEvents = result);
+}
 
 const displayEvents = () => {
+    console.log("displayEvents()");
+
     const btnContainer = document.querySelector('.btn-container');
     ReactDOM.render(<AppNavigation />, btnContainer);
     receiveEvents().then(() => { return userEvents }); 
 }
 
 const App = () => { 
+    console.log("App.jsx");
+
     useEffect(() => {
         try {
             document.querySelector('#icon').click();

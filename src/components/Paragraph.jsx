@@ -1,6 +1,6 @@
-import '../styles/paragraph.css';
-
 const Paragraph = (props) => {
+  console.log("Paragraph.jsx");
+
   return (
     <article className={props.className}>
         <h1 className="heading" tabIndex="0">{props.heading}</h1>

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import './styles/index.css';
+import './styles/styles.css';
 import App from './components/App.jsx';
 import Home from './components/Home.jsx';
 

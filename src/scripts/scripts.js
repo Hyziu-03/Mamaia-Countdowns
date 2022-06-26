@@ -1,5 +1,5 @@
 export const integrateTabIndex = () => {
-    document.addEventListener('keydown', (event) => {
+    document.addEventListener("keydown", (event) => {
         try {
             event.key === 13 && document.activeElement.click();
         } catch (exception) {
@@ -8,4 +8,10 @@ export const integrateTabIndex = () => {
     });
 };
 
-export const refresh = () => window.location.reload(false);
+export const refresh = () => {
+    try {
+        window.location.reload(false);
+    } catch(error) {
+        console.error(error);
+    }
+};

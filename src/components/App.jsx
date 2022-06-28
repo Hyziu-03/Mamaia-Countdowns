@@ -1,14 +1,12 @@
-import Name from "./Name.jsx";
-import Contact from "./Contact.jsx";
-import Button from "./Button.jsx";
-import AppNavigation from "./AppNavigation.jsx";
-import ReactDOM from "react-dom";
-import DOMPurify from "dompurify";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { refresh } from "../scripts/scripts";
+import DOMPurify from "dompurify";
 import { initializeApp } from "firebase/app";
 import { GoogleAuthProvider, getAuth, signInWithPopup, onAuthStateChanged } from "firebase/auth";
 import { getFirestore, collection, addDoc, getDocs, query } from "firebase/firestore";
+import Name from "./Name.jsx";
+import Contact from "./Contact.jsx";
+import Button from "./Button.jsx";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCmNk2q3k4i3dV9ZG2ZfZeTKnum70UaVas",
@@ -32,11 +30,14 @@ const getUserId = () => {
     try {
         console.log("getUserId()");
 
-        return auth.currentUser.uid;
+        return auth.currentUser.uid;    
     } catch(error) {
         console.error(error);
     }
 }
+
+// eslint-disable-next-line no-unused-vars
+const appNavigation = <div className="arrow-navigation-container"><button className="arrow-btn"><span className="icon arrow">arrow_back</span></button><button className="arrow-btn"><span className="icon arrow">arrow_forward</span></button></div>;
 
 const login = () => {
     try {
@@ -56,7 +57,7 @@ const authenticate = async (user) => {
     try {
         console.log("authenticate()");
 
-        id = await getUserId()
+        id = await getUserId();
         console.log(`User ID @ authenticate(): ${id}`);
 
         const icon = document.getElementById("icon");
@@ -87,7 +88,7 @@ const saveData = async() => {
             date: DOMPurify.sanitize(document.getElementsByClassName("email")[0].value),
             description: DOMPurify.sanitize(document.getElementsByClassName("message")[0].value)
         });
-        alert("Your event has been saved!");
+        console.log("Your event has been saved!");
     } catch (error) {
         throw new Error(error);
     }
@@ -120,33 +121,26 @@ const getEvents = async() => {
     } catch(error) {
         console.error(error);
     }
-}
-
-let userEvents = [];
-const receiveEvents = () => {
-    console.log("receiveEvents()");
-    
-    console.log(`User ID @ receiveEvents(): ${id}`);
-    getEvents()
-        .then(result => userEvents = result)
-        .catch(error => console.error(error));
-}
-
-const displayEvents = () => {
-    try {
-        console.log("displayEvents()");
-
-        console.log(`User ID @ displayEvents(): ${id}`);
-        const btnContainer = document.querySelector(".btn-container");
-        ReactDOM.render(<AppNavigation />, btnContainer);
-        receiveEvents().then(() => { return userEvents }); 
-    } catch(error) {
-        console.error(error);
-    }
-}
+} 
 
 const App = () => { 
     console.log("App.jsx");
+
+    let [data, updateData] = useState([]);
+
+    const receiveEvents = () => {
+        console.log("receiveEvents()");
+
+        console.log(`User ID @ receiveEvents(): ${id}`);
+        getEvents()
+            .then(result => updateData(result))
+            .catch(error => console.error(error));
+    }
+
+    useEffect(() => {
+        console.log('data from useState()')
+        console.log(data);
+    }, [data]);
 
     useEffect(() => {
         try {
@@ -183,7 +177,7 @@ const App = () => {
                     <h1 className="heading" id="events-name">The event’s name will show up here when you pull it from the database.</h1>
                     <p className="description" id="events-date">The date will show up here when you pull it from the database.</p>
                     <p className="description" id="events-description">Additional information about the event will show up here if you pull it from the database.</p>
-                    <section className="btn-container" onClick={displayEvents}>
+                    <section className="btn-container" onClick={receiveEvents}>
                         <Button message="Pull data from the database "/>
                     </section>                    
                 </article>

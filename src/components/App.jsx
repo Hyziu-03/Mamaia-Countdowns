@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ReactDOM from "react-dom";
 import { refresh } from "../scripts/scripts";
 import DOMPurify from "dompurify";
 import { initializeApp } from "firebase/app";
@@ -28,21 +29,14 @@ auth.languageCode = "pl";
 let id = null;
 const getUserId = () => {
     try {
-        console.log("getUserId()");
-
         return auth.currentUser.uid;    
     } catch(error) {
         console.error(error);
     }
 }
 
-// eslint-disable-next-line no-unused-vars
-const appNavigation = <div className="arrow-navigation-container"><button className="arrow-btn"><span className="icon arrow">arrow_back</span></button><button className="arrow-btn"><span className="icon arrow">arrow_forward</span></button></div>;
-
 const login = () => {
     try {
-        console.log("login()");
-
         const user = auth.currentUser;
         if (user === null) {
             const provider = new GoogleAuthProvider();
@@ -55,11 +49,7 @@ const login = () => {
 
 const authenticate = async (user) => {
     try {
-        console.log("authenticate()");
-
         id = await getUserId();
-        console.log(`User ID @ authenticate(): ${id}`);
-
         const icon = document.getElementById("icon");
         let result = user ? "done" : "close";
         result === "close" && login();
@@ -80,8 +70,6 @@ const authenticate = async (user) => {
 
 const saveData = async() => {
     try {
-        console.log("saveData()");
-
         // eslint-disable-next-line no-unused-vars
         const newEvent = await addDoc(collection(db, id), {
             name: DOMPurify.sanitize(document.getElementsByClassName("text-input")[0].value),
@@ -96,8 +84,6 @@ const saveData = async() => {
 
 const inspectInputs = () => {
     try {
-        console.log("inspectInputs()");
-
         const emailIsEmpty = document.getElementsByClassName("email")[0].value === "";
         const dateIsEmpty = document.getElementsByClassName("text-input")[0].value === "";
         const informationIsEmpty = document.getElementsByClassName("message")[0].value === "";
@@ -110,9 +96,6 @@ const inspectInputs = () => {
 
 const getEvents = async() => {
     try {
-        console.log("getEvents()");
-
-        console.log(`User ID @ getEvents(): ${id}`);
         const data = query(collection(db, id));
         const events = [];
         const snapshot = await getDocs(data);
@@ -123,24 +106,44 @@ const getEvents = async() => {
     }
 } 
 
-const App = () => { 
-    console.log("App.jsx");
+let currentEventIndex = 0;
 
+const App = () => { 
     let [data, updateData] = useState([]);
 
     const receiveEvents = () => {
-        console.log("receiveEvents()");
-
-        console.log(`User ID @ receiveEvents(): ${id}`);
         getEvents()
             .then(result => updateData(result))
             .catch(error => console.error(error));
+
+        const btnContainer = document.getElementsByClassName('btn-container')[0];
+        ReactDOM.render(appNavigation, btnContainer);
     }
 
-    useEffect(() => {
-        console.log('data from useState()')
-        console.log(data);
-    }, [data]);
+    useEffect(() => {}, [data]);
+
+    const getCurrentEventIndex = (button) => {
+        console.log('currentEventIndex: ', currentEventIndex);
+
+        const lastEventIndex = data.length - 1;
+        console.log('lastEventIndex: ', lastEventIndex)
+
+        let isTooLittle = false;
+        if (currentEventIndex < 0) isTooLittle = true;
+        console.log('isTooLittle: ', isTooLittle)
+
+        let isTooMuch = false;
+        if(currentEventIndex > lastEventIndex) isTooMuch = true;
+        console.log('isTooMuch: ', isTooMuch)
+
+        if(button === 'increment') currentEventIndex += 1;
+        if(button === 'decrement') currentEventIndex -= 1;
+        console.log('currentEventIndex: ', currentEventIndex);
+
+        console.log('');
+    }
+
+    const appNavigation = <div className="arrow-navigation-container"><button className="arrow-btn" onClick={getCurrentEventIndex('decrement')}><span className="icon arrow">arrow_back</span></button><button className="arrow-btn" onClick={getCurrentEventIndex('increment')}><span className="icon arrow">arrow_forward</span></button></div>;
 
     useEffect(() => {
         try {

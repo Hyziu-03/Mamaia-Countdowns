@@ -2,8 +2,6 @@ import Creator from "../images/creator.webp";
 import Paragraph from "./Paragraph";
 
 const AuthorSection = () => {
-  console.log("AuthorSection.jsx");
-
   return (
     <article className="article">
       <Paragraph heading="Who is the creator?" description={[

@@ -2,8 +2,6 @@ import Work from "../images/work.svg";
 import Paragraph from "./Paragraph";
 
 const DescriptiveSection = () => {
-  console.log("DescriptiveSection.jsx");
-
   return (
     <article className="article">
       <Paragraph heading="How to use it? " description={[

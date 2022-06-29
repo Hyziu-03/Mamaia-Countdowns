@@ -1,6 +1,4 @@
 const Contact = (props) => {
-    console.log("Contact.jsx");
-
     return (
         <form action="" method="" className="form article" id="form" onSubmit={(event) => event.preventDefault()}>
             <input type="text" name="name" id="text-input" className="input touch-target text-input" placeholder={props.firstInput}/>

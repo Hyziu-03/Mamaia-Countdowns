@@ -2,8 +2,6 @@ import LinkedInIcon from "./icons/LinkedInIcon";
 import GitHubIcon from "./icons/GitHubIcon"; 
 
 const Footer = () => {
-    console.log("Footer.jsx");
-
     return (
         <footer className="footer">
             <p className="copyright" tabIndex="0">This app has been created from scratch by Szymon Hyziak and therefore is upon copyright of its" owner.</p>

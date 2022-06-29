@@ -5,8 +5,6 @@ import DescriptiveSection from "./DescriptiveSection.jsx";
 import AuthorSection from "./AuthorSection.jsx";
 
 const Home = () => {
-    console.log("Home.jsx");
-
     return (
         <div className="App" id="App">
             <Header />

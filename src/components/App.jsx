@@ -75,8 +75,8 @@ const saveData = async() => {
             name: DOMPurify.sanitize(document.getElementsByClassName("text-input")[0].value),
             date: DOMPurify.sanitize(document.getElementsByClassName("email")[0].value),
             description: DOMPurify.sanitize(document.getElementsByClassName("message")[0].value)
-        });
-        console.log("Your event has been saved!");
+        });        
+        alert("Your event has been saved!");
     } catch (error) {
         throw new Error(error);
     }
@@ -111,45 +111,66 @@ let currentEventIndex = 0;
 const App = () => { 
     let [data, updateData] = useState([]);
 
+    const populateEvents = () => {
+        try {
+            const eventName = document.getElementById('events-name');
+            const eventDate = document.getElementById('events-date');
+            const eventDescription = document.getElementById('events-description');
+            const renderCondition = !(eventName === null || eventDate === null || eventDescription === null);
+            if (renderCondition) {
+                eventName.innerHTML = data[currentEventIndex].name;
+                eventDate.innerHTML = data[currentEventIndex].date;
+                eventDescription.innerHTML = data[currentEventIndex].description;
+            }
+        } catch(error) {
+            console.error(error);
+        }
+    }   
+
     const receiveEvents = () => {
         getEvents()
             .then(result => updateData(result))
             .catch(error => console.error(error));
-
         const btnContainer = document.getElementsByClassName('btn-container')[0];
         ReactDOM.render(appNavigation, btnContainer);
     }
 
-    useEffect(() => {}, [data]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(() => populateEvents(), [data]);
 
-    const getCurrentEventIndex = (button) => {
-        console.log('currentEventIndex: ', currentEventIndex);
-
-        const lastEventIndex = data.length - 1;
-        console.log('lastEventIndex: ', lastEventIndex)
-
-        let isTooLittle = false;
-        if (currentEventIndex < 0) isTooLittle = true;
-        console.log('isTooLittle: ', isTooLittle)
-
-        let isTooMuch = false;
-        if(currentEventIndex > lastEventIndex) isTooMuch = true;
-        console.log('isTooMuch: ', isTooMuch)
-
-        if(button === 'increment') currentEventIndex += 1;
-        if(button === 'decrement') currentEventIndex -= 1;
-        console.log('currentEventIndex: ', currentEventIndex);
-
-        console.log('');
+    const incrementEventIndex = () => {
+        try {
+            const lastEventIndex = data.length - 1;
+            const newEventIndex = currentEventIndex +=1;
+            let isTooMuch = false;
+            if (newEventIndex > lastEventIndex) isTooMuch = true;
+            if (isTooMuch) currentEventIndex = 0;
+            else currentEventIndex = newEventIndex;
+        } catch(error) {
+            console.error(error);
+        }
     }
 
-    const appNavigation = <div className="arrow-navigation-container"><button className="arrow-btn" onClick={getCurrentEventIndex('decrement')}><span className="icon arrow">arrow_back</span></button><button className="arrow-btn" onClick={getCurrentEventIndex('increment')}><span className="icon arrow">arrow_forward</span></button></div>;
+    const decrementEventIndex = () => {
+        try {
+            const lastEventIndex = data.length - 1;
+            const newEventIndex = currentEventIndex -= 1;
+            let isTooLittle = false;
+            if (newEventIndex < 0) isTooLittle = true;
+            if (isTooLittle) currentEventIndex = lastEventIndex;
+            else currentEventIndex = newEventIndex;
+        } catch(error) {
+            console.error(error);
+        }
+    }
+
+    const appNavigation = <div className="arrow-navigation-container"><button className="arrow-btn" onClick={decrementEventIndex}><span className="icon arrow">arrow_back</span></button><button className="arrow-btn" onClick={incrementEventIndex}><span className="icon arrow">arrow_forward</span></button></div>;
 
     useEffect(() => {
         try {
             document.querySelector("#icon").click();
         } catch(error) {
-            console.log(error);
+            console.error(error);
         }
     }, []);  
 

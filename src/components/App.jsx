@@ -111,6 +111,66 @@ let currentEventIndex = 0;
 const App = () => { 
     let [data, updateData] = useState([]);
 
+    const getDate = () => {
+        try {
+            const today = new Date();
+            const year = today.getFullYear();
+            let month = today.getMonth();
+            if (month < 10) month = "0" + month;
+            let day = today.getDay();
+            if (day < 10) day = "0" + day;
+            return year + "-" + month + "-" + day;
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const triggerNotification = () => {
+        try {
+            const description = data[currentEventIndex].description;
+            const title = data[currentEventIndex].name + " is about to happen! ";
+            const options = {
+                dir: "ltr",
+                lang: "pl-PL",
+                body: description
+            };
+            // eslint-disable-next-line no-unused-vars
+            const notification = new Notification(title, options);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const saveNotification = () => {
+        try {
+            for (let index of data) {
+                if (data[index].date === getDate()) triggerNotification();
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const setNotification = () => {
+        try {
+            if (!("Notification" in window)) {
+                alert("Your browser does not support sending notifications");
+                return;
+            }
+            if (Notification.permission !== "granted") {
+                Notification.requestPermission();
+                if (Notification.permission === "granted") saveNotification();
+                if (Notification.permission === "denied") alert("We were unable to set the notification for you");
+                return;
+            }
+            saveNotification();
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    saveNotification();
+
     const populateEvents = () => {
         try {
             const eventName = document.getElementById('events-name');
@@ -164,7 +224,7 @@ const App = () => {
         }
     }
 
-    const appNavigation = <div className="arrow-navigation-container"><button className="arrow-btn" onClick={decrementEventIndex}><span className="icon arrow">arrow_back</span></button><button className="arrow-btn" onClick={incrementEventIndex}><span className="icon arrow">arrow_forward</span></button></div>;
+    const appNavigation = <div className="arrow-navigation-container"><button className="arrow-btn" onClick={decrementEventIndex}><span className="icon arrow">arrow_back</span></button><button className="arrow-btn" onClick={incrementEventIndex}><span className="icon arrow">arrow_forward</span></button><button className="arrow-btn" onClick={setNotification}><span className="icon">notification_add</span></button></div>;
 
     useEffect(() => {
         try {

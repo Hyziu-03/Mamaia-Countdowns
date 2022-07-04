@@ -138,10 +138,8 @@ body
     display: flex
     flex-direction: column
     font-family: 'Montserrat', sans-rerif
-    min-width: 75%
-    margin: 0 1.5 * $size
-    border-radius: 80% 60%
-    background: $hwhite
+    min-width: 30vw
+    margin: 0 1.5 * $size 1.5 * $size 1.5 * $size
 
 // Scrollbar
 
@@ -204,14 +202,39 @@ body
 
 .fixed-header
     text-align: center
-    margin: 1.5 * $size 0 $size * 2 0
+    margin: 1.5 * $size 0
     display: flex
     align-items: center
     justify-content: space-evenly
 
+.tooltip
+    display: none
+    font-family: 'Montserrat', sans-serif
+    font-size: 4 * $unit
+    line-height: 150%
+    position: absolute
+    top: $size
+    right: -4 * $size
+    width: 300px
+    background-color: $hwhite
+    border-radius: .5 * $size 
+    padding: $size
+
+.extra-information
+    font-size: $size * 1.5
+    display: flex 
+
+    .information-icon
+        position: relative
+        top: -$size 
+
+    &:hover .tooltip
+        display: block
+
 .icon
     font-size: 1.75 * $size
     font-family: 'Material Symbols Rounded'
+    user-select: none
 
 .indicator
     border-radius: 50%
@@ -390,14 +413,20 @@ body
     .mobile-content
         flex-direction: column-reverse
 
-    #events-name, #events-date, #events-description
-        width: 75vw
+    .saved-contdowns 
+        min-width: 0
+
+    .tooltip 
+        right: 0
 
 @media (max-width: 600px)
     .arrow-btn
         width: 105px
 
 @media (max-width: 500px)
+    .extra-information .information-icon
+        top: 0
+        
     .input
         min-width: 250px
 

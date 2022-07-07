@@ -118,18 +118,61 @@ let currentEventIndex = 0;
 const App = () => { 
     let [data, updateData] = useState([]);
 
+    const getTodaysDate = () => {
+        try {
+            const date = new Date();
+            let day = date.getDate();
+            if (day < 10) day = "0" + day;
+            let month = date.getMonth() + 1;
+            if (month < 10) month = "0" + month;
+            const year = date.getFullYear();
+            const today = year + "-" + month + "-" + day;
+            return today;
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const getEventsDate = () => {
+        try {
+            return data[currentEventIndex].date;
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const getDifference = () => {
+        try {
+            const millisecondsPerDay = 86400000;
+            const today = new Date(getTodaysDate());
+            const eventsDate = new Date(getEventsDate());
+            const difference = (eventsDate - today) / millisecondsPerDay;
+            return difference;
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const logDifference = () => {
+        const difference = getDifference();
+        if(difference > 0) return `This event is ${difference} days from today!`;
+        else return `This event happened ${Math.abs(difference)} days ago!`;
+    }
+
     const populateEvents = () => {
         try {
             const eventName = document.getElementById('events-name');
             const eventDate = document.getElementById('events-date');
             const eventDescription = document.getElementById('events-description');
-            const elementsRendered = !(eventName === null || eventDate === null || eventDescription === null);
+            const eventDistance = document.getElementById("events-distance");
+            const elementsRendered = !(eventName === null || eventDate === null || eventDescription === null || eventDistance === null);
             const dataReceived = data[currentEventIndex].name !== undefined || data[currentEventIndex].date !== undefined || data[currentEventIndex].description !== undefined;
             if (elementsRendered && dataReceived) {
                 eventName.innerHTML = data[currentEventIndex].name;
                 eventDate.innerHTML = data[currentEventIndex].date;
+                eventDistance.innerHTML = logDifference();
                 eventDescription.innerHTML = data[currentEventIndex].description;
-            }
+            }            
         } catch(error) {
             console.error(error);
         }
@@ -206,9 +249,10 @@ const App = () => {
                     <span onClick={inspectInputs}><Button message="Set a Countdown!" id="app-form-btn"/></span>
                 </article>
                 <article className="saved-countdowns">
-                    <h1 className="heading" id="events-name">The event’s name will show up here when you pull it from the database.</h1>
-                    <p className="description" id="events-date">The date will show up here when you pull it from the database.</p>
-                    <p className="description" id="events-description">Additional information about the event will show up here if you pull it from the database.</p>
+                    <h1 className="heading" id="events-name">This event is called...</h1>
+                    <p className="description" id="events-date">This event will happen on...</p>
+                    <p className="description" id="events-distance">This event will happen in...</p>
+                    <p className="description" id="events-description">This event is about...</p>
                     <section className="btn-container" onClick={receiveEvents}>
                         <Button message="Pull data from the database "/>
                     </section>                    

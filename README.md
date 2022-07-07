@@ -1,4 +1,4 @@
-# Mamaia Countdowns 1.6.5 (development version)
+# Mamaia Countdowns 1.7
 
 ## Can't remember dates?
 

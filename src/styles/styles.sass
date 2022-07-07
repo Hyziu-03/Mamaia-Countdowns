@@ -89,6 +89,20 @@ body
     align-items: center
     justify-content: space-between
 
+@mixin tooltip 
+    display: none
+    font-family: 'Montserrat', sans-serif
+    font-size: 4 * $unit
+    line-height: 150%
+    position: absolute
+    top: $size
+    right: -4 * $size
+    width: 300px
+    background-color: $hwhite
+    border-radius: .5 * $size 
+    padding: $size
+    box-shadow: $shadow 
+
 @mixin heading
     font-size: 1.5 * $size
     line-height: 2 * $size
@@ -208,17 +222,7 @@ body
     justify-content: space-evenly
 
 .tooltip
-    display: none
-    font-family: 'Montserrat', sans-serif
-    font-size: 4 * $unit
-    line-height: 150%
-    position: absolute
-    top: $size
-    right: -4 * $size
-    width: 300px
-    background-color: $hwhite
-    border-radius: .5 * $size 
-    padding: $size
+    @include tooltip
 
 .extra-information
     font-size: $size * 1.5
@@ -276,7 +280,7 @@ body
     .description
         margin: .5 * $size 0
 
-#events-name, #events-date, #events-description
+#events-name, #events-date, #events-description, #events-distance 
     margin: $unit * 5 0 
     text-align: center 
     max-width: unset 
@@ -426,12 +430,19 @@ body
 @media (max-width: 500px)
     .extra-information .information-icon
         top: 0
+
+    .saved-countdowns
+        margin: 0
         
     .input
         min-width: 250px
 
     .fixed-header
         flex-direction: column
+        margin-bottom: 0
+
+    .extra-information
+        margin: $size * 1.25 0
 
     .indicator
         margin-top: $size 

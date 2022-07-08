@@ -153,10 +153,46 @@ const App = () => {
         }
     }
 
+    const notify = () => {
+        try {
+            if (!("Notification" in window)) return;
+            const title = `${data[currentEventIndex].name} is happening today!`;
+            const options = { body: `Here is what you said about it: ${data[currentEventIndex].description}` }
+            Notification.requestPermission().then(permission => {
+                if (permission === "granted") new Notification(title, options);
+            });
+        } catch(error) {
+            console.error(error);
+        }
+    }
+
+    const loadDifference = () => {
+        try {
+            const millisecondsPerDay = 86400000;
+            const today = new Date(getTodaysDate());
+            const eventsDate = new Date(today.getFullYear(), 11, 25);
+            const difference = (eventsDate - today) / millisecondsPerDay;
+            if (difference === 0) notify();
+            if (difference === 0) return "Christmas is happening today!";
+            else if (difference > 0) return `It is ${Math.round(difference)} days from today!`;
+            else return `It happened ${Math.abs(difference)} days ago!`;
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     const logDifference = () => {
-        const difference = getDifference();
-        if(difference > 0) return `This event is ${difference} days from today!`;
-        else return `This event happened ${Math.abs(difference)} days ago!`;
+        try {
+            const difference = getDifference();
+            if (difference === 0) {
+                notify();
+                return "This event is happening today!";
+            }
+            else if (difference > 0) return `This event is ${difference} days from today!`;
+            else return `This event happened ${Math.abs(difference)} days ago!`;
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     const populateEvents = () => {
@@ -233,6 +269,8 @@ const App = () => {
         }
     }); 
 
+    const thisYear = (new Date()).getFullYear();
+
     return (
         <section className="mobile-container">
             <header className="fixed-header">
@@ -249,10 +287,10 @@ const App = () => {
                     <span onClick={inspectInputs}><Button message="Set a Countdown!" id="app-form-btn"/></span>
                 </article>
                 <article className="saved-countdowns">
-                    <h1 className="heading" id="events-name">This event is called...</h1>
-                    <p className="description" id="events-date">This event will happen on...</p>
-                    <p className="description" id="events-distance">This event will happen in...</p>
-                    <p className="description" id="events-description">This event is about...</p>
+                    <h1 className="heading" id="events-name">Christmas</h1>
+                    <p className="description" id="events-date">This event will happen on {thisYear}-12-25</p>
+                    <p className="description" id="events-distance">{loadDifference()}</p>
+                    <p className="description" id="events-description">A time for living, a time for believing</p>
                     <section className="btn-container" onClick={receiveEvents}>
                         <Button message="Pull data from the database "/>
                     </section>                    

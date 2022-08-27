@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width" />
   <meta name="theme-color" content="#fecc18" />
   <meta name="description" content="Mamaia Countdowns is a tool to ease your life. You can set countdowns for any event you want. No matter if it’s Christmas or an important exam to take!" />
   <meta name="keywords" content="" />
-
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mamaia-countdowns.vercel.app/">
   <meta property="og:title" content="Mamaia Countdowns">
@@ -36,20 +36,23 @@
   <div id="root"></div>
   <script>
     const registerServiceWorker = async () => {
-      if ("serviceWorker" in navigator) {
+      if ("serviceWorker" in navigator) 
         try {
-          const registration = await navigator.serviceWorker.register("service-worker.js", {
-            scope: "."
-          });
-          if (registration.installing) console.log("Service worker is being installed");
-          else if (registration.waiting) console.log("Service worker has been installed");
-          else if (registration.active) console.log("Service worker is active");
-        } catch (error) {
-          console.error(error);
+          const e = await navigator
+            .serviceWorker
+            .register("service-worker.js", {
+              scope: "/"
+            });
+
+          e.installing ? console.log("Service worker is being installed") : 
+          e.waiting ? console.log("Service worker has been installed") : 
+          e.active && console.log("Service worker is active");
+        } catch (e) {
+          console.error(e);
         }
-      }
     };
     registerServiceWorker();
   </script>
 </body>
+
 </html>

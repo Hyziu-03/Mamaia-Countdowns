@@ -1,13 +1,25 @@
 import { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-import { refresh } from "../scripts/scripts";
 import DOMPurify from "dompurify";
 import { initializeApp } from "firebase/app";
-import { GoogleAuthProvider, getAuth, signInWithPopup, onAuthStateChanged } from "firebase/auth";
-import { getFirestore, collection, addDoc, getDocs, query } from "firebase/firestore";
-import Name from "./Name.jsx";
-import Contact from "./Contact.jsx";
-import Button from "./Button.jsx";
+import {
+    GoogleAuthProvider,
+    getAuth,
+    signInWithPopup,
+    onAuthStateChanged,
+} from "firebase/auth";
+import {
+    getFirestore,
+    collection,
+    addDoc,
+    getDocs,
+    query,
+} from "firebase/firestore";
+
+import { refresh } from "scripts/scripts";
+import Name from "components/Name.jsx";
+import Contact from "components/Contact.jsx";
+import Button from "components/Button.jsx";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCmNk2q3k4i3dV9ZG2ZfZeTKnum70UaVas",
@@ -16,7 +28,7 @@ const firebaseConfig = {
     storageBucket: "mamaia-countdowns.appspot.com",
     messagingSenderId: "616823378468",
     appId: "1:616823378468:web:dc9e7312d9c95f94b1feb1",
-    measurementId: "G-NZJKV7EEZM"
+    measurementId: "G-NZJKV7EEZM",
 };
 
 const app = initializeApp(firebaseConfig);
@@ -29,11 +41,11 @@ auth.languageCode = "pl";
 let id = null;
 const getUserId = () => {
     try {
-        return auth.currentUser.uid;    
-    } catch(error) {
+        return auth.currentUser.uid;
+    } catch (error) {
         console.error(error);
     }
-}
+};
 
 const login = () => {
     try {
@@ -42,10 +54,10 @@ const login = () => {
             const provider = new GoogleAuthProvider();
             signInWithPopup(auth, provider);
         }
-    } catch(error) {
+    } catch (error) {
         console.error(error);
     }
-}
+};
 
 const displayIcon = (type) => {
     try {
@@ -62,7 +74,7 @@ const displayIcon = (type) => {
     } catch (error) {
         console.error(error);
     }
-}
+};
 
 const authenticate = async (user) => {
     try {
@@ -70,24 +82,33 @@ const authenticate = async (user) => {
         let result = user ? "done" : "close";
         result === "close" && login();
         displayIcon(result);
-    } catch(error) {
+    } catch (error) {
         console.error(error);
     }
-}
+};
 
-const saveData = async() => {
+const saveData = async () => {
     try {
+        const eventName = DOMPurify.sanitize(
+            document.getElementsByClassName("text-input")[0].value
+        );
+        const eventDate = DOMPurify.sanitize(
+            document.getElementsByClassName("email")[0].value
+        );
+        const eventDescription = DOMPurify.sanitize(
+            document.getElementsByClassName("message")[0].value
+        );
         // eslint-disable-next-line no-unused-vars
         const newEvent = await addDoc(collection(db, id), {
-            name: DOMPurify.sanitize(document.getElementsByClassName("text-input")[0].value),
-            date: DOMPurify.sanitize(document.getElementsByClassName("email")[0].value),
-            description: DOMPurify.sanitize(document.getElementsByClassName("message")[0].value)
-        });        
+            name: eventName,
+            date: eventDate,
+            description: eventDescription,
+        });
         alert("Your event has been saved!");
     } catch (error) {
         throw new Error(error);
     }
-}
+};
 
 const inspectInputs = () => {
     try {
@@ -95,27 +116,29 @@ const inspectInputs = () => {
         const dateIsEmpty = document.getElementsByClassName("text-input")[0].value === "";
         const informationIsEmpty = document.getElementsByClassName("message")[0].value === "";
         const condition = emailIsEmpty || dateIsEmpty || informationIsEmpty;
-        condition ? alert("Please, fill in all the information requested.") : saveData();
+        condition
+            ? alert("Please, fill in all the information requested.")
+            : saveData();
     } catch (error) {
         throw new Error(error);
     }
-}
+};
 
-const getEvents = async() => {
+const getEvents = async () => {
     try {
         const data = query(collection(db, id));
         const events = [];
         const snapshot = await getDocs(data);
         snapshot.forEach((doc) => events.push(doc.data()));
         return events;
-    } catch(error) {
+    } catch (error) {
         console.error(error);
     }
-} 
+};
 
 let currentEventIndex = 0;
 
-const App = () => { 
+const App = () => {
     let [data, updateData] = useState([]);
 
     const getTodaysDate = () => {
@@ -131,7 +154,7 @@ const App = () => {
         } catch (error) {
             console.error(error);
         }
-    }
+    };
 
     const getEventsDate = () => {
         try {
@@ -139,7 +162,7 @@ const App = () => {
         } catch (error) {
             console.error(error);
         }
-    }
+    };
 
     const getDifference = () => {
         try {
@@ -151,20 +174,22 @@ const App = () => {
         } catch (error) {
             console.error(error);
         }
-    }
+    };
 
     const notify = () => {
         try {
             if (!("Notification" in window)) return;
             const title = `${data[currentEventIndex].name} is happening today!`;
-            const options = { body: `Here is what you said about it: ${data[currentEventIndex].description}` }
-            Notification.requestPermission().then(permission => {
+            const options = {
+                body: `Here is what you said about it: ${data[currentEventIndex].description}`,
+            };
+            Notification.requestPermission().then((permission) => {
                 if (permission === "granted") new Notification(title, options);
             });
-        } catch(error) {
+        } catch (error) {
             console.error(error);
         }
-    }
+    };
 
     const loadDifference = () => {
         try {
@@ -174,12 +199,13 @@ const App = () => {
             const difference = (eventsDate - today) / millisecondsPerDay;
             if (difference === 0) notify();
             if (difference === 0) return "Christmas is happening today!";
-            else if (difference > 0) return `It is ${Math.round(difference)} days from today!`;
+            else if (difference > 0)
+                return `It is ${Math.round(difference)} days from today!`;
             else return `It happened ${Math.abs(difference)} days ago!`;
         } catch (error) {
             console.error(error);
         }
-    }
+    };
 
     const logDifference = () => {
         try {
@@ -187,40 +213,48 @@ const App = () => {
             if (difference === 0) {
                 notify();
                 return "This event is happening today!";
-            }
-            else if (difference > 0) return `This event is ${difference} days from today!`;
+            } else if (difference > 0)
+                return `This event is ${difference} days from today!`;
             else return `This event happened ${Math.abs(difference)} days ago!`;
         } catch (error) {
             console.error(error);
         }
-    }
+    };
 
     const populateEvents = () => {
         try {
-            const eventName = document.getElementById('events-name');
-            const eventDate = document.getElementById('events-date');
-            const eventDescription = document.getElementById('events-description');
+            const eventName = document.getElementById("events-name");
+            const eventDate = document.getElementById("events-date");
+            const eventDescription = document.getElementById("events-description");
             const eventDistance = document.getElementById("events-distance");
-            const elementsRendered = !(eventName === null || eventDate === null || eventDescription === null || eventDistance === null);
-            const dataReceived = data[currentEventIndex].name !== undefined || data[currentEventIndex].date !== undefined || data[currentEventIndex].description !== undefined;
+            const elementsRendered = !(
+                eventName === null ||
+                eventDate === null ||
+                eventDescription === null ||
+                eventDistance === null
+            );
+            const dataReceived =
+                data[currentEventIndex].name !== undefined ||
+                data[currentEventIndex].date !== undefined ||
+                data[currentEventIndex].description !== undefined;
             if (elementsRendered && dataReceived) {
                 eventName.innerHTML = data[currentEventIndex].name;
                 eventDate.innerHTML = data[currentEventIndex].date;
                 eventDistance.innerHTML = logDifference();
                 eventDescription.innerHTML = data[currentEventIndex].description;
-            }            
-        } catch(error) {
+            }
+        } catch (error) {
             console.error(error);
         }
-    }   
+    };
 
     const receiveEvents = () => {
         getEvents()
-            .then(result => updateData(result))
-            .catch(error => console.error(error));
-        const btnContainer = document.getElementsByClassName('btn-container')[0];
+            .then((result) => updateData(result))
+            .catch((error) => console.error(error));
+        const btnContainer = document.getElementsByClassName("btn-container")[0];
         ReactDOM.render(appNavigation, btnContainer);
-    }
+    };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => populateEvents(), [data]);
@@ -228,76 +262,109 @@ const App = () => {
     const incrementEventIndex = () => {
         try {
             const lastEventIndex = data.length - 1;
-            const newEventIndex = currentEventIndex +=1;
+            const newEventIndex = (currentEventIndex += 1);
             let isTooMuch = false;
             if (newEventIndex > lastEventIndex) isTooMuch = true;
             if (isTooMuch) currentEventIndex = 0;
             else currentEventIndex = newEventIndex;
-        } catch(error) {
+        } catch (error) {
             console.error(error);
         }
-    }
+    };
 
     const decrementEventIndex = () => {
         try {
             const lastEventIndex = data.length - 1;
-            const newEventIndex = currentEventIndex -= 1;
+            const newEventIndex = (currentEventIndex -= 1);
             let isTooLittle = false;
             if (newEventIndex < 0) isTooLittle = true;
             if (isTooLittle) currentEventIndex = lastEventIndex;
             else currentEventIndex = newEventIndex;
-        } catch(error) {
+        } catch (error) {
             console.error(error);
         }
-    }
+    };
 
-    const appNavigation = <div className="arrow-navigation-container"><button className="arrow-btn" onClick={decrementEventIndex}><span className="icon arrow">arrow_back</span></button><button className="arrow-btn" onClick={incrementEventIndex}><span className="icon arrow">arrow_forward</span></button></div>;
+    const appNavigation = (
+        <div className="arrow-navigation-container">
+            <button className="arrow-btn" onClick={decrementEventIndex}>
+                <span className="icon arrow">arrow_back</span>
+            </button>
+            <button className="arrow-btn" onClick={incrementEventIndex}>
+                <span className="icon arrow">arrow_forward</span>
+            </button>
+        </div>
+    );
 
     useEffect(() => {
         try {
             document.querySelector("#icon").click();
-        } catch(error) {
+        } catch (error) {
             console.error(error);
         }
-    }, []);  
+    }, []);
 
     onAuthStateChanged(auth, (user) => {
         try {
-            user && document.querySelector("#icon").click()
-        } catch(error) {
+            user && document.querySelector("#icon").click();
+        } catch (error) {
             console.error(error);
         }
-    }); 
+    });
 
-    const thisYear = (new Date()).getFullYear();
+    const thisYear = new Date().getFullYear();
 
     return (
         <section className="mobile-container">
             <header className="fixed-header">
-                <Name onClick={refresh} /><div className="extra-information"><span onClick={authenticate} id="icon" className="indicator icon close">close</span><span class="icon information-icon">info</span><span className="tooltip">If you are logged in, your events are stored in the cloud, &#013; and this checkbox is ticked off, and has green colour.</span></div>
-            </header> 
+                <Name onClick={refresh} />
+                <div className="extra-information">
+                    <span
+                        onClick={authenticate}
+                        id="icon"
+                        className="indicator icon close"
+                    >
+                    close
+                    </span>
+                    <span class="icon information-icon">info</span>
+                    <span className="tooltip">
+                        If you are logged in, your events are stored in the cloud, &#013;
+                        and this checkbox is ticked off, and has green colour.
+                    </span>
+                </div>
+            </header>
             <main className="mobile-content">
                 <article className="contact-form-container">
-                    <Contact 
+                    <Contact
                         firstInput="What is this event?"
                         secondInput="When does it start?"
                         secondInputType="date"
                         thirdInput="What additional information do you have?"
                     />
-                    <span onClick={inspectInputs}><Button message="Set a Countdown!" id="app-form-btn"/></span>
+                    <span onClick={inspectInputs}>
+                        <Button message="Set a Countdown!" id="app-form-btn" />
+                    </span>
                 </article>
                 <article className="saved-countdowns">
-                    <h1 className="heading" id="events-name">Christmas</h1>
-                    <p className="description" id="events-date">This event will happen on {thisYear}-12-25</p>
-                    <p className="description" id="events-distance">{loadDifference()}</p>
-                    <p className="description" id="events-description">A time for living, a time for believing</p>
+                    <h1 className="heading" id="events-name">
+                        Christmas
+                    </h1>
+                    <p className="description" id="events-date">
+                        This event will happen on {thisYear}-12-25
+                    </p>
+                    <p className="description" id="events-distance">
+                        {loadDifference()}
+                    </p>
+                    <p className="description" id="events-description">
+                        A time for living, a time for believing
+                    </p>
                     <section className="btn-container" onClick={receiveEvents}>
-                        <Button message="Pull data from the database "/>
-                    </section>                    
+                        <Button message="Pull data from the database " />
+                    </section>
                 </article>
             </main>
         </section>
     );
-}
+};
 
-export default App; 
+export default App;

@@ -11,7 +11,7 @@ export const integrateTabIndex = () => {
 export const refresh = () => {
     try {
         window.location.reload(false);
-    } catch(error) {
+    } catch (error) {
         console.error(error);
     }
 };

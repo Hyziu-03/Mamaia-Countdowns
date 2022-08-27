@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import Button from "./Button";
-import Name from "./Name";
+import Button from "components/Button";
+import Name from "components/Name";
 
 const Header = () => {
     return (
@@ -11,6 +11,6 @@ const Header = () => {
             </Link>
         </header>
     );
-}
+};
 
 export default Header;

@@ -1,8 +1,8 @@
-import Header from "./Header.jsx";
-import Footer from "./Footer.jsx";
-import IntroductorySection from "./IntroductorySection.jsx";
-import DescriptiveSection from "./DescriptiveSection.jsx";
-import AuthorSection from "./AuthorSection.jsx";
+import Header from "components/Header.jsx";
+import Footer from "components/Footer.jsx";
+import IntroductorySection from "components/IntroductorySection.jsx";
+import DescriptiveSection from "components/DescriptiveSection.jsx";
+import AuthorSection from "components/AuthorSection.jsx";
 
 const Home = () => {
     return (
@@ -16,6 +16,6 @@ const Home = () => {
             <Footer />
         </div>
     );
-}
+};
 
 export default Home;

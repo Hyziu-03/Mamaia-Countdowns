@@ -1,62 +1,5 @@
-// Sizing units
-
-$unit: 4px
-$size: 6 *  $unit
-
-// Colours
-
-$black: rgb(42, 42, 42)
-$hblack: rgba(42, 42, 42, .25)
-$white: rgb(239, 239, 239)
-$hwhite: rgb(205, 205, 205)
-$blue: rgb(41, 81, 167)
-$hblue: rgb(11, 51, 117)
-$yellow: rgb(254, 204, 24)
-$green: rgb(0, 105, 85)
-$red: rgb(214, 78, 82)
+@import "module"
     
-// Utilities
-
-$shadow: $unit 2 * $unit $unit $hblack
-
-@mixin link 
-    color: inherit
-    text-decoration: none
-
-@mixin reset
-    margin: 0
-    padding: 0
-    box-sizing: border-box
-
-    &:focus
-        outline-offset: .25 * $size
-
-@mixin hoverable 
-    user-select: none
-
-    &:hover
-        cursor: pointer
-
-@mixin touch-target
-    min-width: 48px
-    min-height: 48px
-
-@mixin position-center 
-    position: absolute
-    left: 50%
-    top: 50%
-    transform: translate(-50%, -50%)
-
-@mixin flex-center 
-    display: flex
-    flex-direction: column
-    align-items: center
-    justify-content: center
-
-@mixin responsive-img 
-    pointer-events: none
-    margin: 2 * $size 0
-
 a
     @include link
 
@@ -72,88 +15,6 @@ body
 
 .touch-target
     @include touch-target
-
-// Components
-
-@mixin container 
-    font-family: 'Montserrat', sans-serif
-    font-size: $size
-    line-height: 150%
-    display: grid
-    gap: 2 * $size
-
-@mixin header 
-    background: $white
-    padding: $size 2 * $size
-    display: flex
-    align-items: center
-    justify-content: space-between
-
-@mixin tooltip 
-    display: none
-    font-family: 'Montserrat', sans-serif
-    font-size: 4 * $unit
-    line-height: 150%
-    position: absolute
-    top: $size
-    right: -4 * $size
-    width: 300px
-    background-color: $hwhite
-    border-radius: .5 * $size 
-    padding: $size
-    box-shadow: $shadow 
-
-@mixin heading
-    font-size: 1.5 * $size
-    line-height: 2 * $size
-    font-family: 'Roboto Slab', cursive
-
-@mixin btn($bg-color, $text-color) 
-    padding: $size 2 * $size 
-    background: $bg-color
-    border-color: transparent
-    box-shadow: $shadow
-    border-radius: .5 * $size
-    color: $text-color
-    font-size: $size
-    font-family: 'Montserrat', sans-serif 
-
-@mixin form 
-    display: flex
-    flex-direction: column
-    z-index: 1
-    background-color: $yellow 
-    border-radius: 25% 75% 75% 75% 
-    padding: .75 * $size
-
-@mixin input 
-    background: $white
-    border-color: transparent
-    box-shadow: $shadow
-    border-radius: 4 * $unit
-    padding: .75 * $size
-    font-family: 'Montserrat', sans-serif
-    font-size: .75 * $size
-    min-width: 350px
-    margin: 2 * $unit 0
-
-@mixin textarea 
-    resize: none
-    min-height: 8 * $size
-    line-height: 150%
-
-@mixin footer 
-    padding: $size 3 * $size
-    display: flex
-    justify-content: space-around
-    align-items: center
-
-@mixin interface 
-    display: flex
-    flex-direction: column
-    font-family: 'Montserrat', sans-rerif
-    min-width: 30vw
-    margin: 0 1.5 * $size 1.5 * $size 1.5 * $size
 
 // Scrollbar
 
@@ -177,21 +38,13 @@ body
         transform: rotate(360deg)
 
 .loader-container
-    width: 100vw
-    height: 100vh
+    @include fullscreen-display
     display: flex
     justify-content: center
     align-items: center 
 
 .loader
-    animation: spin 1s infinite 
-    width: 64px
-    height: 64px
-    border: solid $unit * 2 $blue
-    border-radius: 50%
-    border-top-color: transparent 
-    border-bottom-color: transparent
-    display: block 
+    @include loader 
 
 // Home.jsx 
 
@@ -241,15 +94,7 @@ body
     user-select: none
 
 .indicator
-    border-radius: 50%
-    border: $unit solid transparent 
-    height: 64px
-    width: 64px
-    display: flex
-    justify-content: center
-    align-items: center 
-    font-weight: bold 
-    transition: .25s all ease
+    @include indicator 
 
     &:hover
         background: $hwhite
@@ -278,13 +123,7 @@ body
         margin: .75 * $size 0
 
     .description
-        margin: .5 * $size 0
-        height: $size 
-        display: inline-flex
-        align-items: center
-        justify-content: center   
-        text-align: center
-        max-width: 30ch
+        @include app-paragraph 
 
 #events-name, #events-date, #events-description, #events-distance 
     margin: $unit * 5 0 
@@ -310,7 +149,6 @@ body
     &:hover
         background: $hwhite
         
-
 .arrow
     font-size: 1.75 * $size
 

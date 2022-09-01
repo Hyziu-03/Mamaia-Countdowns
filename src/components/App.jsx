@@ -41,7 +41,7 @@ auth.languageCode = "pl";
 let id = null;
 const getUserId = () => {
     try {
-        return auth.currentUser.uid;
+        return auth.currentUser === null ? undefined : auth.currentUser.uid;
     } catch (error) {
         console.error(error);
     }
@@ -197,11 +197,13 @@ const App = () => {
             const today = new Date(getTodaysDate());
             const eventsDate = new Date(today.getFullYear(), 11, 25);
             const difference = (eventsDate - today) / millisecondsPerDay;
-            if (difference === 0) notify();
-            if (difference === 0) return "Christmas is happening today!";
-            else if (difference > 0)
+            if (difference === 0) {
+                notify();
+                return "Christmas is happening today!";
+            } else if (difference > 0)
                 return `It is ${Math.round(difference)} days from today!`;
-            else return `It happened ${Math.abs(difference)} days ago!`;
+            else 
+                return `It happened ${Math.abs(difference)} days ago!`;
         } catch (error) {
             console.error(error);
         }
@@ -233,10 +235,7 @@ const App = () => {
                 eventDescription === null ||
                 eventDistance === null
             );
-            const dataReceived =
-                data[currentEventIndex].name !== undefined ||
-                data[currentEventIndex].date !== undefined ||
-                data[currentEventIndex].description !== undefined;
+            const dataReceived = data[currentEventIndex] !== undefined;
             if (elementsRendered && dataReceived) {
                 eventName.innerHTML = data[currentEventIndex].name;
                 eventDate.innerHTML = data[currentEventIndex].date;
@@ -325,11 +324,6 @@ const App = () => {
                         className="indicator icon close"
                     >
                     close
-                    </span>
-                    <span class="icon information-icon">info</span>
-                    <span className="tooltip">
-                        If you are logged in, your events are stored in the cloud, &#013;
-                        and this checkbox is ticked off, and has green colour.
                     </span>
                 </div>
             </header>

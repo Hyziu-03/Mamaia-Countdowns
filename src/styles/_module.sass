@@ -77,20 +77,6 @@ $shadow: $unit 2 * $unit $unit $hblack
     align-items: center
     justify-content: space-between
 
-@mixin tooltip 
-    display: none
-    font-family: 'Montserrat', sans-serif
-    font-size: 4 * $unit
-    line-height: 150%
-    position: absolute
-    top: $size
-    right: -4 * $size
-    width: 300px
-    background-color: $hwhite
-    border-radius: .5 * $size 
-    padding: $size
-    box-shadow: $shadow 
-
 @mixin heading
     font-size: 1.5 * $size
     line-height: 2 * $size
@@ -155,14 +141,13 @@ $shadow: $unit 2 * $unit $unit $hblack
 
 @mixin indicator 
     border-radius: 50%
-    border: $unit solid transparent 
+    color: $black  
     height: 64px
     width: 64px
     display: flex
     justify-content: center
     align-items: center 
     font-weight: bold 
-    transition: .25s all ease
 
 @mixin app-paragraph 
     margin: .5 * $size 0

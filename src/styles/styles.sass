@@ -64,9 +64,6 @@ body
     background: $white
     height: 100%
 
-    .contact-form-container
-        margin: 0 1.5 * $size 2 * $size 1.5 * $size
-
 .fixed-header
     text-align: center
     margin: 1.5 * $size 0
@@ -74,19 +71,9 @@ body
     align-items: center
     justify-content: space-evenly
 
-.tooltip
-    @include tooltip
-
 .extra-information
     font-size: $size * 1.5
     display: flex 
-
-    .information-icon
-        position: relative
-        top: -$size 
-
-    &:hover .tooltip
-        display: block
 
 .icon
     font-size: 1.75 * $size
@@ -97,23 +84,22 @@ body
     @include indicator 
 
     &:hover
-        background: $hwhite
+        background: linear-gradient(to right, lightgrey 50%, darkgrey 0) 
         cursor: pointer 
 
 .close
-    color: $red 
-    border-color: $red
+    color: $white 
+    background: linear-gradient(to right, red 50%, darkred 0)
 
 .done 
-    color: $green 
-    border-color: $green 
+    background: linear-gradient(to right, lightgreen 50%, green 0)
 
 .contact-form-container
     @include flex-center
 
 .mobile-content
     display: flex
-    align-items: center
+    align-items: flex-end
     justify-content: center
 
 .saved-countdowns
@@ -262,20 +248,27 @@ body
     .saved-contdowns 
         min-width: 0
 
-    .tooltip 
-        right: 0
-
 @media (max-width: 600px)
     .arrow-btn
         width: 105px
 
 @media (max-width: 500px)
-    .extra-information .information-icon
+    #events-name, #events-date, #events-description, #events-distance 
+        margin: $unit * 8 0 
+
+    .extra-information 
         top: 0
 
+    .form
+        padding: $size
+
     .saved-countdowns
-        margin: 0
-        
+        margin: 0 0 $unit * 9 0
+
+        .description
+            margin-left: 36px !important
+            margin-right: 36px !important
+
     .input
         min-width: 250px
 
@@ -298,3 +291,4 @@ body
 
     #app-form-btn
         padding: $size
+        margin-top: $unit * 4.5

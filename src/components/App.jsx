@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import DOMPurify from "dompurify";
 import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 import {
     GoogleAuthProvider,
     getAuth,
@@ -16,7 +18,7 @@ import {
     query,
 } from "firebase/firestore";
 
-import { refresh } from "scripts/scripts";
+import { refresh } from "isola/browser";
 import Name from "components/Name.jsx";
 import Contact from "components/Contact.jsx";
 import Button from "components/Button.jsx";
@@ -32,7 +34,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-// eslint-disable-next-line no-unused-vars
+const analytics = getAnalytics(app);
 const db = getFirestore(app);
 
 const auth = getAuth();

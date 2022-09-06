@@ -1,4 +1,4 @@
-import { refresh } from "scripts/scripts";
+import { refresh } from "isola/browser";
 
 const displayName = window.innerWidth < 1100 ? "Mamaia" : "Mamaia Countdowns";
 

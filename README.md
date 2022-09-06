@@ -1,6 +1,4 @@
-# Mamaia Countdowns 1.7 
-
-Note that this version is not fully optimised and can still be enhanced.
+# Mamaia Countdowns 2.0
 
 ## Can't remember dates?
 

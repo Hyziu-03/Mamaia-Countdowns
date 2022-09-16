@@ -1,5 +1,5 @@
 import Work from "images/work.svg";
-import Paragraph from "components/Paragraph";
+import Paragraph from "components/interface/Paragraph";
 
 const DescriptiveSection = () => {
   return (

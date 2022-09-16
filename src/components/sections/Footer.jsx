@@ -1,5 +1,6 @@
 import LinkedInIcon from "components/icons/LinkedInIcon";
 import GitHubIcon from "components/icons/GitHubIcon";
+import BuyMeCoffee from "components/icons/BuyMeCoffee";
 
 const Footer = () => {
     return (
@@ -23,6 +24,7 @@ const Footer = () => {
                 >
                 <GitHubIcon />
                 </a>
+                <BuyMeCoffee />
             </section>
         </footer>
     );

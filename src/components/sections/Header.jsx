@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import Button from "components/Button";
-import Name from "components/Name";
+import Button from "components/interface/Button";
+import Name from "components/interface/Name";
 
 const Header = () => {
     return (

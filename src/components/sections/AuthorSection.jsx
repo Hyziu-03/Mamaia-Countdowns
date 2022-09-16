@@ -1,5 +1,5 @@
 import Creator from "images/creator.webp";
-import Paragraph from "components/Paragraph";
+import Paragraph from "components/interface/Paragraph";
 
 const AuthorSection = () => {
   return (

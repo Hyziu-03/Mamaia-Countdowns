@@ -1,4 +1,4 @@
-import Introduction from "components/Introduction.jsx";
+import Introduction from "components/interface/Introduction.jsx";
 import Calendar from "images/calendar.svg";
 
 const IntroductorySection = () => {

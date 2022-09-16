@@ -1,8 +1,8 @@
-import Header from "components/Header.jsx";
-import IntroductorySection from "components/IntroductorySection";
-import DescriptiveSection from "components/DescriptiveSection";
-import AuthorSection from "components/AuthorSection";
-import Footer from "components/Footer";
+import Header from "components/sections/Header.jsx";
+import IntroductorySection from "components/sections/IntroductorySection";
+import DescriptiveSection from "components/sections/DescriptiveSection";
+import AuthorSection from "components/sections/AuthorSection";
+import Footer from "components/sections/Footer";
 
 const Home = () => {
     return (

@@ -1,4 +1,0 @@
-This is a Brave Rewards publisher verification file.
-
-Domain: mamaia-countdowns.vercel.app
-Token: f504a8ee280d221316a0d95646c8b0ff5fd646a1ed14f044e61186384581fa1b

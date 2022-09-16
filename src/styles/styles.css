@@ -409,18 +409,12 @@ body {
 
 .footer {
   padding: 24px 72px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 
 .copyright {
   font-size: 18px;
+  text-align: center;
+  padding: 24px;
 }
 
 .contact-links {
@@ -430,6 +424,14 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.sponsorship {
+  height: 60px;
+  width: 217px;
 }
 
 .brand-icon {

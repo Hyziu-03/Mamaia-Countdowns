@@ -19,9 +19,9 @@ import {
 } from "firebase/firestore";
 
 import { refresh } from "isola/browser";
-import Name from "components/Name.jsx";
-import Contact from "components/Contact.jsx";
-import Button from "components/Button.jsx";
+import Name from "components/interface/Name.jsx";
+import Contact from "components/interface/Contact.jsx";
+import Button from "components/interface/Button.jsx";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCmNk2q3k4i3dV9ZG2ZfZeTKnum70UaVas",

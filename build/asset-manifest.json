@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.6b2649da.chunk.css",
+    "main.js": "/static/js/main.dbc1e3ba.chunk.js",
+    "main.js.map": "/static/js/main.dbc1e3ba.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.fb92eb51.js",
+    "runtime-main.js.map": "/static/js/runtime-main.fb92eb51.js.map",
+    "static/js/2.4e8ad904.chunk.js": "/static/js/2.4e8ad904.chunk.js",
+    "static/js/2.4e8ad904.chunk.js.map": "/static/js/2.4e8ad904.chunk.js.map",
+    "static/js/3.0e5d27c3.chunk.js": "/static/js/3.0e5d27c3.chunk.js",
+    "static/js/3.0e5d27c3.chunk.js.map": "/static/js/3.0e5d27c3.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.6b2649da.chunk.css.map": "/static/css/main.6b2649da.chunk.css.map",
+    "static/js/2.4e8ad904.chunk.js.LICENSE.txt": "/static/js/2.4e8ad904.chunk.js.LICENSE.txt",
+    "static/media/calendar.92ea77b2.svg": "/static/media/calendar.92ea77b2.svg",
+    "static/media/creator.81878575.webp": "/static/media/creator.81878575.webp",
+    "static/media/styles.css": "/static/media/roboto-slab-v24-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-regular.b001e470.woff2",
+    "static/media/work.5c2e2b5e.svg": "/static/media/work.5c2e2b5e.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.fb92eb51.js",
+    "static/js/2.4e8ad904.chunk.js",
+    "static/css/main.6b2649da.chunk.css",
+    "static/js/main.dbc1e3ba.chunk.js"
+  ]
+}

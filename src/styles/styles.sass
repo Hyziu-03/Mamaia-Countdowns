@@ -1,5 +1,5 @@
 @import "module"
-    
+
 /* roboto-slab-regular - vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic
 @font-face
   font-family: 'Roboto Slab'
@@ -19,6 +19,29 @@
   /* IE9 Compat Modes
   src: local(""), url('../fonts/montserrat-v25-vietnamese_latin-ext_latin_cyrillic-ext_cyrillic-regular.eot?#iefix') format("embedded-opentype"), url('../fonts/montserrat-v25-vietnamese_latin-ext_latin_cyrillic-ext_cyrillic-regular.woff2') format("woff2"), url('../fonts/montserrat-v25-vietnamese_latin-ext_latin_cyrillic-ext_cyrillic-regular.woff') format("woff"), url('../fonts/montserrat-v25-vietnamese_latin-ext_latin_cyrillic-ext_cyrillic-regular.ttf') format("truetype"), url('../fonts/montserrat-v25-vietnamese_latin-ext_latin_cyrillic-ext_cyrillic-regular.svg#Montserrat') format("svg")
   /* Legacy iOS
+
+/* fallback */
+@font-face
+  font-family: 'Material Symbols Rounded'
+  font-style: normal
+  font-weight: 100 700
+  src: url(https://fonts.gstatic.com/s/materialsymbolsrounded/v126/sykg-zNym6YjUruM-QrEh7-nyTnjDwKNJ_190Fjzag.woff2) format('woff2')
+
+.material-symbols-rounded
+  font-family: 'Material Symbols Rounded'
+  font-weight: normal
+  font-style: normal
+  font-size: 24px
+  line-height: 1
+  letter-spacing: normal
+  text-transform: none
+  display: inline-block
+  white-space: nowrap
+  word-wrap: normal
+  direction: ltr
+  -webkit-font-feature-settings: 'liga'
+  -webkit-font-smoothing: antialiased
+
 
 a
     @include link
@@ -93,26 +116,10 @@ body
     align-items: center
     justify-content: space-evenly
 
-.extra-information
-    font-size: $size * 1.5
-    flex-wrap: wrap
-    display: flex 
-
 .icon
     font-size: 1.75 * $size
     font-family: 'Material Symbols Rounded'
     user-select: none
-
-.indicator
-    @include indicator 
-
-    &:hover
-        background: linear-gradient(to right, lightgrey 50%, darkgrey 0) 
-        cursor: pointer 
-
-.close
-    color: $white 
-    background: linear-gradient(to right, red 50%, darkred 0)
 
 .done 
     background: linear-gradient(to right, lightgreen 50%, green 0)
@@ -294,9 +301,6 @@ body
     #events-name, #events-date, #events-description, #events-distance 
         margin: $unit * 8 0 
 
-    .extra-information 
-        top: 0
-
     .form
         padding: $size
 
@@ -313,12 +317,6 @@ body
     .fixed-header
         flex-direction: column
         margin-bottom: 0
-
-    .extra-information
-        margin: $size * 1.25 0
-
-    .indicator
-        margin-top: $size 
 
     .contact-form-container, .mobile-container
         margin: 0 !important

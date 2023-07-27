@@ -1,15 +1,17 @@
-import { Link } from "react-router-dom";
-
 const BuyMeCoffee = () => {
-  return (
-      <Link to="https://www.buymeacoffee.com/szymonhyziak">
-          <img
-              src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
-              alt="Buy Me A Coffee"
-              className="sponsorship"
-          />
-      </Link>
-  );
+    return (
+        <a
+            href="https://www.buymeacoffee.com/szymonhyziak"
+            target="_blank"
+            rel="noreferrer noopener"
+        >
+            <img
+                src="images/buy_me_a_coffee_image.png"
+                alt="Buy Me A Coffee"
+                className="sponsorship"
+            />
+        </a>
+    );
 }
 
 export default BuyMeCoffee;

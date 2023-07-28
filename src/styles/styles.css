@@ -85,37 +85,6 @@ body {
   border-radius: 6px;
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  50% {
-    transform: rotate(180deg) scale(1.25);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-.loader-container {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-}
-
-.loader {
-  animation: spin 1s infinite;
-  width: 64px;
-  height: 64px;
-  border: solid 8px rgb(41, 81, 167);
-  border-radius: 50%;
-  border-top-color: transparent;
-  border-bottom-color: transparent;
-  display: block;
-}
-
 .App {
   font-family: "Montserrat", sans-serif;
   font-size: 24px;
@@ -375,7 +344,7 @@ body {
      object-fit: cover;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1300px) {
   .article {
     flex-direction: column;
   }
@@ -397,8 +366,9 @@ body {
 @media (max-width: 1100px) {
   .mobile-content {
     flex-direction: column-reverse;
+    align-items: center;
   }
-  .saved-contdowns {
+  .saved-countdowns {
     min-width: 0;
   }
 }
@@ -416,6 +386,7 @@ body {
   }
   .saved-countdowns {
     margin: 0 0 36px 0;
+    align-items: center;
   }
   .saved-countdowns .description {
     margin-left: 36px !important;

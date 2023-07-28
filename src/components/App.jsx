@@ -1,53 +1,33 @@
-// React
 import { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-
-// 3rd party libraries
 import { refresh } from "isola/browser";
-import DOMPurify from "dompurify";
-
-// Firebase
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import {
-    getFirestore,
-    collection,
-    addDoc,
-    getDocs,
-    query,
-} from "firebase/firestore";
-
-// Components
+import { getFirestore } from "firebase/firestore";
 import Name from "components/interface/Name.jsx";
 import Contact from "components/interface/Contact.jsx";
 import Button from "components/interface/Button.jsx";
-
-// Scripts
+import { thisYear } from "scripts/date";
+import { firebaseConfig, id } from "scripts/firebase";
+import { inspectInputs } from "scripts/utilities";
 import {
-    getTodaysDate,
-    thisYear,
-} from "scripts/date";
-import {
-    firebaseConfig,
-    id
-} from "scripts/firebase";
-import {
-    currentEventIndex, 
     populateEvents, 
-    notify
-} from "scripts/index";
+    loadDifference,
+    getEvents
+} from "scripts/events";
 
-// Initialize Firebase
+let currentEventIndex = 0;
+
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth();
 auth.languageCode = "pl";
 
-function App() {
+export default function App() {
     let [data, updateData] = useState([]);
 
     function receiveEvents() {
-        getEvents()
+        getEvents(db, id)
             .then((result) => updateData(result))
             .catch((error) => console.error(error));
         ReactDOM.render(
@@ -59,7 +39,7 @@ function App() {
                     <span className="icon arrow">arrow_forward</span>
                 </button>
             </div>,
-            document.getElementsByClassName("btn-container")[0]
+            document.querySelector(".btn-container")
         );
     }
 
@@ -104,7 +84,7 @@ function App() {
                         secondInputType="date"
                         thirdInput="What additional information do you have?" 
                     />
-                    <span onClick={inspectInputs}>
+                    <span onClick={() => inspectInputs(db, id)}>
                         <Button message="Set a Countdown!" id="app-form-btn" />
                     </span>
                 </article>
@@ -129,75 +109,3 @@ function App() {
         </section>
     );
 }
-
-// Functions
-async function getEvents() {
-    try {
-        const data = query(collection(db, id));
-        const events = [];
-        const snapshot = await getDocs(data);
-        snapshot.forEach(doc => events.push(doc.data()));
-        return events;
-    } catch (error) {
-        console.error(error);
-    }
-}
-async function saveData() {
-    try {
-        const eventName = DOMPurify.sanitize(
-            document.getElementsByClassName("text-input")[0].value
-        );
-        const eventDate = DOMPurify.sanitize(
-            document.getElementsByClassName("email")[0].value
-        );
-        const eventDescription = DOMPurify.sanitize(
-            document.getElementsByClassName("message")[0].value
-        );
-        // eslint-disable-next-line no-unused-vars
-        const newEvent = await addDoc(collection(db, id), {
-            name: eventName,
-            date: eventDate,
-            description: eventDescription,
-        });
-        alert("Your event has been saved!");
-    } catch (error) {
-        throw new Error(error);
-    }
-}
-function inspectInputs() {
-    try {
-        const emailIsEmpty =
-            document.getElementsByClassName("email")[0].value === "";
-        const dateIsEmpty =
-            document.getElementsByClassName("text-input")[0].value === "";
-        const informationIsEmpty =
-            document.getElementsByClassName("message")[0].value === "";
-        const condition =
-            emailIsEmpty || dateIsEmpty || informationIsEmpty;
-        condition
-            ? alert("Please, fill in all the information requested.")
-            : saveData();
-    } catch (error) {
-        throw new Error(error);
-    }
-}
-
-function loadDifference(currentEvent) {
-    try {
-        const millisecondsPerDay = 86400000;
-        const today = new Date(getTodaysDate());
-        const eventsDate = new Date(today.getFullYear(), 11, 25);
-        const difference = (eventsDate - today) / millisecondsPerDay;
-        if (difference === 0) {
-            notify(currentEvent);
-            return "Christmas is happening today!";
-        } else if (difference > 0)
-            return `It is ${Math.round(difference)} days from today!`;
-        else
-            return `It happened ${Math.abs(difference)} days ago!`;
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-export default App;

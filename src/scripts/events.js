@@ -1,6 +1,14 @@
-import { getDifference } from "./date";
-
-export let currentEventIndex = 0;
+import { 
+  getDifference, 
+  getTodaysDate 
+} from "./date";
+import {
+  collection,
+  getDocs,
+  query,
+  addDoc
+} from "firebase/firestore";
+import DOMPurify from "dompurify";
 
 export function populateEvents(currentEvent) {
   try {
@@ -51,5 +59,57 @@ export function notify(currentEvent) {
     });
   } catch (error) {
     console.error(error);
+  }
+}
+
+export async function getEvents(db, id) {
+  try {
+    const data = query(collection(db, id));
+    const events = [];
+    const snapshot = await getDocs(data);
+    snapshot.forEach((doc) => events.push(doc.data()));
+    return events;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export function loadDifference(currentEvent) {
+  try {
+    const millisecondsPerDay = 86400000;
+    const today = new Date(getTodaysDate());
+    const eventsDate = new Date(today.getFullYear(), 11, 25);
+    const difference = (eventsDate - today) / millisecondsPerDay;
+    if (difference === 0) {
+      notify(currentEvent);
+      return "Christmas is happening today!";
+    } else if (difference > 0)
+      return `It is ${Math.round(difference)} days from today!`;
+    else return `It happened ${Math.abs(difference)} days ago!`;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function saveData(db, id) {
+  try {
+    const eventName = DOMPurify.sanitize(
+      document.querySelector(".text-input").value
+    );
+    const eventDate = DOMPurify.sanitize(
+      document.querySelector(".email").value
+    );
+    const eventDescription = DOMPurify.sanitize(
+      document.querySelector(".message").value
+    );
+    // eslint-disable-next-line no-unused-vars
+    const newEvent = await addDoc(collection(db, id), {
+      name: eventName,
+      date: eventDate,
+      description: eventDescription,
+    });
+    alert("Your event has been saved!");
+  } catch (error) {
+    throw new Error(error);
   }
 }

@@ -1,13 +1,12 @@
-import { refresh } from "isola/browser";
-
 const displayName = window.innerWidth < 1100 ? "Mamaia" : "Mamaia Countdowns";
 
-const Name = () => {
+export default function Name() {
     return (
-        <h1 onClick={refresh} className="name hover touch-target" tabIndex="0">
-            <span className="icon">event_note</span>&nbsp;{displayName}&trade;
-        </h1>
+        <a href="/">
+            <h1 className="name hover touch-target" tabIndex="0">
+                <span className="icon">event_note</span>
+                &nbsp;{displayName}&trade;    
+            </h1>
+        </a>
     );
-};
-
-export default Name;
+}

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-import { refresh } from "isola/browser";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
@@ -11,7 +10,7 @@ import { thisYear } from "scripts/date";
 import { firebaseConfig, id } from "scripts/firebase";
 import { inspectInputs } from "scripts/utilities";
 import {
-    populateEvents, 
+    populateEvents,
     loadDifference,
     getEvents
 } from "scripts/events";
@@ -73,8 +72,16 @@ export default function App() {
 
     return (
         <section className="mobile-container">
+            <div className="dialog-container">
+                <dialog id="dialog" className="dialog">
+                    <p>Please, fill in all the information requested.</p>
+                    <form method="dialog">
+                        <button className="dialog-close btn">Confirm</button>
+                    </form>
+                </dialog>
+            </div>
             <header className="fixed-header">
-                <Name onClick={refresh} />
+                <Name />
             </header>
             <main className="mobile-content">
                 <article className="contact-form-container">
@@ -82,7 +89,7 @@ export default function App() {
                         firstInput="What is this event?"
                         secondInput="When does it start?"
                         secondInputType="date"
-                        thirdInput="What additional information do you have?" 
+                        thirdInput="What additional information do you have?"
                     />
                     <span onClick={() => inspectInputs(db, id)}>
                         <Button message="Set a Countdown!" id="app-form-btn" />

@@ -19,13 +19,13 @@ body
 
 // Scrollbar
 
-::-webkit-scrollbar 
+::-webkit-scrollbar
     width: $size
     background: $white
 
 ::-webkit-scrollbar-thumb
     background: $yellow
-    border: .5 * $unit solid $black 
+    border: .5 * $unit solid $black
     border-radius: .25 * $size
 
 // Home.jsx 
@@ -36,7 +36,7 @@ body
 .main-content
     display: grid
     gap: 4 * $size
-    margin-top: -3 * $size 
+    margin-top: -3 * $size
 
 // App.jsx
 
@@ -59,7 +59,7 @@ body
     font-family: 'Material Symbols Rounded'
     user-select: none
 
-.done 
+.done
     background: linear-gradient(to right, lightgreen 50%, green 0)
 
 .contact-form-container
@@ -69,18 +69,19 @@ body
     display: flex
     align-items: flex-end
     justify-content: center
+    padding-bottom: $size * 2 !important
 
 .saved-countdowns
-    @include interface 
+    @include interface
 
     .heading
         margin: .75 * $size 0
 
     .description
-        @include app-paragraph 
+        @include app-paragraph
 
-#events-name, #events-date, #events-description, #events-distance 
-    margin: $unit * 5 0 
+#events-name, #events-date, #events-description, #events-distance
+    margin: $unit * 5 0
 
 .btn-container
     display: flex
@@ -98,14 +99,14 @@ body
 .arrow-btn
     @include hoverable
     @include btn($white, $blue)
-    margin: $unit * 2 
+    margin: $unit * 2
     display: flex
     flex-wrap: wrap
     justify-content: center
 
     &:hover
         background: $hwhite
-        
+
 .arrow
     font-size: 1.75 * $size
 
@@ -122,8 +123,8 @@ body
     display: inline-flex
 
     &:hover
-        filter: drop-shadow($shadow)  
-    
+        filter: drop-shadow($shadow)
+
 // Button.jsx
 
 .btn
@@ -152,9 +153,9 @@ body
     @include form
 
 .input
-    @include input 
-    
-.textarea 
+    @include input
+
+.textarea
     @include textarea
 
 // Footer.jsx 
@@ -165,7 +166,7 @@ body
 .copyright
     font-size: .75 * $size
     text-align: center
-    padding: $size 
+    padding: $size
 
 .contact-links
     display: flex
@@ -175,7 +176,7 @@ body
 
 .sponsorship
     height: 60px
-    width: 217px 
+    width: 217px
     object-fit: cover
 
 // GitHubIcon.jsx, LinkedInIcon.jsx 
@@ -189,7 +190,7 @@ body
 
     &:hover
         background: $yellow
-    
+
 // IntroductorySection.jsx, DescriptiveSection.jsx, AuthorSection.jsx
 
 .article
@@ -205,11 +206,38 @@ body
     pointer-events: none
     object-fit: cover
 
+// Dialog.jsx
+
+.dialog
+    position: absolute
+    top: 50%
+    left: -25%
+    transform: translate(50%,-50%)
+    width: 75vw
+    height: 40vh
+    border: 8px solid red
+    background: $white
+    box-shadow: $shadow
+    border-radius: 4 * $unit
+    padding: 1.5 * $size
+    font-family: 'Montserrat', sans-serif
+    font-size: $size
+    display: none
+
+    &::backdrop
+        background-color: rgba(0, 0, 0, .75) 
+
+    .dialog-close
+        margin-top: $size
+
+        &:hover
+            cursor: pointer
+
 // Responsiveness
 
 @media (max-width: 1300px)
     .article
-        flex-direction: column 
+        flex-direction: column
 
     .calendar, .work, .creator
         margin-top: $size * 2
@@ -223,13 +251,13 @@ body
 
     .description, .heading
         max-width: 50ch
-        
+
 @media (max-width: 1100px)
     .mobile-content
         flex-direction: column-reverse
         align-items: center
 
-    .saved-countdowns 
+    .saved-countdowns
         min-width: 0
 
 @media (max-width: 600px)
@@ -237,8 +265,8 @@ body
         width: 105px
 
 @media (max-width: 500px)
-    #events-name, #events-date, #events-description, #events-distance 
-        margin: $unit * 8 0 
+    #events-name, #events-date, #events-description, #events-distance
+        margin: $unit * 8 0
 
     .form
         padding: $size
@@ -263,7 +291,7 @@ body
         margin-bottom: $size * 2 !important
 
     .form
-        border-radius: 15% 35% 35% 35% 
+        border-radius: 15% 35% 35% 35%
 
     #app-form-btn
         padding: $size

@@ -141,6 +141,7 @@ body {
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  padding-bottom: 48px !important;
 }
 
 .saved-countdowns {
@@ -342,6 +343,32 @@ body {
   pointer-events: none;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.dialog {
+  position: absolute;
+  top: 50%;
+  left: -25%;
+  transform: translate(50%, -50%);
+  width: 75vw;
+  height: 40vh;
+  border: 8px solid red;
+  background: rgb(239, 239, 239);
+  box-shadow: 4px 8px 4px rgba(42, 42, 42, 0.25);
+  border-radius: 16px;
+  padding: 36px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 24px;
+  display: none;
+}
+.dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+.dialog .dialog-close {
+  margin-top: 24px;
+}
+.dialog .dialog-close:hover {
+  cursor: pointer;
 }
 
 @media (max-width: 1300px) {

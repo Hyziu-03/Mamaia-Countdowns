@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Button from "components/interface/Button";
 import Name from "components/interface/Name";
 
-const Header = () => {
+export default function Header() {
     return (
         <header className="header">
             <Name />
@@ -11,6 +11,4 @@ const Header = () => {
             </Link>
         </header>
     );
-};
-
-export default Header;
+}

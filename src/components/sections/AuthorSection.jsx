@@ -1,7 +1,7 @@
 import Creator from "images/creator.webp";
 import Paragraph from "components/interface/Paragraph";
 
-const AuthorSection = () => {
+export default function AuthorSection() {
   return (
     <article className="article">
       <Paragraph
@@ -11,15 +11,13 @@ const AuthorSection = () => {
           "I’ve got a background in IT, that’s related to my high school. I also fancy UI Design and photography.",
           "If you want to contact me work-wise don’t hesitate to reach me through LinkedIn. All the useful links are below!",
         ]}
-        className="biography"
+        className="biography" 
       />
       <img
         src={Creator}
         alt="Headshot of the creator - Szymon Hyziak."
-        className="creator"
+        className="creator" 
       />
     </article>
   );
-};
-
-export default AuthorSection;
+}

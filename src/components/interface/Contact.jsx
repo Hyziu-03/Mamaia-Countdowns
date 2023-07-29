@@ -1,11 +1,11 @@
-const Contact = (props) => {
+export default function Contact(props) {
     return (
         <form
             action=""
             method=""
             className="form article"
             id="form"
-            onSubmit={(event) => event.preventDefault()}
+            onSubmit={event => event.preventDefault()}
         >
             <input
                 type="text"
@@ -13,7 +13,7 @@ const Contact = (props) => {
                 id="text-input"
                 className="input touch-target text-input"
                 placeholder={props.firstInput}
-                maxLength="20"
+                maxLength="20" 
             />
             <input
                 type={props.secondInputType}
@@ -21,17 +21,15 @@ const Contact = (props) => {
                 id="email"
                 className="input touch-target email"
                 placeholder={props.secondInput}
-                maxLength="40"
+                maxLength="40" 
             />
             <textarea
                 placeholder={props.thirdInput}
                 className="input textarea touch-target message"
                 id="message"
                 name="message"
-                maxLength={40}
+                maxLength={40} 
             />
         </form>
     );
-};
-
-export default Contact;
+}

@@ -4,7 +4,7 @@ import DescriptiveSection from "components/sections/DescriptiveSection";
 import AuthorSection from "components/sections/AuthorSection";
 import Footer from "components/sections/Footer";
 
-const Home = () => {
+export default function Home() {
     return (
         <div className="App" id="App">
             <Header />
@@ -16,6 +16,4 @@ const Home = () => {
             <Footer />
         </div>
     );
-};
-
-export default Home;
+}

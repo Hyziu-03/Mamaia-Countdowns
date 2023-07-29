@@ -1,13 +1,5 @@
-import { 
-  getDifference, 
-  getTodaysDate 
-} from "./date";
-import {
-  collection,
-  getDocs,
-  query,
-  addDoc
-} from "firebase/firestore";
+import { getDifference, getTodaysDate } from "./date";
+import { collection, getDocs, query, addDoc } from "firebase/firestore";
 import DOMPurify from "dompurify";
 
 export function populateEvents(currentEvent) {

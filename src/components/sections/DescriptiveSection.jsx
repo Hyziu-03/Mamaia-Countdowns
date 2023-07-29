@@ -1,7 +1,7 @@
 import Work from "images/work.svg";
 import Paragraph from "components/interface/Paragraph";
 
-const DescriptiveSection = () => {
+export default function DescriptiveSection() {
   return (
     <article className="article">
       <Paragraph
@@ -11,15 +11,11 @@ const DescriptiveSection = () => {
           "These are for your convenience and to exaggerate that you can adjust times for notifications and another reminder so you won’t miss them. Never!",
           "All your countdowns will be stored in the memory of your device, so please don’t clear it for this app, as you might lose all your work.",
         ]}
-        className="explanation"
-      />
+        className="explanation" />
       <img
         src={Work}
         alt="Illustration showing a young man sitting at the desk. He is working on a laptop with coffee by side."
-        className="work"
-      />
+        className="work" />
     </article>
   );
-};
-
-export default DescriptiveSection;
+}

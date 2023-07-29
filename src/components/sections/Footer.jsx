@@ -2,7 +2,7 @@ import LinkedInIcon from "components/icons/LinkedInIcon";
 import GitHubIcon from "components/icons/GitHubIcon";
 import BuyMeCoffee from "components/icons/BuyMeCoffee";
 
-const Footer = () => {
+export default function Footer() {
     return (
         <footer className="footer">
             <p className="copyright" tabIndex="0">
@@ -15,19 +15,17 @@ const Footer = () => {
                     target="_blank"
                     rel="noreferrer noopener"
                 >
-                <LinkedInIcon />
+                    <LinkedInIcon />
                 </a>
                 <a
                     href="https://github.com/Hyziu-03/"
                     target="_blank"
                     rel="noreferrer noopener"
                 >
-                <GitHubIcon />
+                    <GitHubIcon />
                 </a>
                 <BuyMeCoffee />
             </section>
         </footer>
     );
-};
-
-export default Footer;
+}

@@ -7,51 +7,39 @@
   <meta name="viewport" content="width=device-width" />
   <meta name="theme-color" content="#fecc18" />
   <meta 
-    name="description" 
-    content="Mamaia Countdowns is a tool to ease your life. You can set countdowns for any event you want. No matter if it’s Christmas or an important exam to take!" 
+    name="description"
+    content="Mamaia Countdowns is a tool to ease your life. You can set countdowns for any event you want. No matter if it’s Christmas or an important exam to take!"
   />
   <meta name="keywords" content="mamaia countdowns" />
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mamaia-countdowns.vercel.app/">
   <meta property="og:title" content="Mamaia Countdowns">
   <meta 
-    property="og:description" 
-    content="Mamaia Countdowns is a tool to ease your life. You can set countdowns for any event you want. No matter if it’s Christmas or an important exam to take!"
+    property="og:description"
+    content="Mamaia Countdowns is a tool to ease your life. You can set countdowns for any event you want. No matter if it’s Christmas or an important exam to take!" 
   />
   <meta 
     property="og:image" 
-    content="%PUBLIC_URL%/images/open_graph_protocol_image.png"
-  />
+    content="%PUBLIC_URL%/images/open_graph_protocol_image.png" 
+    />
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://mamaia-countdowns.vercel.app/">
   <meta property="twitter:title" content="Mamaia Countdowns">
   <meta 
-    property="twitter:description" 
-    content="Mamaia Countdowns is a tool to ease your life. You can set countdowns for any event you want. No matter if it’s Christmas or an important exam to take!"
+    property="twitter:description"
+    content="Mamaia Countdowns is a tool to ease your life. You can set countdowns for any event you want. No matter if it’s Christmas or an important exam to take!" 
   />
   <meta 
     property="twitter:image" 
-    content="%PUBLIC_URL%/images/open_graph_protocol_image.png"
+    content="%PUBLIC_URL%/images/open_graph_protocol_image.png" 
   />
 
   <title>Mamaia Countdowns</title>
 
-  <link 
-    rel="icon" 
-    href="%PUBLIC_URL%/images/favicon.png" 
-  />
-  <link 
-    rel="apple-touch-icon" 
-    href="%PUBLIC_URL%/images/favicon.png" 
-  />
-  <link 
-    rel="manifest" 
-    href="%PUBLIC_URL%/manifest.json" 
-  />
-  <link 
-    rel="canonical" 
-    href="https://mamaia-countdowns.vercel.app/"
-  />
+  <link rel="icon" href="%PUBLIC_URL%/images/favicon.png" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/images/favicon.png" />
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <link rel="canonical" href="https://mamaia-countdowns.vercel.app/" />
 </head>
 
 <body>
@@ -59,7 +47,7 @@
   <div id="root"></div>
   <script>
     const registerServiceWorker = async () => {
-      if ("serviceWorker" in navigator) 
+      if ("serviceWorker" in navigator)
         try {
           const e = await navigator
             .serviceWorker
@@ -67,9 +55,9 @@
               scope: "/"
             });
 
-          e.installing ? console.log("Service worker is being installed") : 
-          e.waiting ? console.log("Service worker has been installed") : 
-          e.active && console.log("Service worker is active");
+          e.installing ? console.log("Service worker is being installed") :
+            e.waiting ? console.log("Service worker has been installed") :
+              e.active && console.log("Service worker is active");
         } catch (e) {
           console.error(e);
         }

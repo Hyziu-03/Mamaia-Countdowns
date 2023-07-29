@@ -1,7 +1,7 @@
 // Sizing units
 
 $unit: 4px
-$size: 6 *  $unit
+$size: 6 * $unit
 
 // Colours
 
@@ -14,12 +14,12 @@ $hblue: rgb(11, 51, 117)
 $yellow: rgb(254, 204, 24)
 $green: rgb(0, 105, 85)
 $red: rgb(214, 78, 82)
-    
+
 // Utilities
 
 $shadow: $unit 2 * $unit $unit $hblack
 
-@mixin link 
+@mixin link
     color: inherit
     text-decoration: none
 
@@ -31,7 +31,7 @@ $shadow: $unit 2 * $unit $unit $hblack
     &:focus
         outline-offset: .25 * $size
 
-@mixin hoverable 
+@mixin hoverable
     user-select: none
 
     &:hover
@@ -41,19 +41,19 @@ $shadow: $unit 2 * $unit $unit $hblack
     min-width: 48px
     min-height: 48px
 
-@mixin position-center 
+@mixin position-center
     position: absolute
     left: 50%
     top: 50%
     transform: translate(-50%, -50%)
 
-@mixin flex-center 
+@mixin flex-center
     display: flex
     flex-direction: column
     align-items: center
     justify-content: center
 
-@mixin responsive-img 
+@mixin responsive-img
     pointer-events: none
     margin: 2 * $size 0
 
@@ -63,14 +63,14 @@ $shadow: $unit 2 * $unit $unit $hblack
 
 // Components
 
-@mixin container 
+@mixin container
     font-family: 'Montserrat', sans-serif
     font-size: $size
     line-height: 150%
     display: grid
     gap: 2 * $size
 
-@mixin header 
+@mixin header
     background: $white
     padding: $size 2 * $size
     display: flex
@@ -82,25 +82,25 @@ $shadow: $unit 2 * $unit $unit $hblack
     line-height: 2 * $size
     font-family: 'Roboto Slab', cursive
 
-@mixin btn($bg-color, $text-color) 
-    padding: $size 2 * $size 
+@mixin btn($bg-color, $text-color)
+    padding: $size 2 * $size
     background: $bg-color
     border-color: transparent
     box-shadow: $shadow
     border-radius: .5 * $size
     color: $text-color
     font-size: $size
-    font-family: 'Montserrat', sans-serif 
+    font-family: 'Montserrat', sans-serif
 
-@mixin form 
+@mixin form
     display: flex
     flex-direction: column
     z-index: 1
-    background-color: $yellow 
-    border-radius: 25% 75% 75% 75% 
+    background-color: $yellow
+    border-radius: 25% 75% 75% 75%
     padding: .75 * $size
 
-@mixin input 
+@mixin input
     background: $white
     border-color: transparent
     box-shadow: $shadow
@@ -111,24 +111,23 @@ $shadow: $unit 2 * $unit $unit $hblack
     min-width: 350px
     margin: 2 * $unit 0
 
-@mixin textarea 
+@mixin textarea
     resize: none
     min-height: 8 * $size
     line-height: 150%
-    
-@mixin interface 
+
+@mixin interface
     display: flex
     flex-direction: column
     font-family: 'Montserrat', sans-rerif
     min-width: 30vw
     margin: 0 1.5 * $size 1.5 * $size 1.5 * $size
 
-@mixin app-paragraph 
+@mixin app-paragraph
     margin: .5 * $size 0
-    height: $size 
+    height: $size
     display: inline-flex
     align-items: center
-    justify-content: center   
+    justify-content: center
     text-align: center
     max-width: 30ch
-    

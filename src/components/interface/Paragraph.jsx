@@ -1,4 +1,4 @@
-const Paragraph = (props) => {
+export default function Paragraph(props) {
   return (
     <article className={props.className}>
       <h1 className="heading" tabIndex="0">
@@ -15,6 +15,4 @@ const Paragraph = (props) => {
       </p>
     </article>
   );
-};
-
-export default Paragraph;
+}

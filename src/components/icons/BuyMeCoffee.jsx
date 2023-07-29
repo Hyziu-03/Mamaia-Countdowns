@@ -1,4 +1,4 @@
-const BuyMeCoffee = () => {
+export default function BuyMeCoffee() {
     return (
         <a
             href="https://www.buymeacoffee.com/szymonhyziak"
@@ -8,10 +8,8 @@ const BuyMeCoffee = () => {
             <img
                 src="images/buy_me_a_coffee_image.png"
                 alt="Buy Me A Coffee"
-                className="sponsorship"
+                className="sponsorship" 
             />
         </a>
     );
 }
-
-export default BuyMeCoffee;

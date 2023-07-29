@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Button from "components/interface/Button";
 
-const Introduction = (props) => {
+export default function Introduction(props) {
     return (
         <article className="introduction">
             <section className="text-section">
@@ -17,5 +17,4 @@ const Introduction = (props) => {
             </Link>
         </article>
     );
-};
-export default Introduction;
+}

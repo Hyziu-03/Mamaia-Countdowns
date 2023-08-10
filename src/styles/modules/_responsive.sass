@@ -1,0 +1,61 @@
+@media (max-width: 1300px)
+    .article
+        flex-direction: column
+
+    .calendar, .work, .creator
+        margin-top: $size * 2
+        object-fit: cover
+
+    .introduction
+        margin-top: $size * 2
+
+    .description
+        margin: 18px 96px 24px 96px
+
+    .description, .heading
+        max-width: 50ch
+
+@media (max-width: 1100px)
+    .mobile-content
+        flex-direction: column-reverse
+        align-items: center
+
+    .saved-countdowns
+        min-width: 0
+
+@media (max-width: 600px)
+    .arrow-btn
+        width: 105px
+
+@media (max-width: 500px)
+    #events-name, #events-date, #events-description, #events-distance
+        margin: $unit * 8 0
+
+    .form
+        padding: $size
+
+    .saved-countdowns
+        margin: 0 0 $unit * 9 0
+        align-items: center
+
+        .description
+            margin-left: 36px !important
+            margin-right: 36px !important
+
+    .input
+        min-width: 250px
+
+    .fixed-header
+        flex-direction: column
+        margin-bottom: 0
+
+    .contact-form-container, .mobile-container
+        margin: 0 !important
+        margin-bottom: $size * 2 !important
+
+    .form
+        border-radius: 15% 35% 35% 35%
+
+    #app-form-btn
+        padding: $size
+        margin-top: $unit * 4.5

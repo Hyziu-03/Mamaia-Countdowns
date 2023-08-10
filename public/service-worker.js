@@ -11,21 +11,6 @@ self.addEventListener("fetch", (event) => {
   } catch (error) {
     console.error("Error processing request");
   }
-
-  event.respondWith(
-    fetch(event.request)
-      .then((result) => {
-        const resultClone = result.clone();
-        caches
-          .open(CACHE_NAME)
-          .then((cache) => cache.put(event.request, resultClone));
-        return result;
-      })
-      .catch((error) => {
-        caches.match(event.request).then((result) => result);
-        console.error("Error fetching cache");
-      })
-  );
 });
 
 self.addEventListener("activate", (event) => {
@@ -43,6 +28,6 @@ self.addEventListener("activate", (event) => {
           })
         )
       )
-      .catch((error) => console.error("Error activating cachce"))
+      .catch(error => console.error("Error activating cachce"))
   );
 });

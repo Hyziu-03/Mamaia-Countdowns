@@ -1,18 +1,21 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { onAuthStateChanged, getAuth } from "firebase/auth";
+import { thisYear } from "scripts/date";
+import { firebaseConfig, id, login } from "scripts/firebase";
+import { inspectInputs } from "scripts/utilities";
+import { loadDifference } from "scripts/events";
 import Name from "components/interface/Name.jsx";
 import Contact from "components/interface/Contact.jsx";
 import Button from "components/interface/Button.jsx";
-import { thisYear } from "scripts/date";
-import { firebaseConfig, id } from "scripts/firebase";
-import { inspectInputs } from "scripts/utilities";
-import { loadDifference } from "scripts/events";
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth();
-auth.languageCode = "pl";
+
+onAuthStateChanged(auth, user => 
+    user && console.log(user.displayName)
+);
 
 export default function App() {
     return (
@@ -22,6 +25,20 @@ export default function App() {
                     <p>Please, fill in all the information requested.</p>
                     <form method="dialog">
                         <button className="dialog-close btn">Confirm</button>
+                    </form>
+                </dialog>
+            </div>
+            <div className="login-dialog-container">
+                <dialog id="login-dialog" className="login-dialog">
+                    <p className="login-dialog-text">
+                        You need to authenticate to add your events 
+                        to Mamaia Countdowns.
+                    </p>
+                    <p className="login-dialog-text">
+                        Please, click the button below.
+                    </p>
+                    <form method="dialog">
+                        <button className="dialog-close btn">Login with Google</button>
                     </form>
                 </dialog>
             </div>
@@ -53,8 +70,11 @@ export default function App() {
                     <p className="description" id="events-description">
                         A time for living, a time for believing
                     </p>
-                    <section className="btn-container">
-                        <Button message="Pull data from the database " />
+                    <section 
+                        className="btn-container" 
+                        onClick={() => login(auth)}
+                    >
+                        <Button message="Pull data from the database" />
                     </section>
                 </article>
             </main>

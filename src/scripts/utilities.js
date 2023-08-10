@@ -7,15 +7,15 @@ export function inspectInputs(db, id) {
     const informationIsEmpty = document.querySelector(".message").value === "";
     const condition = emailIsEmpty || dateIsEmpty || informationIsEmpty;
     condition
-      ? showDialog()
+      ? showDialog("dialog")
       : saveData(db, id);
   } catch (error) {
     throw new Error(error);
   }
 }
 
-function showDialog() {
-  const dialog = document.getElementById("dialog");
+function showDialog(id) {
+  const dialog = document.getElementById(id);
   dialog.style.display = "flex";
   dialog.style.flexDirection = "column";
   dialog.style.justifyContent = "space-evenly";
@@ -23,9 +23,9 @@ function showDialog() {
   dialog.showModal();
 }
 
-function closeDialog() {
+function closeDialog(id) {
   window.addEventListener("DOMContentLoaded", () => {
-    const dialog = document.getElementById("dialog");
+    const dialog = document.getElementById(id);
     const closeButton = document.querySelector(".dialog-close");
     closeButton.addEventListener("click", function () {
       dialog.close();
@@ -34,4 +34,4 @@ function closeDialog() {
   });
 }
 
-closeDialog();
+closeDialog("dialog");

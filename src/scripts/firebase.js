@@ -1,3 +1,8 @@
+import { 
+  GoogleAuthProvider, 
+  signInWithRedirect 
+} from "firebase/auth";
+
 export const firebaseConfig = {
   apiKey: "AIzaSyCmNk2q3k4i3dV9ZG2ZfZeTKnum70UaVas",
   authDomain: "mamaia-countdowns.firebaseapp.com",
@@ -9,3 +14,9 @@ export const firebaseConfig = {
 };
 
 export let id = null;
+
+export function login(auth) {
+  auth.languageCode = "pl";
+  const provider = new GoogleAuthProvider();
+  signInWithRedirect(auth, provider);
+}

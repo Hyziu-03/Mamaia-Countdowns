@@ -66,14 +66,14 @@ export async function getEvents(db, id) {
   }
 }
 
-export function loadDifference(currentEvent) {
+export function loadDifference(currentEvent = null, dummy = true) {
   try {
     const millisecondsPerDay = 86400000;
     const today = new Date(getTodaysDate());
     const eventsDate = new Date(today.getFullYear(), 11, 25);
     const difference = (eventsDate - today) / millisecondsPerDay;
     if (difference === 0) {
-      notify(currentEvent);
+      if (!dummy) notify(currentEvent);
       return "Christmas is happening today!";
     } else if (difference > 0)
       return `It is ${Math.round(difference)} days from today!`;

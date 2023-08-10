@@ -16,7 +16,10 @@ export function inspectInputs(db, id) {
 
 function showDialog() {
   const dialog = document.getElementById("dialog");
-  dialog.style.display = "block";
+  dialog.style.display = "flex";
+  dialog.style.flexDirection = "column";
+  dialog.style.justifyContent = "space-evenly";
+  dialog.style.alignItems = "center";
   dialog.showModal();
 }
 

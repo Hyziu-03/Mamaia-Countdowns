@@ -1,5 +1,8 @@
+// Date
 import { getDifference, getTodaysDate } from "./date";
+// Firestore
 import { collection, getDocs, query, addDoc } from "firebase/firestore";
+// 3rd party
 import DOMPurify from "dompurify";
 
 export function populateEvents(currentEvent) {
@@ -22,7 +25,7 @@ export function populateEvents(currentEvent) {
       eventDescription.innerHTML = currentEvent.description;
     }
   } catch (error) {
-    console.error(error);
+    console.log("⚠️ Error populating events");
   }
 }
 
@@ -37,7 +40,7 @@ export function logDifference(currentEvent) {
       return `This event is ${difference} days from today!`;
     else return `This event happened ${Math.abs(difference)} days ago!`;
   } catch (error) {
-    console.error(error);
+    console.log("⚠️ Error logging difference between dates")
   }
 }
 
@@ -50,7 +53,7 @@ export function notify(currentEvent) {
       if (permission === "granted") new Notification(title, options);
     });
   } catch (error) {
-    console.error(error);
+    console.log("⚠️ Error notifying user")
   }
 }
 
@@ -62,7 +65,7 @@ export async function getEvents(db, id) {
     snapshot.forEach((doc) => events.push(doc.data()));
     return events;
   } catch (error) {
-    console.error(error);
+    console.log("⚠️ Error getting events")
   }
 }
 
@@ -79,7 +82,7 @@ export function loadDifference(currentEvent = null, dummy = true) {
       return `It is ${Math.round(difference)} days from today!`;
     else return `It happened ${Math.abs(difference)} days ago!`;
   } catch (error) {
-    console.error(error);
+    console.log("⚠️ Error loading difference between dates")
   }
 }
 
@@ -102,6 +105,6 @@ export async function saveData(db, id) {
     });
     alert("Your event has been saved!");
   } catch (error) {
-    throw new Error(error);
+    console.log("⚠️ Error saving data")
   }
 }

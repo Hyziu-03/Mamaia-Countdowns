@@ -9,7 +9,7 @@ export const getTodaysDate = () => {
     const today = year + "-" + month + "-" + day;
     return today;
   } catch (error) {
-    console.error(error);
+    console.log("⚠️ Error getting today's date");
   }
 };
 
@@ -21,7 +21,7 @@ export const getDifference = (event) => {
     const difference = (eventsDate - today) / millisecondsPerDay;
     return difference;
   } catch (error) {
-    console.error(error);
+    console.log("⚠️ Error getting difference between dates");
   }
 };
 

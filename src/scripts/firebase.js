@@ -1,3 +1,4 @@
+// Authentication
 import { 
   GoogleAuthProvider, 
   signInWithRedirect 
@@ -16,7 +17,11 @@ export const firebaseConfig = {
 export let id = null;
 
 export function login(auth) {
-  auth.languageCode = "pl";
-  const provider = new GoogleAuthProvider();
-  signInWithRedirect(auth, provider);
+  try {
+    auth.languageCode = "pl";
+    const provider = new GoogleAuthProvider();
+    signInWithRedirect(auth, provider);
+  } catch (error) {
+    console.log("⚠️ Error logging in");
+  }
 }

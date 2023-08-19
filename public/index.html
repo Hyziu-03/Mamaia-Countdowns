@@ -46,20 +46,20 @@
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
   <script>
-    const registerServiceWorker = async () => {
+    async function registerServiceWorker () {
       if ("serviceWorker" in navigator)
         try {
-          const e = await navigator
+          const event = await navigator
             .serviceWorker
             .register("service-worker.js", {
               scope: "/"
             });
 
-          e.installing ? console.log("Service worker is being installed") :
-            e.waiting ? console.log("Service worker has been installed") :
-              e.active && console.log("Service worker is active");
-        } catch (e) {
-          console.error(e);
+          event.installing ? console.log("⏲️ Service worker is being installed") :
+            event.waiting ? console.log("✅ Service worker has been installed") :
+              event.active && console.log("✅ Service worker is active");
+        } catch (error) {
+          console.log("⚠️ Failed to register service worker");
         }
     };
     registerServiceWorker();

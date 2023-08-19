@@ -9,7 +9,7 @@ self.addEventListener("fetch", (event) => {
     const requestUsesHttp = !(event.request.url.indexOf("http") === 0);
     if (reqestIsFromExtension || requestUsesHttp) return;
   } catch (error) {
-    console.error("Error processing request");
+    console.log("⚠️ Error processing request");
   }
 });
 
@@ -28,6 +28,6 @@ self.addEventListener("activate", (event) => {
           })
         )
       )
-      .catch(error => console.error("Error activating cachce"))
+      .catch((error) => console.log("⚠️ Error activating cachce"))
   );
 });

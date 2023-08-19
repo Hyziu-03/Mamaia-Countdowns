@@ -1,33 +1,44 @@
+// Firebase
 import { initializeApp } from "firebase/app";
+// Firestore
 import { getFirestore } from "firebase/firestore";
+// Authentication
 import { onAuthStateChanged, getAuth } from "firebase/auth";
+// Date
 import { thisYear } from "scripts/date";
-import { firebaseConfig, id, login } from "scripts/firebase";
-import { inspectInputs } from "scripts/utilities";
+// Firenase utilities
+import { firebaseConfig, id } from "scripts/firebase";
+// Other utilities
+import { 
+    inspectInputs, 
+    verifyLoginState, 
+    awaitRedirect 
+} from "scripts/utilities";
+// Events
 import { loadDifference } from "scripts/events";
+// Components
 import Name from "components/interface/Name.jsx";
 import Contact from "components/interface/Contact.jsx";
 import Button from "components/interface/Button.jsx";
+import Dialog from "components/interface/Dialog.jsx";
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const auth = getAuth();
+export const db = getFirestore(app);
+export const auth = getAuth();
 
-onAuthStateChanged(auth, user => 
-    user && console.log(user.displayName)
-);
+onAuthStateChanged(auth, function (user) {
+    try {
+        user ? console.log("✅ You are logged in!") : awaitRedirect(auth);
+    } catch (error) {
+        console.log("⚠️ Failed to determine login state");
+    }
+});
 
 export default function App() {
     return (
         <section className="mobile-container">
-            <div className="dialog-container">
-                <dialog id="dialog" className="dialog">
-                    <p>Please, fill in all the information requested.</p>
-                    <form method="dialog">
-                        <button className="dialog-close btn">Confirm</button>
-                    </form>
-                </dialog>
-            </div>
+            <Dialog type="text" />
+            <Dialog type="login" />
             <div className="login-dialog-container">
                 <dialog id="login-dialog" className="login-dialog">
                     <p className="login-dialog-text">
@@ -38,7 +49,9 @@ export default function App() {
                         Please, click the button below.
                     </p>
                     <form method="dialog">
-                        <button className="dialog-close btn">Login with Google</button>
+                        <button className="dialog-close btn">
+                            Login with Google
+                        </button>
                     </form>
                 </dialog>
             </div>
@@ -72,7 +85,7 @@ export default function App() {
                     </p>
                     <section 
                         className="btn-container" 
-                        onClick={() => login(auth)}
+                        onClick={() => verifyLoginState(auth)}
                     >
                         <Button message="Pull data from the database" />
                     </section>

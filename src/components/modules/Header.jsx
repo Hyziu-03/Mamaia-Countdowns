@@ -1,4 +1,6 @@
+// React
 import { Link } from "react-router-dom";
+// Components
 import Button from "components/interface/Button";
 import Name from "components/interface/Name";
 

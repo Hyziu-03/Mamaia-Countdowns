@@ -1,3 +1,4 @@
+// Icons
 import LinkedInIcon from "components/icons/LinkedInIcon";
 import GitHubIcon from "components/icons/GitHubIcon";
 import BuyMeCoffee from "components/icons/BuyMeCoffee";

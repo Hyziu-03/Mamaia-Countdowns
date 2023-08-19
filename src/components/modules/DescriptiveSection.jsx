@@ -1,4 +1,6 @@
+// Images
 import Work from "images/work.svg";
+// Components
 import Paragraph from "components/interface/Paragraph";
 
 export default function DescriptiveSection() {

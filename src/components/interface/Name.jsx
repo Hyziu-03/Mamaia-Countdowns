@@ -1,4 +1,5 @@
-const displayName = window.innerWidth < 1100 ? "Mamaia" : "Mamaia Countdowns";
+// Utilities
+import { displayName } from "scripts/utilities";
 
 export default function Name() {
     return (

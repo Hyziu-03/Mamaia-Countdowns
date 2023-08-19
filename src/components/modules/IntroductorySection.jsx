@@ -1,4 +1,6 @@
+// Components
 import Introduction from "components/interface/Introduction.jsx";
+// Images
 import Calendar from "images/calendar.svg";
 
 export default function IntroductorySection() {

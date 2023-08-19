@@ -1,3 +1,4 @@
+// Components
 import Header from "components/modules/Header.jsx";
 import IntroductorySection from "components/modules/IntroductorySection";
 import DescriptiveSection from "components/modules/DescriptiveSection";

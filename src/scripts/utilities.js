@@ -4,6 +4,7 @@ import {
   getCountFromServer,
   doc,
   setDoc,
+  getDocs
 } from "firebase/firestore";
 // Events
 import { saveData } from "./events";
@@ -14,64 +15,100 @@ import { thisYear } from "./date";
 // Components
 import { db } from "components/App";
 
-export function inspectInputs(db, id) {
+export function inspectInputs(db, verificationNumber) {
   try {
     const emailIsEmpty = document.querySelector(".email").value === "";
     const dateIsEmpty = document.querySelector(".text-input").value === "";
     const informationIsEmpty = document.querySelector(".message").value === "";
     const condition = emailIsEmpty || dateIsEmpty || informationIsEmpty;
-    condition ? showDialog("dialog") : saveData(db, id);
+    condition ? showDialog("dialog") : saveData(db, verificationNumber);
   } catch (error) {
     console.log("⚠️ Error inspecting inputs");
   }
 }
 
+function setDialogStyles(dialog) {
+  dialog.style.display = "flex";
+  dialog.style.flexDirection = "column";
+  dialog.style.justifyContent = "space-evenly";
+  dialog.style.alignItems = "center";
+}
+
+function setDialogContent({id, dialog, textContent, btnContent}) {
+  const textHandler = 
+    id === "dialog" ? "dialog-text" : 
+    id === "dialog-login" ? "dialog-login-text" : 
+    id === "dialog-success" ? "dialog-success-text" : "";
+
+  const btnHandler =
+    id === "dialog" ? ".dialog-btn" :
+    id === "dialog-login" ? ".dialog-login-btn" :
+    id === "dialog-success" ? ".dialog-success-btn" : "";
+
+  dialog.style.borderColor = 
+    id === "dialog" || id === "dialog-login" ? "red" : "green";
+
+  document.getElementById(textHandler).innerText = textContent;
+  document.querySelector(btnHandler).innerText = btnContent;
+}
+
 export function showDialog(id) {
   try {
     const dialog = document.getElementById(id);
-    dialog.style.display = "flex";
-    dialog.style.flexDirection = "column";
-    dialog.style.justifyContent = "space-evenly";
-    dialog.style.alignItems = "center";
+    setDialogStyles(dialog);
     dialog.showModal();
 
-    if (id === "dialog") {
-      const text = document.getElementById("dialog-text");
-      const btn = document.querySelector(".dialog-btn");
-      text.innerText = "Please, fill in all the information requested.";
-      btn.innerText = "Confirm";
-    }
-    if (id === "dialog-login") {
-      const text = document.getElementById("dialog-login-text");
-      const btn = document.querySelector(".dialog-login-btn");
-      text.innerText = "You will now be redirected to login with Google.";
-      btn.innerText = "Proceed";
-    }
+    if (id === "dialog") setDialogContent({
+      id: id,
+      dialog: dialog,
+      textContent: "Please, fill in all the information requested.",
+      btnContent: "Confirm",
+    });
+  
+    if (id === "dialog-login") setDialogContent({
+      id: id,
+      dialog: dialog,
+      textContent: "You will now be redirected to login with Google.",
+      btnContent: "Proceed",
+    });
+
+    if (id === "dialog-success") setDialogContent({
+      id: id,
+      dialog: dialog,
+      textContent: "Your event has been added successfully!",
+      btnContent: "Close",
+    });
   } catch (error) {
     console.log("⚠️ Error showing dialog");
+    console.error(error)
   }
 }
 
-async function getEvents(db) {
+async function getEvents(db, verificationNumber) {
   try {
     const snapshot = await getCountFromServer(collection(db, "events"));
     const documentCount = snapshot.data().count;
 
     if (documentCount === 0)
-      await setDoc(doc(db, "events", "Christmas"), {
+      await setDoc(doc(db, verificationNumber, "Christmas"), {
         name: "Christmas",
         date: `${thisYear}-12-25`,
         description: "A time for living, a time for believing",
       });
+
+    let events = [];
+    const querySnapshot = await getDocs(collection(db, verificationNumber));
+    querySnapshot.forEach(document => events.push(document.data()));
   } catch (error) {
     console.log("⚠️ Failed to add the first event");
+    console.error(error);
   }
 }
 
-export function verifyLoginState(auth) {
+export function verifyLoginState(auth, verificationNumber) {
   try {
     if (!auth.currentUser) showDialog("dialog-login");
-    else getEvents(db);
+    else getEvents(db, verificationNumber);
   } catch (error) {
     console.log("⚠️ Error verifying login state");
   }

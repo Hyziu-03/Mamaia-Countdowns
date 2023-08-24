@@ -3,6 +3,7 @@ import { closeDialog } from "scripts/utilities";
 
 closeDialog("dialog");
 closeDialog("dialog-login");
+closeDialog("dialog-success");
 
 export default function Dialog(props) {
     const { type } = props;
@@ -26,6 +27,17 @@ export default function Dialog(props) {
             <form method="dialog">
                 <button
                     className="dialog-close btn dialog-login-btn"
+                ></button>
+            </form>
+        </dialog>
+    );
+
+    if(type === "success") dialog = (
+        <dialog id="dialog-success" className="dialog">
+            <p id="dialog-success-text"></p>
+            <form method="dialog">
+                <button
+                    className="dialog-close btn dialog-success-btn"
                 ></button>
             </form>
         </dialog>

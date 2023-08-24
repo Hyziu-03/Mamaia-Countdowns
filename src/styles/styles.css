@@ -220,6 +220,10 @@ body {
   justify-content: space-between;
 }
 
+.status {
+  font-size: 48px;
+}
+
 .name {
   font-size: 36px;
   line-height: 48px;
@@ -355,7 +359,8 @@ body {
   transform: translate(50%, -50%);
   width: 75vw;
   height: 40vh;
-  border: 8px solid red;
+  border-width: 8px;
+  border-block-style: solid;
   background: rgb(239, 239, 239);
   box-shadow: 4px 8px 4px rgba(42, 42, 42, 0.25);
   border-radius: 16px;

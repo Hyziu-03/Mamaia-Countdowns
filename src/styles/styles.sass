@@ -68,6 +68,9 @@ body
 .header
     @include header
 
+.status 
+    font-size: 2 * $size
+
 // Name.jsx
 
 .name
@@ -168,7 +171,8 @@ body
     transform: translate(50%,-50%)
     width: 75vw
     height: 40vh
-    border: 8px solid red
+    border-width: 8px
+    border-block-style: solid
     background: $white
     box-shadow: $shadow
     border-radius: 4 * $unit

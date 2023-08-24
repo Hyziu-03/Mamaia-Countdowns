@@ -1,9 +1,15 @@
 // Date
 import { getDifference, getTodaysDate } from "./date";
+// Utilities
+import { showDialog } from "./utilities";
 // Firestore
-import { collection, getDocs, query, addDoc } from "firebase/firestore";
-// 3rd party
-import DOMPurify from "dompurify";
+import { 
+  collection, 
+  getDocs, 
+  query, 
+  setDoc, 
+  doc 
+} from "firebase/firestore";
 
 export function populateEvents(currentEvent) {
   try {
@@ -86,24 +92,19 @@ export function loadDifference(currentEvent = null, dummy = true) {
   }
 }
 
-export async function saveData(db, id) {
+export async function saveData(db, verificationNumber) {
   try {
-    const eventName = DOMPurify.sanitize(
-      document.querySelector(".text-input").value
-    );
-    const eventDate = DOMPurify.sanitize(
-      document.querySelector(".email").value
-    );
-    const eventDescription = DOMPurify.sanitize(
-      document.querySelector(".message").value
-    );
+    const eventName = document.querySelector(".text-input").value;
+    const eventDate = document.querySelector(".email").value;
+    const eventDescription = document.querySelector(".message").value;
+
     // eslint-disable-next-line no-unused-vars
-    const newEvent = await addDoc(collection(db, id), {
+    const newEvent = await setDoc(doc(db, verificationNumber, eventName), {
       name: eventName,
       date: eventDate,
       description: eventDescription,
     });
-    alert("Your event has been saved!");
+    showDialog("dialog-success");
   } catch (error) {
     console.log("⚠️ Error saving data")
   }

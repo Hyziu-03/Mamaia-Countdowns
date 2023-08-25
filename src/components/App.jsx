@@ -6,8 +6,6 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 // Authentication
 import { onAuthStateChanged, getAuth } from "firebase/auth";
-// Date
-import { thisYear } from "scripts/date";
 // Firebase utilities
 import { firebaseConfig } from "scripts/firebase";
 // Other utilities
@@ -16,8 +14,6 @@ import {
     verifyLoginState, 
     awaitRedirect 
 } from "scripts/utilities";
-// Events
-import { loadDifference } from "scripts/events";
 // Components
 import Name from "components/interface/Name.jsx";
 import Contact from "components/interface/Contact.jsx";
@@ -44,6 +40,7 @@ export default function App() {
             <Dialog type="text" />
             <Dialog type="login" />
             <Dialog type="success" />
+            <Dialog type="event" />
             <header className="fixed-header">
                 <Name /> <span className="status">{status}</span>
             </header>
@@ -60,18 +57,11 @@ export default function App() {
                     </span>
                 </article>
                 <article className="saved-countdowns">
-                    <h1 className="heading" id="events-name">
-                        Christmas
-                    </h1>
-                    <p className="description" id="events-date">
-                        This event will happen on {thisYear}-12-25
-                    </p>
-                    <p className="description" id="events-distance">
-                        {loadDifference()}
-                    </p>
-                    <p className="description" id="events-description">
-                        A time for living, a time for believing
-                    </p>
+                    <img 
+                        src="images/notification.png" 
+                        className="app-image" 
+                        alt="" 
+                    />
                     <section 
                         className="btn-container" 
                         onClick={() => verifyLoginState(

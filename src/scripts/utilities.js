@@ -38,18 +38,23 @@ function setDialogContent({id, dialog, textContent, btnContent}) {
   const textHandler = 
     id === "dialog" ? "dialog-text" : 
     id === "dialog-login" ? "dialog-login-text" : 
+    id === "dialog-event" ? "dialog-event-text" :
     id === "dialog-success" ? "dialog-success-text" : "";
 
   const btnHandler =
     id === "dialog" ? ".dialog-btn" :
     id === "dialog-login" ? ".dialog-login-btn" :
+    id === "dialog-event" ? ".dialog-event-btn" :
     id === "dialog-success" ? ".dialog-success-btn" : "";
 
   dialog.style.borderColor = 
     id === "dialog" || id === "dialog-login" ? "red" : "green";
 
-  document.getElementById(textHandler).innerText = textContent;
-  document.querySelector(btnHandler).innerText = btnContent;
+  const textTarget = document.getElementById(textHandler);
+  if (textTarget !== null) textTarget.innerText = textContent;
+
+  const btnTarget = document.querySelector(btnHandler);
+  if (btnTarget !== null) btnTarget.innerText = btnContent;
 }
 
 export function showDialog(id) {
@@ -78,6 +83,13 @@ export function showDialog(id) {
       textContent: "Your event has been added successfully!",
       btnContent: "Close",
     });
+
+    if(id === "dialog-event") setDialogContent({
+      id: id,
+      dialog: dialog,
+      textContent: "",
+      btnContent: "Exit",
+    });
   } catch (error) {
     console.log("⚠️ Error showing dialog");
     console.error(error)
@@ -86,7 +98,9 @@ export function showDialog(id) {
 
 async function getEvents(db, verificationNumber) {
   try {
-    const snapshot = await getCountFromServer(collection(db, "events"));
+    const snapshot = await getCountFromServer(
+      collection(db, verificationNumber)
+    );
     const documentCount = snapshot.data().count;
 
     if (documentCount === 0)
@@ -99,6 +113,18 @@ async function getEvents(db, verificationNumber) {
     let events = [];
     const querySnapshot = await getDocs(collection(db, verificationNumber));
     querySnapshot.forEach(document => events.push(document.data()));
+
+    showDialog("dialog-event");
+
+    const name = document.getElementById("events-name");
+    name.innerText = events[0].name;
+    const date = document.getElementById("events-date");
+    date.innerText = events[0].date;
+    const description = document.getElementById("events-description");
+    description.innerText = events[0].description;
+    const count = document.getElementById("events-count");
+    count.innerText = `You are browsing 1/${documentCount} event.`;  
+
   } catch (error) {
     console.log("⚠️ Failed to add the first event");
     console.error(error);
@@ -140,7 +166,6 @@ export function awaitRedirect(auth) {
     }
   });
 }
-
 
 export const displayName = window.innerWidth < 1100 ? 
   "Mamaia" : "Mamaia Countdowns";

@@ -1,52 +1,70 @@
+// React
+import { useState, useEffect, useContext } from "react";
+// Firestore
+import { db } from "components/App";
 // Utilities
-import { closeDialog } from "scripts/utilities";
+import { closeDialog, fetchEvents, populateEvent } from "scripts/utilities";
 // Events
 import { loadDifference } from "scripts/events";
 // Components
-import ArrowNavigation from "./ArrowNavigation";
+import DialogBlueprint from "./DialogBlueprint";
+import { AuthContext } from "components/AuthContext";
 
 closeDialog("dialog");
 closeDialog("dialog-login");
 closeDialog("dialog-success");
 closeDialog("dialog-event");
 
+async function getEvents(db, id) {
+    const events = await fetchEvents(db, id);
+    return events;
+}
+
 export default function Dialog(props) {
+    const id = useContext(AuthContext);
     const { type } = props;
-    
     let dialog = null;
 
     if (type === "login") dialog = (
-        <dialog id="dialog" className="dialog">
-            <p id="dialog-text"></p>
-            <form method="dialog">
-                <button
-                    className="dialog-close btn dialog-btn"
-                ></button>
-            </form>
-        </dialog>
+        <DialogBlueprint 
+            id="dialog"
+            p="dialog-text"
+            btn="dialog-btn"
+        />
     );
-
     if (type === "text") dialog = (
-        <dialog id="dialog-login" className="dialog">
-            <p id="dialog-login-text"></p>
-            <form method="dialog">
-                <button
-                    className="dialog-close btn dialog-login-btn"
-                ></button>
-            </form>
-        </dialog>
+        <DialogBlueprint 
+            id="dialog-login"
+            p="dialog-login-text"
+            btn="dialog-login-btn"
+        />
+    );
+    if(type === "success") dialog = (
+        <DialogBlueprint
+            id="dialog-success"
+            p="dialog-success-text"
+            btn="dialog-success-btn"
+        />
     );
 
-    if(type === "success") dialog = (
-        <dialog id="dialog-success" className="dialog">
-            <p id="dialog-success-text"></p>
-            <form method="dialog">
-                <button
-                    className="dialog-close btn dialog-success-btn"
-                ></button>
-            </form>
-        </dialog>
-    );
+    // Events dialog
+
+    const [numeral, setNumeral] = useState(0);
+    const documentCount = 6;
+
+    function decrementNumeral() {
+        if (numeral !== 1)
+            setNumeral(numeral - 1);
+    }
+    function incrementNumeral() {
+        if (numeral !== documentCount)
+            setNumeral(numeral + 1);
+    }
+
+    useEffect(() => {
+        const eventList = getEvents(db, id);
+        populateEvent(eventList, numeral)
+    }, [numeral, id]);
 
     if(type === "event") dialog = (
         <dialog id="dialog-event" className="dialog dialog-event">
@@ -56,9 +74,18 @@ export default function Dialog(props) {
                 {loadDifference()}
             </p>
             <p className="description" id="events-description"></p>
-            <p className="description" id="events-count"></p>
+            <p className="description" id="events-count">
+                You are browsing {numeral}/6 event
+            </p>
 
-            <ArrowNavigation />
+            <div className="arrow-navigation-container">
+                <button className="arrow-btn" onClick={decrementNumeral}>
+                    <span className="icon arrow">arrow_back</span>
+                </button>
+                <button className="arrow-btn" onClick={incrementNumeral}>
+                    <span className="icon arrow">arrow_forward</span>
+                </button>
+            </div>
             
             <form method="dialog">
                 <button

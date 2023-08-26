@@ -9,8 +9,12 @@ No matter if it’s Christmas or an important exam to take!
 ### TASKS
 
 ✅ Reimplement authentication
-🔲 Work on `getEvents()` function
+✅ Extract another component from `<Dialog />` component
+✅ Work on `getEvents()` function from `utilities.js` file to serve events
+🔲 Work on `loadDifference()` function
 🔲 Work on `events.js` file
 🔲 Correct `App.jsx` styles
-🔲 Extract another component from `<Dialog />` component
 🔲 Optimize `notification.png` icon
+🔲 Dynamically update `documentCount` variable from `<Dialog />` component
+🔲 Figure out where else to use Context API
+🔲 Test the app with React Developer Tools and React Profiler

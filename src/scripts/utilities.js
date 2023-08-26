@@ -96,12 +96,16 @@ export function showDialog(id) {
   }
 }
 
+export async function getDocumentCount(db, verificationNumber) {
+  const snapshot = await getCountFromServer(
+    collection(db, verificationNumber)
+  );
+  return snapshot.data().count;
+}
+
 async function getEvents(db, verificationNumber) {
   try {
-    const snapshot = await getCountFromServer(
-      collection(db, verificationNumber)
-    );
-    const documentCount = snapshot.data().count;
+    const documentCount = await getDocumentCount(db, verificationNumber);
 
     if (documentCount === 0)
       await setDoc(doc(db, verificationNumber, "Christmas"), {
@@ -110,23 +114,37 @@ async function getEvents(db, verificationNumber) {
         description: "A time for living, a time for believing",
       });
 
-    let events = [];
-    const querySnapshot = await getDocs(collection(db, verificationNumber));
-    querySnapshot.forEach(document => events.push(document.data()));
-
     showDialog("dialog-event");
 
-    const name = document.getElementById("events-name");
-    name.innerText = events[0].name;
-    const date = document.getElementById("events-date");
-    date.innerText = events[0].date;
-    const description = document.getElementById("events-description");
-    description.innerText = events[0].description;
-    const count = document.getElementById("events-count");
-    count.innerText = `You are browsing 1/${documentCount} event.`;  
-
+    const events = await fetchEvents(db, verificationNumber);
+    populateEvent(events, 0);
   } catch (error) {
     console.log("⚠️ Failed to add the first event");
+    console.error(error);
+  }
+}
+
+export async function fetchEvents(db, verificationNumber) {
+  let events = [];
+  const querySnapshot = await getDocs(collection(db, verificationNumber));
+  querySnapshot.forEach((document) => events.push(document.data()));
+  return events;
+}
+
+export async function populateEvent(events, number) {
+  try {
+    const list = await events;
+
+    const name = document.getElementById("events-name");
+    name.innerText = list[number].name;
+
+    const date = document.getElementById("events-date");
+    date.innerText = list[number].date;
+
+    const description = document.getElementById("events-description");
+    description.innerText = list[number].description;
+  } catch(error) {
+    console.log("⚠️ Error populating the first event");
     console.error(error);
   }
 }

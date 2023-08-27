@@ -101,7 +101,6 @@ body
     font-size: $size
     margin: .75 * $size $size $size $size
     max-width: 35ch
-    text-align: justify
 
 // Form.jsx
 
@@ -169,11 +168,12 @@ body
 
 .dialog
     position: absolute
+    overflow-x: hidden
     top: 50%
     left: -25%
     transform: translate(50%,-50%)
-    width: 75vw
-    height: 40vh
+    min-width: 75vw
+    min-height: 40vh
     border-width: 8px
     border-block-style: solid
     background: $white

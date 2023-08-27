@@ -267,7 +267,6 @@ body {
   font-size: 24px;
   margin: 18px 24px 24px 24px;
   max-width: 35ch;
-  text-align: justify;
 }
 
 .form {
@@ -363,11 +362,12 @@ body {
 
 .dialog {
   position: absolute;
+  overflow-x: hidden;
   top: 50%;
   left: -25%;
   transform: translate(50%, -50%);
-  width: 75vw;
-  height: 40vh;
+  min-width: 75vw;
+  min-height: 40vh;
   border-width: 8px;
   border-block-style: solid;
   background: rgb(239, 239, 239);
@@ -414,17 +414,26 @@ body {
   }
   .saved-countdowns {
     min-width: 0;
+    margin: 36px;
+  }
+}
+@media (max-width: 800px) {
+  #events-name, #events-date, #events-description, #events-distance, #events-count {
+    text-align: center;
   }
 }
 @media (max-width: 600px) {
   .arrow-btn {
     width: 105px;
   }
+  .app-image {
+    width: 200px;
+  }
+  .status {
+    font-size: 36px;
+  }
 }
 @media (max-width: 500px) {
-  #events-name, #events-date, #events-description, #events-distance {
-    margin: 32px 0;
-  }
   .form {
     padding: 24px;
   }
@@ -438,10 +447,6 @@ body {
   }
   .input {
     min-width: 250px;
-  }
-  .fixed-header {
-    flex-direction: column;
-    margin-bottom: 0;
   }
   .contact-form-container, .mobile-container {
     margin: 0 !important;

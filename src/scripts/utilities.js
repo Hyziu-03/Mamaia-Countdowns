@@ -7,7 +7,7 @@ import {
   getDocs
 } from "firebase/firestore";
 // Events
-import { saveData } from "./events";
+import { loadDifference, saveData } from "./events";
 // Firebase utilities
 import { login } from "./firebase";
 // Date
@@ -143,9 +143,11 @@ export async function populateEvent(events, number) {
 
     const description = document.getElementById("events-description");
     description.innerText = list[number].description;
+
+    const distance = document.getElementById("events-distance");
+    distance.innerText = loadDifference(list[number]);
   } catch(error) {
-    console.log("⚠️ Error populating the first event");
-    console.error(error);
+    console.log("⚠️ Error populating the first event"); 
   }
 }
 

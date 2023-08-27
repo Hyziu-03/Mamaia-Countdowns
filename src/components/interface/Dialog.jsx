@@ -4,11 +4,11 @@ import { useState, useEffect, useContext } from "react";
 import { db } from "components/App";
 // Utilities
 import { closeDialog, fetchEvents, populateEvent } from "scripts/utilities";
-// Events
-import { loadDifference } from "scripts/events";
 // Components
 import DialogBlueprint from "./DialogBlueprint";
-import { AuthContext } from "components/AuthContext";
+// Context
+import { AuthContext } from "context/AuthContext";
+import { CountContext } from "context/CountContext";
 
 closeDialog("dialog");
 closeDialog("dialog-login");
@@ -49,8 +49,8 @@ export default function Dialog(props) {
 
     // Events dialog
 
-    const [numeral, setNumeral] = useState(0);
-    const documentCount = 6;
+    const [numeral, setNumeral] = useState(1);
+    const documentCount = useContext(CountContext);
 
     function decrementNumeral() {
         if (numeral !== 1)
@@ -70,9 +70,7 @@ export default function Dialog(props) {
         <dialog id="dialog-event" className="dialog dialog-event">
             <h1 className="heading" id="events-name"> </h1>
             <p className="description" id="events-date"></p>
-            <p className="description" id="events-distance">
-                {loadDifference()}
-            </p>
+            <p className="description" id="events-distance"></p>
             <p className="description" id="events-description"></p>
             <p className="description" id="events-count">
                 You are browsing {numeral}/6 event

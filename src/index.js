@@ -10,16 +10,19 @@ import reportWebVitals from "reportWebVitals";
 import App from "components/App.jsx";
 import Home from "components/Home.jsx";
 // Context
-import { AuthProvider } from "components/AuthContext";
+import { AuthProvider } from "context/AuthContext";
+import { CountProvider } from "context/CountContext";
 
 ReactDOM.render(
   <AuthProvider>
-    <Router>
-      <Switch>
-        <Route exact path="/set-countdown" component={App} />
-        <Route exact path="/" component={Home} />
-      </Switch>
-    </Router>
+    <CountProvider>
+      <Router>
+        <Switch>
+          <Route exact path="/set-countdown" component={App} />
+          <Route exact path="/" component={Home} />
+        </Switch>
+      </Router>
+    </CountProvider>
   </AuthProvider>,
   document.getElementById("root")
 );

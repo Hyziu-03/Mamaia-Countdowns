@@ -1,5 +1,5 @@
 // Date
-import { getDifference, getTodaysDate } from "./date";
+import { getTodaysDate } from "./date";
 // Utilities
 import { showDialog } from "./utilities";
 // Firestore
@@ -17,36 +17,23 @@ export function populateEvents(currentEvent) {
     const eventDate = document.getElementById("events-date");
     const eventDescription = document.getElementById("events-description");
     const eventDistance = document.getElementById("events-distance");
+
+    const dataReceived = currentEvent !== undefined;
     const elementsRendered = !(
       eventName === null ||
       eventDate === null ||
       eventDescription === null ||
       eventDistance === null
     );
-    const dataReceived = currentEvent !== undefined;
+    
     if (elementsRendered && dataReceived) {
       eventName.innerHTML = currentEvent.name;
       eventDate.innerHTML = currentEvent.date;
-      eventDistance.innerHTML = logDifference(currentEvent);
+      eventDistance.innerHTML = loadDifference(currentEvent);
       eventDescription.innerHTML = currentEvent.description;
     }
   } catch (error) {
     console.log("⚠️ Error populating events");
-  }
-}
-
-export function logDifference(currentEvent) {
-  try {
-    const event = currentEvent.date;
-    const difference = getDifference(event);
-    if (difference === 0) {
-      notify(currentEvent);
-      return "This event is happening today!";
-    } else if (difference > 0)
-      return `This event is ${difference} days from today!`;
-    else return `This event happened ${Math.abs(difference)} days ago!`;
-  } catch (error) {
-    console.log("⚠️ Error logging difference between dates")
   }
 }
 
@@ -75,18 +62,21 @@ export async function getEvents(db, id) {
   }
 }
 
-export function loadDifference(currentEvent = null, dummy = true) {
+export function loadDifference(event) {
   try {
     const millisecondsPerDay = 86400000;
     const today = new Date(getTodaysDate());
-    const eventsDate = new Date(today.getFullYear(), 11, 25);
+    const eventsDate = new Date(event.date);
     const difference = (eventsDate - today) / millisecondsPerDay;
+
     if (difference === 0) {
-      if (!dummy) notify(currentEvent);
-      return "Christmas is happening today!";
-    } else if (difference > 0)
+      notify(event);
+      return "It is happening today!";
+    }
+    else if (difference > 0)
       return `It is ${Math.round(difference)} days from today!`;
-    else return `It happened ${Math.abs(difference)} days ago!`;
+    else 
+      return `It happened ${Math.abs(difference)} days ago!`;
   } catch (error) {
     console.log("⚠️ Error loading difference between dates")
   }

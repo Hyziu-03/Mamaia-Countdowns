@@ -2,6 +2,7 @@
 import LinkedInIcon from "components/icons/LinkedInIcon";
 import GitHubIcon from "components/icons/GitHubIcon";
 import BuyMeCoffee from "components/icons/BuyMeCoffee";
+import MailIcon from "components/icons/MailIcon";
 
 export default function Footer() {
     return (
@@ -24,6 +25,12 @@ export default function Footer() {
                     rel="noreferrer noopener"
                 >
                     <GitHubIcon />
+                </a>
+                <a href="mailto:szymonhyziak@student.agh.edu.pl"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                >
+                    <MailIcon />
                 </a>
                 <BuyMeCoffee />
             </section>

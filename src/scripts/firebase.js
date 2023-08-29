@@ -1,8 +1,5 @@
 // Authentication
-import { 
-  GoogleAuthProvider, 
-  signInWithRedirect 
-} from "firebase/auth";
+import { GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCmNk2q3k4i3dV9ZG2ZfZeTKnum70UaVas",

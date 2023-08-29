@@ -2,9 +2,6 @@
 @import "modules/font"
 @import "modules/app"
 
-/* <Home /> is  adapted for viewports wider than 170 pixels */
-/* <App /> is adapted for viewports wider than 310 pixels */
-
 a
     @include link
 
@@ -21,6 +18,9 @@ body
 .touch-target
     @include touch-target
 
+::selection
+    background: $yellow
+
 // Scrollbar
 
 ::-webkit-scrollbar
@@ -32,7 +32,7 @@ body
     border: .5 * $unit solid $black
     border-radius: .25 * $size
 
-// Home.jsx 
+// Home
 
 .App
     @include container
@@ -42,36 +42,26 @@ body
     gap: 4 * $size
     margin-top: -3 * $size
 
-// AppNavigation.jsx 
+// Event arrow navigation
 
 .arrow-navigation-container
     display: flex
-    flex-wrap: wrap
+    flex-wrap wrap
     justify-content: center
 
 .arrow-btn
-    @include hoverable
-    @include btn($white, $blue)
-    margin: $unit * 2
-    display: flex
-    flex-wrap: wrap
-    justify-content: center
-
-    &:hover
-        background: $hwhite
+    @include arrow-btn
 
 .arrow
     font-size: 1.75 * $size
 
-// Header.jsx 
+// Header
 
 .header
     @include header
 
 .status 
     font-size: 2 * $size
-
-// Name.jsx
 
 .name
     @include heading
@@ -81,7 +71,7 @@ body
     &:hover
         filter: drop-shadow($shadow)
 
-// Button.jsx
+// Buttons
 
 .btn
     @include btn($blue, $white)
@@ -89,7 +79,7 @@ body
     &:hover
         background: $hblue
 
-// Paragraph.jsx
+// Paragraphs
 
 .heading
     @include heading
@@ -102,7 +92,7 @@ body
     margin: .75 * $size $size $size $size
     max-width: 35ch
 
-// Form.jsx
+// Form
 
 .form
     @include form
@@ -113,7 +103,7 @@ body
 .textarea
     @include textarea
 
-// Footer.jsx 
+// Footer
 
 .footer
     padding: $size 3 * $size
@@ -134,19 +124,15 @@ body
     width: 217px
     object-fit: cover
 
-// GitHubIcon.jsx, LinkedInIcon.jsx 
+// Icons
+
+.brand-icon:hover .coffee-vector
+    fill: $yellow
 
 .brand-icon
-    @include hoverable
-    margin: 0 $unit * 4
-    transition: .25s all ease
-    border-radius: 50%
-    drop-shadow: $shadow
+    @include  brand-icon
 
-    &:hover
-        background: $yellow
-
-// IntroductorySection.jsx, DescriptiveSection.jsx, AuthorSection.jsx
+// Sections 
 
 .article
     display: flex
@@ -161,36 +147,12 @@ body
     pointer-events: none
     object-fit: cover
 
-// Dialog.jsx
+// Dialogs
 
 .dialog-event
-    height: 80vh !important
+    height: 80vh
 
-.dialog
-    position: absolute
-    overflow-x: hidden
-    top: 50%
-    left: -25%
-    transform: translate(50%,-50%)
-    min-width: 75vw
-    min-height: 40vh
-    border-width: 8px
-    border-block-style: solid
-    background: $white
-    box-shadow: $shadow
-    border-radius: 4 * $unit
-    padding: 1.5 * $size
-    font-family: 'Montserrat', sans-serif
-    font-size: $size
-    display: none
-
-    &::backdrop
-        background-color: rgba(0, 0, 0, .75) 
-
-    .dialog-close
-        margin-top: $size
-
-        &:hover
-            cursor: pointer
+.dialog[open]
+    @include dialog 
 
 @import "modules/responsive"

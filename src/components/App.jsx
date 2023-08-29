@@ -26,10 +26,14 @@ export const auth = getAuth();
 
 export default function App() {
     let [status, setStatus] = useState("");
+    let statusMessage = "";
 
     onAuthStateChanged(auth, function (user) {
         try {
             user ? setStatus("✅") : setStatus("⚠️") && awaitRedirect(auth);
+            status === "✅" ? 
+                statusMessage = "Everything is fine, you are logged in" : 
+                statusMessage = "You will need to log in to set a countdown";
         } catch (error) {
             console.log("⚠️ Failed to determine login state");
         }
@@ -42,7 +46,8 @@ export default function App() {
             <Dialog type="success" />
             <Dialog type="event" />
             <header className="fixed-header">
-                <Name /> <span className="status">{status}</span>
+                <Name /> 
+                <span className="status" title={statusMessage}>{status}</span>
             </header>
             <main className="mobile-content">
                 <article className="contact-form-container">

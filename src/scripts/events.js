@@ -3,13 +3,7 @@ import { getTodaysDate } from "./date";
 // Utilities
 import { showDialog } from "./utilities";
 // Firestore
-import { 
-  collection, 
-  getDocs, 
-  query, 
-  setDoc, 
-  doc 
-} from "firebase/firestore";
+import { setDoc, doc } from "firebase/firestore";
 
 export function populateEvents(currentEvent) {
   try {
@@ -47,18 +41,6 @@ export function notify(currentEvent) {
     });
   } catch (error) {
     console.log("⚠️ Error notifying user")
-  }
-}
-
-export async function getEvents(db, id) {
-  try {
-    const data = query(collection(db, id));
-    const events = [];
-    const snapshot = await getDocs(data);
-    snapshot.forEach((doc) => events.push(doc.data()));
-    return events;
-  } catch (error) {
-    console.log("⚠️ Error getting events")
   }
 }
 

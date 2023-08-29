@@ -27,13 +27,6 @@ export function inspectInputs(db, verificationNumber) {
   }
 }
 
-function setDialogStyles(dialog) {
-  dialog.style.display = "flex";
-  dialog.style.flexDirection = "column";
-  dialog.style.justifyContent = "space-evenly";
-  dialog.style.alignItems = "center";
-}
-
 function setDialogContent({id, dialog, textContent, btnContent}) {
   const textHandler = 
     id === "dialog" ? "dialog-text" : 
@@ -60,7 +53,6 @@ function setDialogContent({id, dialog, textContent, btnContent}) {
 export function showDialog(id) {
   try {
     const dialog = document.getElementById(id);
-    setDialogStyles(dialog);
     dialog.showModal();
 
     if (id === "dialog") setDialogContent({
@@ -168,7 +160,6 @@ export function closeDialog(id) {
       if (closeButton !== null)
         closeButton.addEventListener("click", function () {
           dialog.close();
-          dialog.style.display = "none";
         });
     } catch (error) {
       console.log("⚠️ Error closing dialog");

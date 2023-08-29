@@ -61,6 +61,10 @@ $shadow: $unit 2 * $unit $unit $hblack
     width: 100vw
     height: 100vh
 
+@mixin font-reset
+    font-family: 'Montserrat', sans-serif
+    font-size: $size
+
 // Components
 
 @mixin container
@@ -131,3 +135,53 @@ $shadow: $unit 2 * $unit $unit $hblack
     justify-content: center
     text-align: center
     max-width: 30ch
+
+@mixin arrow-btn 
+    @include hoverable
+    @include btn($white, $blue)
+    margin: $unit * 2
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+
+    &:hover
+        background: $hwhite
+
+@mixin brand-icon 
+    @include hoverable
+    margin: 0 $unit * 4
+    transition: .25s all ease
+    border-radius: 50%
+    drop-shadow: $shadow
+
+    &:hover
+        background: $yellow
+
+        .coffee-vector
+            fill: $yellow
+
+@mixin dialog 
+    @include position-center
+    @include font-reset
+    overflow-x: hidden
+    min-width: 75vw
+    min-height: 40vh
+    border-width: $unit * 2
+    border-block-style: solid
+    background: $white
+    box-shadow: $shadow
+    border-radius: 4 * $unit
+    padding: 1.5 * $size
+    display: flex
+    flex-direction: column
+    justify-content: space-evenly
+    align-items: center
+
+    &::backdrop
+        background-color: rgba(0, 0, 0, .75) 
+
+    .dialog-close
+        margin-top: $size
+
+        &:hover
+            cursor: pointer

@@ -9,9 +9,9 @@ export default function DescriptiveSection() {
       <Paragraph
         heading="How to use it? "
         description={[
-          "This tools’ purpose is to give you an option to create countdowns with ease. You can add a name to the event, set its’ date and a couple more options.",
-          "These are for your convenience and to exaggerate that you can adjust times for notifications and another reminder so you won’t miss them. Never!",
-          "All your countdowns will be stored in the memory of your device, so please don’t clear it for this app, as you might lose all your work.",
+          "The goal of this tool is to let you easily make countdowns. You can name the event, pick a date, and choose a few other things too.",
+          "These options are there to help you. You can set times for notifications and extra reminders, so you won't ever miss those events.",
+          "All your countdowns are stored in the cloud now. So, no need to stress about losing your work – just log in with your Google account!",
         ]}
         className="explanation" />
       <img

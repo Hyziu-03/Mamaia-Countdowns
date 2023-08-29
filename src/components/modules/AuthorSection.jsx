@@ -7,11 +7,11 @@ export default function AuthorSection() {
   return (
     <article className="article">
       <Paragraph
-        heading="Who is the creator?"
+        heading="Who is the author?"
         description={[
-          "Hello, I’m Szymon Hyziak - 20 years high school graduate from Poland. I’ve been developing websites for over a year and I’m thrilled to show you another one",
-          "I’ve got a background in IT, that’s related to my high school. I also fancy UI Design and photography.",
-          "If you want to contact me work-wise don’t hesitate to reach me through LinkedIn. All the useful links are below!",
+          "Hey there, I'm Szymon Hyziak, a 20-year-old geoinformatics student from Poland. I've been diving into website development for more than two years now, and I'm super excited to introduce you to my latest work!",
+          "My IT background is tied to my high school education. On top of that, I have a strong interest in UI design and photography",
+          "If you'd like to connect with me for work-related matters, feel free to reach out to me on LinkedIn. You'll find all the useful links right down below!",
         ]}
         className="biography" 
       />

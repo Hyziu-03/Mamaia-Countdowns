@@ -79,5 +79,6 @@ export async function saveData(db, verificationNumber) {
     showDialog("dialog-success");
   } catch (error) {
     console.log("⚠️ Error saving data")
+    showDialog("dialog-error");
   }
 }

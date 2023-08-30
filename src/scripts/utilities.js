@@ -13,7 +13,7 @@ import { login } from "./firebase";
 // Date
 import { thisYear } from "./date";
 // Components
-import { db } from "components/App";
+import { db, auth } from "components/App";
 
 export function inspectInputs(db, verificationNumber) {
   try {
@@ -32,16 +32,19 @@ function setDialogContent({id, dialog, textContent, btnContent}) {
     id === "dialog" ? "dialog-text" : 
     id === "dialog-login" ? "dialog-login-text" : 
     id === "dialog-event" ? "dialog-event-text" :
-    id === "dialog-success" ? "dialog-success-text" : "";
+    id === "dialog-success" ? "dialog-success-text" : 
+    id === "dialog-error" ? "dialog-error-text" : "";
 
   const btnHandler =
     id === "dialog" ? ".dialog-btn" :
     id === "dialog-login" ? ".dialog-login-btn" :
     id === "dialog-event" ? ".dialog-event-btn" :
-    id === "dialog-success" ? ".dialog-success-btn" : "";
+    id === "dialog-success" ? ".dialog-success-btn" : 
+    id === "dialog-error" ? ".dialog-error-btn" : "";
 
   dialog.style.borderColor = 
-    id === "dialog" || id === "dialog-login" ? "red" : "green";
+    id === "dialog" || id === "dialog-login" || id === "dialog-error" ? 
+      "red" : "green";
 
   const textTarget = document.getElementById(textHandler);
   if (textTarget !== null) textTarget.innerText = textContent;
@@ -53,6 +56,7 @@ function setDialogContent({id, dialog, textContent, btnContent}) {
 export function showDialog(id) {
   try {
     const dialog = document.getElementById(id);
+    console.log(dialog)
     dialog.showModal();
 
     if (id === "dialog") setDialogContent({
@@ -81,6 +85,13 @@ export function showDialog(id) {
       dialog: dialog,
       textContent: "",
       btnContent: "Exit",
+    });
+
+    if(id === "dialog-error") setDialogContent({
+      id: id,
+      dialog: dialog,
+      textContent: "You will need to log in to set a countdown",
+      btnContent: "Close",
     });
   } catch (error) {
     console.log("⚠️ Error showing dialog");
@@ -168,15 +179,17 @@ export function closeDialog(id) {
 }
 
 export function awaitRedirect(auth) {
-  window.addEventListener("DOMContentLoaded", function () {
-    try {
-      const btn = document.querySelector(".dialog-login-btn");
-      if (btn !== null) btn.addEventListener("click", login(auth));
-    } catch (error) {
-      console.log("⚠️ Error awaiting redirect");
-    }
-  });
+  try {
+    const btn = document.querySelector(".dialog-login-btn");
+    if (btn !== null) btn.addEventListener("click", login(auth));
+  } catch (error) {
+    console.log("⚠️ Error awaiting redirect");
+  }
 }
 
 export const displayName = window.innerWidth < 1100 ? 
   "Mamaia" : "Mamaia Countdowns";
+
+export function checkOrigin(origin) {
+  if (origin === "dialog-login") awaitRedirect(auth);
+}

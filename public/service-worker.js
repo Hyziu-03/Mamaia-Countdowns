@@ -28,6 +28,6 @@ self.addEventListener("activate", (event) => {
           })
         )
       )
-      .catch((error) => console.log("⚠️ Error activating cachce"))
+      .catch(error => console.log("⚠️ Error activating cachce"))
   );
 });

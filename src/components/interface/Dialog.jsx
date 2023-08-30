@@ -14,6 +14,7 @@ closeDialog("dialog");
 closeDialog("dialog-login");
 closeDialog("dialog-success");
 closeDialog("dialog-event");
+closeDialog("dialog-error");
 
 async function getEvents(db, id) {
     const events = await fetchEvents(db, id);
@@ -46,18 +47,25 @@ export default function Dialog(props) {
             btn="dialog-success-btn"
         />
     );
+    if(type === "error") dialog = (
+        <DialogBlueprint
+            id="dialog-error"
+            p="dialog-error-text"
+            btn="dialog-error-btn"
+        />
+    );
 
     // Events dialog
 
-    const [numeral, setNumeral] = useState(1);
+    const [numeral, setNumeral] = useState(0);
     const documentCount = useContext(CountContext);
 
     function decrementNumeral() {
-        if (numeral !== 1)
+        if (numeral !== 0)
             setNumeral(numeral - 1);
     }
     function incrementNumeral() {
-        if (numeral !== documentCount)
+        if (numeral !== documentCount - 1)
             setNumeral(numeral + 1);
     }
 
@@ -73,7 +81,7 @@ export default function Dialog(props) {
             <p className="description" id="events-distance"></p>
             <p className="description" id="events-description"></p>
             <p className="description" id="events-count">
-                You are browsing {numeral}/6 event
+                You are browsing {numeral + 1}/{documentCount} event
             </p>
 
             <div className="arrow-navigation-container">

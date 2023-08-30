@@ -18,7 +18,11 @@ No matter if it’s Christmas or an important exam to take!
 ✅ Test the app with React Developer Tools and React Profiler
 ✅ Correct `App.jsx` styles
 ✅ Check if the app is responsive
-🔲 Optimize `notification.png` icon
-🔲 Correct reading total event count
-🔲 Correct website scaling
+✅ Optimize `notification.png` icon
+✅ Correct reading total event count
+✅ Correct website scaling
+🔲 Make notifications more useful
+🔲 Add a `delete` button for each event
+🔲 Add a `delete all` button
+🔲 Create a new author image
 🔲 Test the app with React Developer Tools and React Profiler before production

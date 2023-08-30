@@ -1,5 +1,5 @@
 // React
-import { useState } from "react";
+import { useState, useContext } from "react";
 // Firebase
 import { initializeApp } from "firebase/app";
 // Firestore
@@ -14,6 +14,8 @@ import {
     verifyLoginState, 
     awaitRedirect 
 } from "scripts/utilities";
+// Context
+import { AuthContext } from "context/AuthContext";
 // Components
 import Name from "components/interface/Name.jsx";
 import Contact from "components/interface/Contact.jsx";
@@ -26,6 +28,7 @@ export const auth = getAuth();
 
 export default function App() {
     let [status, setStatus] = useState("");
+    const id = useContext(AuthContext);
     let statusMessage = "";
 
     onAuthStateChanged(auth, function (user) {
@@ -45,6 +48,7 @@ export default function App() {
             <Dialog type="login" />
             <Dialog type="success" />
             <Dialog type="event" />
+            <Dialog type="error" />
             <header className="fixed-header">
                 <Name /> 
                 <span className="status" title={statusMessage}>{status}</span>
@@ -57,20 +61,20 @@ export default function App() {
                         secondInputType="date"
                         thirdInput="What additional information do you have?"
                     />
-                    <span onClick={() => inspectInputs(db, auth.currentUser.uid)}>
+                    <span onClick={() => inspectInputs(db, id)}>
                         <Button message="Set a Countdown!" id="app-form-btn" />
                     </span>
                 </article>
                 <article className="saved-countdowns">
                     <img 
-                        src="images/notification.png" 
+                        src="images/notification.webp" 
                         className="app-image" 
                         alt="" 
                     />
                     <section 
                         className="btn-container" 
                         onClick={() => verifyLoginState(
-                            auth, auth.currentUser.uid
+                            auth, id
                         )}
                     >
                         <Button message="Pull data from the database" />

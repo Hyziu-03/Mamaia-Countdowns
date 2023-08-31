@@ -15,13 +15,15 @@ function CountProvider({ children }) {
     useEffect(function () {
         const unsubscribe = async function () {
             try {
+                if(id === null) return;
                 const snapshot = await getCountFromServer(
                     collection(db, id)
                 );
                 const documentCount = snapshot.data().count;
-                setCount(documentCount);
+                setCount(documentCount);                
             } catch(error) {
                 console.log("⚠️ Error getting document count")
+                console.error(error);
             }
         }
 

@@ -56,7 +56,6 @@ function setDialogContent({id, dialog, textContent, btnContent}) {
 export function showDialog(id) {
   try {
     const dialog = document.getElementById(id);
-    console.log(dialog)
     dialog.showModal();
 
     if (id === "dialog") setDialogContent({
@@ -95,7 +94,6 @@ export function showDialog(id) {
     });
   } catch (error) {
     console.log("⚠️ Error showing dialog");
-    console.error(error)
   }
 }
 
@@ -106,7 +104,7 @@ export async function getDocumentCount(db, verificationNumber) {
   return snapshot.data().count;
 }
 
-async function getEvents(db, verificationNumber) {
+export async function getEvents(db, verificationNumber) {
   try {
     const documentCount = await getDocumentCount(db, verificationNumber);
 
@@ -123,20 +121,26 @@ async function getEvents(db, verificationNumber) {
     populateEvent(events, 0);
   } catch (error) {
     console.log("⚠️ Failed to add the first event");
-    console.error(error);
   }
 }
 
 export async function fetchEvents(db, verificationNumber) {
-  let events = [];
-  const querySnapshot = await getDocs(collection(db, verificationNumber));
-  querySnapshot.forEach((document) => events.push(document.data()));
-  return events;
+  try {
+    if (verificationNumber === null) return null;
+    let events = [];
+    const querySnapshot = await getDocs(collection(db, verificationNumber));
+    querySnapshot.forEach((document) => events.push(document.data()));
+    return events;
+  }
+  catch (error) {
+    console.log("⚠️ Error fetching events");
+  }
 }
 
 export async function populateEvent(events, number) {
   try {
     const list = await events;
+    if (list === null) return;
 
     const name = document.getElementById("events-name");
     name.innerText = list[number].name;

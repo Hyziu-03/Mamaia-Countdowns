@@ -402,6 +402,14 @@ body {
   cursor: pointer;
 }
 
+#delete-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: red;
+  padding: 8px 24px;
+}
+
 @media (max-width: 1300px) {
   .article {
     flex-direction: column;

@@ -1,5 +1,5 @@
 // React
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 // Firebase
 import { initializeApp } from "firebase/app";
 // Firestore
@@ -14,8 +14,11 @@ import {
     verifyLoginState, 
     awaitRedirect 
 } from "scripts/utilities";
+// Events
+import { notifyAll } from "scripts/events";
 // Context
 import { AuthContext } from "context/AuthContext";
+import { CountContext } from "context/CountContext";
 // Components
 import Name from "components/interface/Name.jsx";
 import Contact from "components/interface/Contact.jsx";
@@ -29,6 +32,7 @@ export const auth = getAuth();
 export default function App() {
     let [status, setStatus] = useState("");
     const id = useContext(AuthContext);
+    const documentCount = useContext(CountContext)
     let statusMessage = "";
 
     onAuthStateChanged(auth, function (user) {
@@ -41,6 +45,8 @@ export default function App() {
             console.log("⚠️ Failed to determine login state");
         }
     });
+
+    useEffect(() => notifyAll(id, documentCount), [id, documentCount]);
 
     return (
         <section className="mobile-container">

@@ -1,9 +1,10 @@
 // Date
 import { getTodaysDate } from "./date";
 // Utilities
-import { showDialog } from "./utilities";
+import { showDialog, fetchEvents } from "./utilities";
 // Firestore
-import { setDoc, doc } from "firebase/firestore";
+import { setDoc, doc, deleteDoc} from "firebase/firestore";
+import { db } from "components/App";
 
 export function populateEvents(currentEvent) {
   try {
@@ -41,6 +42,30 @@ export function notify(currentEvent) {
     });
   } catch (error) {
     console.log("⚠️ Error notifying user")
+  }
+}
+
+export async function notifyAll(id, eventCount) {
+  const millisecondsPerDay = 86400000;
+  const events = await fetchEvents(db, id);
+  const today = new Date(getTodaysDate());
+
+  for(let i = 0; i < eventCount; i += 1) {
+    const eventsDate = new Date(events[i].date);
+    const difference = (eventsDate - today) / millisecondsPerDay; 
+  
+    if(difference === 0) 
+      notify(events[i]);
+  }
+}
+
+export async function deleteEvent(currentEventNumber, verificationNumber) {
+  try {
+    const events = await fetchEvents(db, verificationNumber);
+    const eventName = events[currentEventNumber].name;
+    await deleteDoc(doc(db, verificationNumber, eventName));
+  } catch (error) {
+    console.log("⚠️ Error deleting event")
   }
 }
 

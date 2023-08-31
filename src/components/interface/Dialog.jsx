@@ -9,6 +9,8 @@ import DialogBlueprint from "./DialogBlueprint";
 // Context
 import { AuthContext } from "context/AuthContext";
 import { CountContext } from "context/CountContext";
+import { deleteEvent } from "scripts/events";
+import Button from "./Button";
 
 closeDialog("dialog");
 closeDialog("dialog-login");
@@ -76,6 +78,12 @@ export default function Dialog(props) {
 
     if(type === "event") dialog = (
         <dialog id="dialog-event" className="dialog dialog-event">
+            <div onClick={function () {
+                deleteEvent(numeral, id);
+                window.location.reload();
+            }}>
+                <Button message="Delete" id="delete-btn" />
+            </div>
             <h1 className="heading" id="events-name"> </h1>
             <p className="description" id="events-date"></p>
             <p className="description" id="events-distance"></p>

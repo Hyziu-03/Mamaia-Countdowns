@@ -152,14 +152,27 @@ body
 .dialog-event
     height: 90vh
 
+.event-line
+    @include event-info-row    
+
+.event-image
+    position: absolute  
+    left: -1900px
+    top: -650px
+    opacity: .3
+    z-index: -10
+
 .dialog[open]
-    @include dialog 
+    @include dialog
+    overflow-y: hidden 
 
 #delete-btn
-    position: absolute
-    top: $unit * 2
-    right: $unit * 2
-    background-color: red
-    padding: $unit * 2 $unit * 6
+    @include icon-btn(0, red)
+
+#share-btn
+    @include icon-btn(100px, $blue)
+
+.share, .delete
+    font-size: inherit
 
 @import "modules/responsive"

@@ -33,14 +33,10 @@ export default function App() {
     let [status, setStatus] = useState("");
     const id = useContext(AuthContext);
     const documentCount = useContext(CountContext)
-    let statusMessage = "";
 
     onAuthStateChanged(auth, function (user) {
         try {
             user ? setStatus("✅") : setStatus("⚠️") && awaitRedirect(auth);
-            status === "✅" ? 
-                statusMessage = "Everything is fine, you are logged in" : 
-                statusMessage = "You will need to log in to set a countdown";
         } catch (error) {
             console.log("⚠️ Failed to determine login state");
         }
@@ -55,9 +51,10 @@ export default function App() {
             <Dialog type="success" />
             <Dialog type="event" />
             <Dialog type="error" />
+            <Dialog type="share" />
             <header className="fixed-header">
                 <Name /> 
-                <span className="status" title={statusMessage}>{status}</span>
+                <span className="status">{status}</span>
             </header>
             <main className="mobile-content">
                 <article className="contact-form-container">
@@ -79,9 +76,7 @@ export default function App() {
                     />
                     <section 
                         className="btn-container" 
-                        onClick={() => verifyLoginState(
-                            auth, id
-                        )}
+                        onClick={() => verifyLoginState(auth, id)}
                     >
                         <Button message="Pull data from the database" />
                     </section>

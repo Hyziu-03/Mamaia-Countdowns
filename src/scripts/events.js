@@ -107,3 +107,21 @@ export async function saveData(db, verificationNumber) {
     showDialog("dialog-error");
   }
 }
+
+export function copy(name, date, description) {
+  try {
+    navigator.permissions.query({ name: "clipboard-write" }).then((result) => {
+      const permissionGranted =
+        result.state === "granted" || result.state === "prompt";
+      if (!permissionGranted) return;
+
+      const text = `${name} is happening on ${date}. ${description}`;
+      navigator.clipboard.writeText(text).then(
+        () => showDialog("dialog-share"),
+        () => console.log("⚠️ Error copying event information")
+      );
+    });
+  } catch(error) {
+    console.log("⚠️ Error sharing event")
+  }
+}

@@ -371,6 +371,25 @@ body {
   height: 90vh;
 }
 
+.event-line {
+  display: flex;
+  align-items: center;
+}
+.event-line * {
+  margin: 0 16px;
+}
+.event-line .icon {
+  font-size: 36px;
+}
+
+.event-image {
+  position: absolute;
+  left: -1900px;
+  top: -650px;
+  opacity: 0.3;
+  z-index: -10;
+}
+
 .dialog[open] {
   position: absolute;
   left: 50%;
@@ -391,6 +410,7 @@ body {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  overflow-y: hidden;
 }
 .dialog[open]::backdrop {
   background-color: rgba(0, 0, 0, 0.75);
@@ -410,6 +430,18 @@ body {
   padding: 8px 24px;
 }
 
+#share-btn {
+  position: absolute;
+  top: 8px;
+  right: 108px;
+  background-color: rgb(41, 81, 167);
+  padding: 8px 24px;
+}
+
+.share, .delete {
+  font-size: inherit;
+}
+
 @media (max-width: 1300px) {
   .article {
     flex-direction: column;
@@ -421,9 +453,6 @@ body {
   }
   .introduction {
     margin-top: 48px;
-  }
-  .description {
-    margin: 18px 96px 24px 96px;
   }
   .description, .heading {
     max-width: 50ch;
@@ -480,5 +509,10 @@ body {
   #app-form-btn {
     padding: 24px;
     margin-top: 18px;
+  }
+}
+@media (max-width: 350px) {
+  .event-line .icon {
+    display: none;
   }
 }/*# sourceMappingURL=styles.css.map */

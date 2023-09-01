@@ -33,14 +33,16 @@ function setDialogContent({id, dialog, textContent, btnContent}) {
     id === "dialog-login" ? "dialog-login-text" : 
     id === "dialog-event" ? "dialog-event-text" :
     id === "dialog-success" ? "dialog-success-text" : 
-    id === "dialog-error" ? "dialog-error-text" : "";
+    id === "dialog-error" ? "dialog-error-text" : 
+    id === "dialog-share" ? "dialog-share-text" : "";
 
   const btnHandler =
     id === "dialog" ? ".dialog-btn" :
     id === "dialog-login" ? ".dialog-login-btn" :
     id === "dialog-event" ? ".dialog-event-btn" :
     id === "dialog-success" ? ".dialog-success-btn" : 
-    id === "dialog-error" ? ".dialog-error-btn" : "";
+    id === "dialog-error" ? ".dialog-error-btn" : 
+    id === "dialog-share" ? ".dialog-share-btn" : "";
 
   dialog.style.borderColor = 
     id === "dialog" || id === "dialog-login" || id === "dialog-error" ? 
@@ -90,6 +92,13 @@ export function showDialog(id) {
       id: id,
       dialog: dialog,
       textContent: "You will need to log in to set a countdown",
+      btnContent: "Close",
+    });
+
+    if(id === "dialog-share") setDialogContent({
+      id: id,
+      dialog: dialog,
+      textContent: "Event info copied to clipboard!",
       btnContent: "Close",
     });
   } catch (error) {

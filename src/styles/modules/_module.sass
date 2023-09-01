@@ -185,3 +185,20 @@ $shadow: $unit 2 * $unit $unit $hblack
 
         &:hover
             cursor: pointer
+
+@mixin event-info-row 
+    display: flex
+    align-items: center
+
+    *
+        margin: 0 $unit * 4
+    
+    .icon
+        font-size: $size * 1.5
+
+@mixin icon-btn($offset, $bg-color)
+    position: absolute
+    top: $unit * 2
+    right: $unit * 2 + $offset
+    background-color: $bg-color
+    padding: $unit * 2 $unit * 6

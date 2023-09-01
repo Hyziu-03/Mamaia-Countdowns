@@ -23,9 +23,11 @@ No matter if it’s Christmas or an important exam to take!
 ✅ Correct website scaling
 ✅ Make notifications more useful
 ✅ Add a `delete` button for each event
+✅ Add icons to event description
+✅ Add a `share` button for each event
+✅ Show illustrations aside events
 🔲 Create a new author image
-🔲 Show illustrations aside events
-🔲 Add an `edit` button to each event
-🔲 Add a `share` button for each event
-🔲 Add icons to event description
+🔲 Add credit for illustrations
+🔲 Replace the bell icon
+🔲 Add descriptions to ambigous icons
 🔲 Test the app with React Developer Tools and React Profiler before production

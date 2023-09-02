@@ -84,6 +84,7 @@
   align-items: center;
   justify-content: center;
   padding-bottom: 48px;
+  margin-top: -48px;
 }
 
 .saved-countdowns {
@@ -119,8 +120,11 @@
 }
 
 .app-image {
-  rotate: 15deg;
-  width: 300px;
+  width: 400px;
+}
+
+#root > section > main > article.saved-countdowns > section > button {
+  margin: 0 48px;
 }
 
 a {
@@ -422,6 +426,13 @@ body {
   cursor: pointer;
 }
 
+#dialog-event {
+  background-image: url("images/push.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 #delete-btn {
   position: absolute;
   top: 8px;
@@ -478,7 +489,7 @@ body {
     width: 105px;
   }
   .app-image {
-    width: 200px;
+    width: 350px;
   }
   .status {
     font-size: 36px;
@@ -514,5 +525,8 @@ body {
 @media (max-width: 350px) {
   .event-line .icon {
     display: none;
+  }
+  .app-image {
+    width: 300px;
   }
 }/*# sourceMappingURL=styles.css.map */

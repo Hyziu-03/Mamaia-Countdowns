@@ -12,8 +12,6 @@ import Button from "./Button";
 // Context
 import { AuthContext } from "context/AuthContext";
 import { CountContext } from "context/CountContext";
-// Images
-import EventImage from "images/event.svg";
 
 closeDialog("dialog");
 closeDialog("dialog-login");
@@ -145,8 +143,6 @@ export default function Dialog(props) {
                     className="dialog-close btn dialog-event-btn"
                 ></button>
             </form>
-
-            <img src={EventImage} alt="" className="event-image" />
         </dialog>
     );
 

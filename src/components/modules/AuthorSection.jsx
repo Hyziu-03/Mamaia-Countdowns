@@ -1,5 +1,5 @@
 // Images
-import Creator from "images/creator.webp";
+import Creator from "images/creator.png";
 // Components
 import Paragraph from "components/interface/Paragraph";
 

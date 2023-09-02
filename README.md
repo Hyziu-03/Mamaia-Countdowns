@@ -26,8 +26,11 @@ No matter if it’s Christmas or an important exam to take!
 ✅ Add icons to event description
 ✅ Add a `share` button for each event
 ✅ Show illustrations aside events
-🔲 Create a new author image
-🔲 Add credit for illustrations
-🔲 Replace the bell icon
-🔲 Add descriptions to ambigous icons
+✅ Rethink `src/images` directory
+✅ Create a new author image
+✅ Add credit for illustrations
+✅ Replace the bell icon
+✅ Add descriptions to ambigous icons
+🔲 Add styles to `section > main > article.saved-countdowns > section > button` element from `_app.sass`
+🔲 Audit the app with Lighthouse
 🔲 Test the app with React Developer Tools and React Profiler before production

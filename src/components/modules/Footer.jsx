@@ -9,7 +9,13 @@ export default function Footer() {
         <footer className="footer">
             <p className="copyright" tabIndex="0">
                 This app has been created from scratch by Szymon Hyziak and therefore is
-                upon copyright of its' owner.
+                upon copyright of its' owner. <a 
+                    href="https://storyset.com/"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                >
+                    Illustrations by Rafiki from Storyset
+                </a>
             </p>
             <section className="contact-links">
                 <a

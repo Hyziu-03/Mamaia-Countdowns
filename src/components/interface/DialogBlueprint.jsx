@@ -10,7 +10,11 @@ export default function DialogBlueprint(props) {
             <form method="dialog">
                 <button 
                     className={`${btn} dialog-close btn`} 
-                    onClick={() => checkOrigin(id)}>
+                    onClick={function () {
+                        checkOrigin(id);
+                        if (id === "dialog-success")
+                            window.location.reload();
+                    }}>
                 </button>
             </form>
         </dialog>

@@ -24,6 +24,8 @@ import Name from "components/interface/Name.jsx";
 import Contact from "components/interface/Contact.jsx";
 import Button from "components/interface/Button.jsx";
 import Dialog from "components/interface/Dialog.jsx";
+// Images
+import Messages from "images/Messages.png";
 
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
@@ -54,7 +56,12 @@ export default function App() {
             <Dialog type="share" />
             <header className="fixed-header">
                 <Name /> 
-                <span className="status">{status}</span>
+                <span 
+                    className="status" 
+                    title="Showing if you are logged in or not, to login pull data from the database."
+                >
+                    {status}
+                </span>
             </header>
             <main className="mobile-content">
                 <article className="contact-form-container">
@@ -69,11 +76,7 @@ export default function App() {
                     </span>
                 </article>
                 <article className="saved-countdowns">
-                    <img 
-                        src="images/notification.webp" 
-                        className="app-image" 
-                        alt="" 
-                    />
+                    <img src={Messages}alt="" className="app-image"/>
                     <section 
                         className="btn-container" 
                         onClick={() => verifyLoginState(auth, id)}

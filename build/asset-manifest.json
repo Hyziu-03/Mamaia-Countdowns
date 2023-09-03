@@ -1,12 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.59ca3da4.css",
-    "main.js": "/static/js/main.40197146.js",
+    "main.css": "/static/css/main.19157f3e.css",
+    "main.js": "/static/js/main.ac0de109.js",
     "static/js/787.3e18bcc2.chunk.js": "/static/js/787.3e18bcc2.chunk.js",
-    "static/media/creator.webp": "/static/media/creator.8187857507b558064bd5.webp",
+    "static/media/fallback.woff2": "/static/media/fallback.75a220d2a6685fcfeaaa.woff2",
+    "static/media/push.png": "/static/media/push.7beedcc6b4130534a77b.png",
     "static/media/montserrat-v25-vietnamese_latin-ext_latin_cyrillic-ext_cyrillic-regular.ttf": "/static/media/montserrat-v25-vietnamese_latin-ext_latin_cyrillic-ext_cyrillic-regular.94bb495fba6077f669ed.ttf",
     "static/media/roboto-slab-v24-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-regular.ttf": "/static/media/roboto-slab-v24-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-regular.6065b9ecc22c5d132f5c.ttf",
-    "static/media/calendar.svg": "/static/media/calendar.92ea77b289b005328d08c71779848bb3.svg",
+    "static/media/calendar.svg": "/static/media/calendar.a0e3983e26432274e7f767222f76f41f.svg",
     "static/media/roboto-slab-v24-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-regular.svg": "/static/media/roboto-slab-v24-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-regular.be8839acb87cfe8b9b0f.svg",
     "static/media/montserrat-v25-vietnamese_latin-ext_latin_cyrillic-ext_cyrillic-regular.svg": "/static/media/montserrat-v25-vietnamese_latin-ext_latin_cyrillic-ext_cyrillic-regular.8d162cbcafbdf3a43f55.svg",
     "static/media/roboto-slab-v24-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-regular.woff": "/static/media/roboto-slab-v24-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-regular.97bd6f4409f61f498511.woff",
@@ -15,14 +16,16 @@
     "static/media/montserrat-v25-vietnamese_latin-ext_latin_cyrillic-ext_cyrillic-regular.eot": "/static/media/montserrat-v25-vietnamese_latin-ext_latin_cyrillic-ext_cyrillic-regular.3e61f2859f546fa6e62b.eot",
     "static/media/roboto-slab-v24-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-regular.woff2": "/static/media/roboto-slab-v24-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-regular.b001e47071e8e4cb4cc2.woff2",
     "static/media/montserrat-v25-vietnamese_latin-ext_latin_cyrillic-ext_cyrillic-regular.woff2": "/static/media/montserrat-v25-vietnamese_latin-ext_latin_cyrillic-ext_cyrillic-regular.636be5d921ff8c415347.woff2",
-    "static/media/work.svg": "/static/media/work.5c2e2b5e15c12a9f89ae9f3426fc16ce.svg",
+    "static/media/work.svg": "/static/media/work.2a8cad548f4f4066b7a343cc5486e7a6.svg",
+    "static/media/Messages.png": "/static/media/Messages.305b153b5d733f7aa3ce.png",
+    "static/media/creator.webp": "/static/media/creator.d54f61762de764090332.webp",
     "index.html": "/index.html",
-    "main.59ca3da4.css.map": "/static/css/main.59ca3da4.css.map",
-    "main.40197146.js.map": "/static/js/main.40197146.js.map",
+    "main.19157f3e.css.map": "/static/css/main.19157f3e.css.map",
+    "main.ac0de109.js.map": "/static/js/main.ac0de109.js.map",
     "787.3e18bcc2.chunk.js.map": "/static/js/787.3e18bcc2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.59ca3da4.css",
-    "static/js/main.40197146.js"
+    "static/css/main.19157f3e.css",
+    "static/js/main.ac0de109.js"
   ]
 }

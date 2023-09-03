@@ -1,4 +1,5 @@
 export default function Contact(props) {
+    const { firstInput, secondInput, secondInputType, thirdInput } = props;
     return (
         <form
             action=""
@@ -12,19 +13,19 @@ export default function Contact(props) {
                 name="name"
                 id="text-input"
                 className="input touch-target text-input"
-                placeholder={props.firstInput}
+                placeholder={firstInput}
                 maxLength="20" 
             />
             <input
-                type={props.secondInputType}
+                type={secondInputType}
                 name="email"
                 id="email"
                 className="input touch-target email"
-                placeholder={props.secondInput}
+                placeholder={secondInput}
                 maxLength="40" 
             />
             <textarea
-                placeholder={props.thirdInput}
+                placeholder={thirdInput}
                 className="input textarea touch-target message"
                 id="message"
                 name="message"

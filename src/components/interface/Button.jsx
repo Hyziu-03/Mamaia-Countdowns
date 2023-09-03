@@ -1,5 +1,5 @@
 export default function Button(props) {
-    const { message } = props;
+    const { message, id, className } = props;
    
     let finalMessage = "";
     if(message === "Share") 
@@ -10,7 +10,11 @@ export default function Button(props) {
         finalMessage = message;
 
     return (
-        <button className="btn hover touch-target" tabIndex="-1" id={props.id}>
+        <button 
+            className={`btn hover touch-target ${className}`} 
+            tabIndex="-1" 
+            id={id}
+        >
             {finalMessage}
         </button>
     );

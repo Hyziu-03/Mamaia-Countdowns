@@ -31,6 +31,6 @@ No matter if it’s Christmas or an important exam to take!
 ✅ Add credit for illustrations
 ✅ Replace the bell icon
 ✅ Add descriptions to ambigous icons
-🔲 Add styles to `section > main > article.saved-countdowns > section > button` element from `_app.sass`
-🔲 Audit the app with Lighthouse
+✅ Add styles to `section > main > article.saved-countdowns > section > button` element from `_app.sass`
+✅ Audit the app with Lighthouse
 🔲 Test the app with React Developer Tools and React Profiler before production

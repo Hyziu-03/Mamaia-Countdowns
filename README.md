@@ -33,4 +33,6 @@ No matter if it’s Christmas or an important exam to take!
 ✅ Add descriptions to ambigous icons
 ✅ Add styles to `section > main > article.saved-countdowns > section > button` element from `_app.sass`
 ✅ Audit the app with Lighthouse
+🔲 Use `<picture>` element for images
 🔲 Test the app with React Developer Tools and React Profiler before production
+🔲 Optimize app performance and audit it with Lighthouse again

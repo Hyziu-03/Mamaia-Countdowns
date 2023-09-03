@@ -3,7 +3,7 @@ import { useState, useEffect, useContext } from "react";
 // Firestore
 import { db } from "components/App";
 // Utilities
-import { closeDialog, fetchEvents, populateEvent } from "scripts/utilities";
+import { fetchEvents, populateEvent } from "scripts/utilities";
 // Events
 import { deleteEvent, copy } from "scripts/events";
 // Components
@@ -13,11 +13,8 @@ import Button from "./Button";
 import { AuthContext } from "context/AuthContext";
 import { CountContext } from "context/CountContext";
 
-closeDialog("dialog");
-closeDialog("dialog-login");
-closeDialog("dialog-success");
-closeDialog("dialog-event");
-closeDialog("dialog-error");
+const worker = new Worker("worker.js");
+worker.postMessage(["dialog"]);
 
 async function getEvents(db, id) {
     const events = await fetchEvents(db, id);

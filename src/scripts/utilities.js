@@ -176,21 +176,6 @@ export function verifyLoginState(auth, verificationNumber) {
   }
 }
 
-export function closeDialog(id) {
-  window.addEventListener("DOMContentLoaded", () => {
-    try {
-      const dialog = document.getElementById(id);
-      const closeButton = document.querySelector(".dialog-btn");
-      if (closeButton !== null)
-        closeButton.addEventListener("click", function () {
-          dialog.close();
-        });
-    } catch (error) {
-      console.log("⚠️ Error closing dialog");
-    }
-  });
-}
-
 export function awaitRedirect(auth) {
   try {
     const btn = document.querySelector(".dialog-login-btn");

@@ -81,7 +81,10 @@ export default function App() {
                         className="btn-container" 
                         onClick={() => verifyLoginState(auth, id)}
                     >
-                        <Button message="Pull data from the database" />
+                        <Button 
+                            message="Pull data from the database" 
+                            className="pull-data"
+                        />
                     </section>
                 </article>
             </main>

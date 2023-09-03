@@ -28,7 +28,8 @@
     "react-scripts": "^5.0.1",
     "set-value": "^4.1.0",
     "shell-quote": "^1.7.3",
-    "web-vitals": "^1.1.2"
+    "web-vitals": "^1.1.2",
+    "webpack": "^5.88.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -53,5 +54,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "webpack-bundle-analyzer": "^4.9.1"
   }
 }

@@ -1,5 +1,6 @@
 /* roboto-slab-regular - vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic */
 @font-face {
+  font-display: swap;
   font-family: "Roboto Slab";
   font-style: normal;
   font-weight: 400;
@@ -10,6 +11,7 @@
 }
 /* montserrat-regular - vietnamese_latin-ext_latin_cyrillic-ext_cyrillic */
 @font-face {
+  font-display: swap;
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
@@ -20,12 +22,14 @@
 }
 /* fallback */
 @font-face {
+  font-display: swap;
   font-family: "Material Symbols Rounded";
   font-style: normal;
   font-weight: 100 700;
-  src: url(https://fonts.gstatic.com/s/materialsymbolsrounded/v126/sykg-zNym6YjUruM-QrEh7-nyTnjDwKNJ_190Fjzag.woff2) format("woff2");
+  src: url("../fonts/fallback.woff2") format("woff2");
 }
 .material-symbols-rounded {
+  font-display: swap;
   font-family: "Material Symbols Rounded";
   font-weight: normal;
   font-style: normal;
@@ -123,8 +127,12 @@
   width: 400px;
 }
 
-#root > section > main > article.saved-countdowns > section > button {
+.pull-data {
   margin: 0 48px;
+}
+
+html {
+  overflow: hidden;
 }
 
 a {
@@ -306,6 +314,15 @@ body {
 
 .footer {
   padding: 24px 72px;
+}
+
+.footer-icon {
+  display: flex;
+  align-items: center;
+}
+
+.coffee {
+  height: 48px;
 }
 
 .copyright {

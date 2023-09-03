@@ -2,6 +2,9 @@
 @import "modules/font"
 @import "modules/app"
 
+html
+    overflow: hidden
+
 a
     @include link
 
@@ -107,6 +110,13 @@ body
 
 .footer
     padding: $size 3 * $size
+
+.footer-icon
+    display: flex
+    align-items: center
+
+.coffee
+    height: 48px 
 
 .copyright
     font-size: .75 * $size

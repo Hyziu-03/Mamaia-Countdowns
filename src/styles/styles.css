@@ -131,14 +131,6 @@
   margin: 0 48px;
 }
 
-img {
-  aspect-ratio: 1/1;
-}
-
-html {
-  overflow: hidden;
-}
-
 a {
   color: inherit;
   text-decoration: none;

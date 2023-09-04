@@ -45,6 +45,11 @@ export function notify(currentEvent) {
   }
 }
 
+export async function getEvents(db, id) {
+  const events = await fetchEvents(db, id);
+  return events;
+}
+
 export async function notifyAll(id, eventCount) {
   const millisecondsPerDay = 86400000;
   const events = await fetchEvents(db, id);

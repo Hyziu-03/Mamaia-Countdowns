@@ -23,7 +23,6 @@ function CountProvider({ children }) {
                 setCount(documentCount);                
             } catch(error) {
                 console.log("⚠️ Error getting document count")
-                console.error(error);
             }
         }
 

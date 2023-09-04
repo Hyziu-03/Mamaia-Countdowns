@@ -10,17 +10,16 @@ function closeDialog(id) {
     } catch (error) {
       console.log("⚠️ Error closing dialog");
     }
-  });
+  }, { passive: true });
 }
 
 addEventListener("message", event => {
-    const source = event.data;
-
-    if (source === "dialog") {
-        closeDialog("dialog");
-        closeDialog("dialog-login");
-        closeDialog("dialog-success");
-        closeDialog("dialog-event");
-        closeDialog("dialog-error");
-    }
-});
+  const source = event.data;
+  if (source === "dialog") {
+    closeDialog("dialog");
+    closeDialog("dialog-login");
+    closeDialog("dialog-success");
+    closeDialog("dialog-event");
+    closeDialog("dialog-error");
+  }
+}, { passive: true });

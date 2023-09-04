@@ -13,7 +13,7 @@ export default function DialogBlueprint(props) {
                     onClick={function () {
                         checkOrigin(id);
                         if (id === "dialog-success")
-                            window.location.reload();
+                            document.getElementById("form").reset();
                     }}>
                 </button>
             </form>

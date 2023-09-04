@@ -1,25 +1,21 @@
 // React
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, lazy, Suspense } from "react";
 // Firestore
 import { db } from "components/App";
 // Utilities
-import { fetchEvents, populateEvent } from "scripts/utilities";
+import { populateEvent } from "scripts/utilities";
+import { getEvents } from "scripts/events";
 // Events
 import { deleteEvent, copy } from "scripts/events";
-// Components
-import DialogBlueprint from "./DialogBlueprint";
-import Button from "./Button";
 // Context
 import { AuthContext } from "context/AuthContext";
 import { CountContext } from "context/CountContext";
 
+const DialogBlueprint = lazy(() => import("./DialogBlueprint"));
+const Button = lazy(() => import("./Button"));
+
 const worker = new Worker("worker.js");
 worker.postMessage(["dialog"]);
-
-async function getEvents(db, id) {
-    const events = await fetchEvents(db, id);
-    return events;
-}
 
 export default function Dialog(props) {
     const id = useContext(AuthContext);
@@ -27,39 +23,49 @@ export default function Dialog(props) {
     let dialog = null;
 
     if (type === "login") dialog = (
-        <DialogBlueprint 
-            id="dialog"
-            p="dialog-text"
-            btn="dialog-btn"
-        />
+        <Suspense fallback={<div>Loading...</div>}>
+            <DialogBlueprint 
+                id="dialog"
+                p="dialog-text"
+                btn="dialog-btn"
+            />
+        </Suspense>
     );
     if (type === "text") dialog = (
-        <DialogBlueprint 
-            id="dialog-login"
-            p="dialog-login-text"
-            btn="dialog-login-btn"
-        />
+        <Suspense fallback={<div>Loading...</div>}>
+            <DialogBlueprint 
+                id="dialog-login"
+                p="dialog-login-text"
+                btn="dialog-login-btn"
+            />
+        </Suspense>
     );
     if(type === "success") dialog = (
-        <DialogBlueprint
-            id="dialog-success"
-            p="dialog-success-text"
-            btn="dialog-success-btn"
-        />
+        <Suspense fallback={<div>Loading...</div>}>
+            <DialogBlueprint
+                id="dialog-success"
+                p="dialog-success-text"
+                btn="dialog-success-btn"
+            />
+        </Suspense>
     );
     if(type === "error") dialog = (
-        <DialogBlueprint
-            id="dialog-error"
-            p="dialog-error-text"
-            btn="dialog-error-btn"
-        />
+        <Suspense fallback={<div>Loading...</div>}>
+            <DialogBlueprint
+                id="dialog-error"
+                p="dialog-error-text"
+                btn="dialog-error-btn"
+            />
+        </Suspense>
     );
     if(type === "share") dialog = (
-        <DialogBlueprint
-            id="dialog-share"
-            p="dialog-share-text"
-            btn="dialog-share-btn"
-        />
+        <Suspense fallback={<div>Loading...</div>}>
+            <DialogBlueprint
+                id="dialog-share"
+                p="dialog-share-text"
+                btn="dialog-share-btn"
+            />
+        </Suspense>
     );
 
     // Events dialog
@@ -85,9 +91,12 @@ export default function Dialog(props) {
         <dialog id="dialog-event" className="dialog dialog-event">
             <div onClick={function () {
                 deleteEvent(numeral, id);
-                window.location.reload();
+                const dialog = document.getElementById("dialog-event");
+                dialog.close();
             }}>
-                <Button message="Delete" id="delete-btn" />
+                <Suspense fallback={<div>Loading...</div>}>
+                    <Button message="Delete" id="delete-btn" />
+                </Suspense>
             </div>
             <div onClick={function () {
                 const name = 
@@ -99,7 +108,9 @@ export default function Dialog(props) {
                 
                 copy(name, date, description);
             }}>
-                <Button message="Share" id="share-btn" />
+                <Suspense fallback={<div>Loading...</div>}>
+                    <Button message="Share" id="share-btn" />
+                </Suspense>
             </div>
 
             <h1 className="heading" id="events-name"> </h1>

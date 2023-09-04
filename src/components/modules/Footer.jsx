@@ -1,8 +1,10 @@
-// Icons
-import LinkedInIcon from "components/icons/LinkedInIcon";
-import GitHubIcon from "components/icons/GitHubIcon";
-import BuyMeCoffee from "components/icons/BuyMeCoffee";
-import MailIcon from "components/icons/MailIcon";
+// React
+import { lazy, Suspense } from "react";
+
+const LinkedInIcon = lazy(() => import("components/icons/LinkedInIcon"));
+const GitHubIcon = lazy(() => import("components/icons/GitHubIcon"));
+const BuyMeCoffee = lazy(() => import("components/icons/BuyMeCoffee"));
+const MailIcon = lazy(() => import("components/icons/MailIcon"));
 
 export default function Footer() {
     return (
@@ -24,7 +26,9 @@ export default function Footer() {
                     rel="noreferrer noopener"
                     className="footer-icon"
                 >
-                    <LinkedInIcon />
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <LinkedInIcon />
+                    </Suspense>
                     <span className="icon-name">LinkedIn</span>
                 </a>
                 <a
@@ -33,7 +37,9 @@ export default function Footer() {
                     rel="noreferrer noopener"
                     className="footer-icon"
                 >
-                    <GitHubIcon />
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <GitHubIcon />
+                    </Suspense>
                     <span className="icon-name">GitHub</span>
                 </a>
                 <a href="mailto:szymonhyziak@student.agh.edu.pl"
@@ -41,7 +47,9 @@ export default function Footer() {
                     rel="noreferrer noopener"
                     className="footer-icon"
                 >
-                    <MailIcon />
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <MailIcon />
+                    </Suspense>
                     <span className="icon-name">Mail</span>
                 </a>
                 <a
@@ -50,7 +58,9 @@ export default function Footer() {
                     rel="noreferrer noopener"
                     className="footer-icon"
                 >
-                    <BuyMeCoffee />
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <BuyMeCoffee />
+                    </Suspense>
                     <span className="icon-name">Buy me a coffee</span>
                 </a>
             </section>

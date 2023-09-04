@@ -1,7 +1,8 @@
 // React
 import { Link } from "react-router-dom";
-// Components
-import Button from "components/interface/Button";
+import { lazy, Suspense } from "react";
+
+const Button = lazy(() => import("./Button"));
 
 export default function Introduction(props) {
     const { heading, description } = props;
@@ -16,7 +17,9 @@ export default function Introduction(props) {
                 </p>
             </section>
             <Link to="set-countdown">
-                <Button message="Set a Countdown!" />
+                <Suspense fallback={<div>Loading...</div>}>
+                    <Button message="Set a Countdown!" />
+                </Suspense>
             </Link>
         </article>
     );

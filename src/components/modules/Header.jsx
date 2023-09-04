@@ -1,15 +1,20 @@
 // React
 import { Link } from "react-router-dom";
-// Components
-import Button from "components/interface/Button";
-import Name from "components/interface/Name";
+import { lazy, Suspense } from "react";
+
+const Button = lazy(() => import("components/interface/Button"));
+const Name = lazy(() => import("components/interface/Name"));
 
 export default function Header() {
     return (
         <header className="header">
-            <Name />
+            <Suspense fallback={<div>Loading...</div>}>
+                <Name />
+            </Suspense>
             <Link to="set-countdown">
-                <Button message="Set a Countdown!" />
+                <Suspense fallback={<div>Loading...</div>}>
+                    <Button message="Set a Countdown!" />
+                </Suspense>
             </Link>
         </header>
     );

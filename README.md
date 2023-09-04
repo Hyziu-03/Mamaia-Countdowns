@@ -31,8 +31,13 @@ No matter if it’s Christmas or an important exam to take!
 ✅ Add credit for illustrations
 ✅ Replace the bell icon
 ✅ Add descriptions to ambigous icons
-✅ Add styles to `section > main > article.saved-countdowns > section > button` element from `_app.sass`
+✅ Add styles to button from `_app.sass`
 ✅ Audit the app with Lighthouse
-🔲 Use `<picture>` element for images
-🔲 Test the app with React Developer Tools and React Profiler before production
-🔲 Optimize app performance and audit it with Lighthouse again
+✅ Test the app with React Profiler again
+🔲 Lazily load components in `App.jsx` and `Home.jsx`
+🔲 Remove unused libraries
+🔲 Investigate the following URLS:
+
+- <https://web.dev/reduce-network-payloads-using-text-compression/>
+- <https://edgemesh.com/blog/remove-unused-javascript>
+🔲 Audit the app with Lighthouse again

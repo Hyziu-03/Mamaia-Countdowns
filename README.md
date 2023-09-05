@@ -34,10 +34,7 @@ No matter if it’s Christmas or an important exam to take!
 ✅ Add styles to button from `_app.sass`
 ✅ Audit the app with Lighthouse
 ✅ Test the app with React Profiler again
-🔲 Lazily load components in `App.jsx` and `Home.jsx`
-🔲 Remove unused libraries
-🔲 Investigate the following URLS:
-
-- <https://web.dev/reduce-network-payloads-using-text-compression/>
-- <https://edgemesh.com/blog/remove-unused-javascript>
+✅ Lazily load components in `App.jsx` and `Home.jsx`
+✅ Reduce network payloads using text compression
+✅ Remove unused JavaScript
 🔲 Audit the app with Lighthouse again

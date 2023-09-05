@@ -1,20 +1,35 @@
-// Components
-import Header from "components/modules/Header.jsx";
-import IntroductorySection from "components/modules/IntroductorySection";
-import DescriptiveSection from "components/modules/DescriptiveSection";
-import AuthorSection from "components/modules/AuthorSection";
-import Footer from "components/modules/Footer";
+import { lazy, Suspense } from "react";
+
+const Header = lazy(() => import("components/modules/Header.jsx"));
+const IntroductorySection = lazy(() => import(
+    "components/modules/IntroductorySection")
+);
+const DescriptiveSection = lazy(() => import(
+    "components/modules/DescriptiveSection")
+);
+const AuthorSection = lazy(() => import("components/modules/AuthorSection"));
+const Footer = lazy(() => import("components/modules/Footer"));
 
 export default function Home() {
     return (
         <div className="App" id="App">
-            <Header />
+            <Suspense fallback={<div>Loading...</div>}>
+                <Header />
+            </Suspense>
             <main className="main-content">
-                <IntroductorySection />
-                <DescriptiveSection />
-                <AuthorSection />
+                <Suspense fallback={<div>Loading...</div>}>
+                    <IntroductorySection />
+                </Suspense>
+                <Suspense fallback={<div>Loading...</div>}>
+                    <DescriptiveSection />
+                </Suspense>
+                <Suspense fallback={<div>Loading...</div>}>
+                    <AuthorSection />
+                </Suspense>
             </main>
-            <Footer />
+            <Suspense fallback={<div>Loading...</div>}>
+                <Footer />
+            </Suspense>
         </div>
     );
 }

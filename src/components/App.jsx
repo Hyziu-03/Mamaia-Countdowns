@@ -1,5 +1,5 @@
 // React
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, lazy, Suspense } from "react";
 // Firebase
 import { initializeApp } from "firebase/app";
 // Firestore
@@ -19,13 +19,13 @@ import { notifyAll } from "scripts/events";
 // Context
 import { AuthContext } from "context/AuthContext";
 import { CountContext } from "context/CountContext";
-// Components
-import Name from "components/interface/Name.jsx";
-import Contact from "components/interface/Contact.jsx";
-import Button from "components/interface/Button.jsx";
-import Dialog from "components/interface/Dialog.jsx";
 // Images
 import Messages from "images/Messages.png";
+
+const Name = lazy(() => import("components/interface/Name.jsx"));
+const Contact = lazy(() => import("components/interface/Contact.jsx"));
+const Button = lazy(() => import("components/interface/Button.jsx"));
+const Dialog = lazy(() => import("components/interface/Dialog.jsx"));
 
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
@@ -48,14 +48,28 @@ export default function App() {
 
     return (
         <section className="mobile-container">
-            <Dialog type="text" />
-            <Dialog type="login" />
-            <Dialog type="success" />
-            <Dialog type="event" />
-            <Dialog type="error" />
-            <Dialog type="share" />
+            <Suspense fallback={<div>Loading...</div>}>
+                <Dialog type="text" />
+            </Suspense>
+            <Suspense fallback={<div>Loading...</div>}>
+                <Dialog type="login" />
+            </Suspense>
+            <Suspense fallback={<div>Loading...</div>}>
+                <Dialog type="success" />
+            </Suspense>
+            <Suspense fallback={<div>Loading...</div>}>
+                <Dialog type="event" />
+            </Suspense>
+            <Suspense fallback={<div>Loading...</div>}>
+                <Dialog type="error" />
+            </Suspense>
+            <Suspense fallback={<div>Loading...</div>}>
+                <Dialog type="share" />
+            </Suspense>
             <header className="fixed-header">
-                <Name /> 
+                <Suspense fallback={<div>Loading...</div>}>
+                    <Name /> 
+                </Suspense>
                 <span 
                     className="status" 
                     title="Showing if you are logged in or not, to login pull data from the database."
@@ -65,14 +79,21 @@ export default function App() {
             </header>
             <main className="mobile-content">
                 <article className="contact-form-container">
-                    <Contact
-                        firstInput="What is this event?"
-                        secondInput="When does it start?"
-                        secondInputType="date"
-                        thirdInput="What additional information do you have?"
-                    />
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <Contact
+                            firstInput="What is this event?"
+                            secondInput="When does it start?"
+                            secondInputType="date"
+                            thirdInput="What additional information do you have?"
+                        />
+                    </Suspense>
                     <span onClick={() => inspectInputs(db, id)}>
-                        <Button message="Set a Countdown!" id="app-form-btn" />
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <Button 
+                                message="Set a Countdown!" 
+                                id="app-form-btn" 
+                            />
+                        </Suspense>
                     </span>
                 </article>
                 <article className="saved-countdowns">

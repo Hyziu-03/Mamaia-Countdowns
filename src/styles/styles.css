@@ -382,6 +382,8 @@ body {
   pointer-events: none;
   -o-object-fit: cover;
      object-fit: cover;
+  width: 666px;
+  height: auto;
 }
 
 .dialog-event {

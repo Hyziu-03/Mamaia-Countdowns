@@ -4,9 +4,9 @@
   font-family: "Roboto Slab";
   font-style: normal;
   font-weight: 400;
-  src: url("../fonts/roboto-slab-v24-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-regular.eot");
+  src: url("../fonts/roboto-slab.eot");
   /* IE9 Compat Modes */
-  src: local(""), url("../fonts/roboto-slab-v24-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/roboto-slab-v24-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-regular.woff2") format("woff2"), url("../fonts/roboto-slab-v24-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-regular.woff") format("woff"), url("../fonts/roboto-slab-v24-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-regular.ttf") format("truetype"), url("../fonts/roboto-slab-v24-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-regular.svg#RobotoSlab") format("svg");
+  src: local(""), url("../fonts/roboto-slab.eot?#iefix") format("embedded-opentype"), url("../fonts/roboto-slab.woff2") format("woff2"), url("../fonts/roboto-slab.woff") format("woff"), url("../fonts/roboto-slab.ttf") format("truetype"), url("../fonts/roboto-slab.svg#RobotoSlab") format("svg");
   /* Legacy iOS */
 }
 /* montserrat-regular - vietnamese_latin-ext_latin_cyrillic-ext_cyrillic */
@@ -15,9 +15,9 @@
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
-  src: url("../fonts/montserrat-v25-vietnamese_latin-ext_latin_cyrillic-ext_cyrillic-regular.eot");
+  src: url("../fonts/montserrat.eot");
   /* IE9 Compat Modes */
-  src: local(""), url("../fonts/montserrat-v25-vietnamese_latin-ext_latin_cyrillic-ext_cyrillic-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/montserrat-v25-vietnamese_latin-ext_latin_cyrillic-ext_cyrillic-regular.woff2") format("woff2"), url("../fonts/montserrat-v25-vietnamese_latin-ext_latin_cyrillic-ext_cyrillic-regular.woff") format("woff"), url("../fonts/montserrat-v25-vietnamese_latin-ext_latin_cyrillic-ext_cyrillic-regular.ttf") format("truetype"), url("../fonts/montserrat-v25-vietnamese_latin-ext_latin_cyrillic-ext_cyrillic-regular.svg#Montserrat") format("svg");
+  src: local(""), url("../fonts/montserrat.eot?#iefix") format("embedded-opentype"), url("../fonts/montserrat.woff2") format("woff2"), url("../fonts/montserrat.woff") format("woff"), url("../fonts/montserrat.ttf") format("truetype"), url("../fonts/montserrat.svg#Montserrat") format("svg");
   /* Legacy iOS */
 }
 /* fallback */
@@ -442,7 +442,7 @@ body {
 }
 
 #dialog-event {
-  background-image: url("images/push.png");
+  background-image: url("dialog-background.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

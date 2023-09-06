@@ -1,5 +1,3 @@
-// Images
-import Work from "images/work.svg";
 // React
 import { lazy, Suspense } from "react";
 const Paragraph = lazy(() => import("components/interface/Paragraph"));
@@ -19,7 +17,7 @@ export default function DescriptiveSection() {
         />
       </Suspense>
       <img
-        src={Work}
+        src="images/work.svg"
         alt="Illustration showing a young man sitting at the desk. He is working on a laptop with coffee by side."
         className="work" 
       />

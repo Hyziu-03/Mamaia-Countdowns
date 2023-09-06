@@ -19,8 +19,6 @@ import { notifyAll } from "scripts/events";
 // Context
 import { AuthContext } from "context/AuthContext";
 import { CountContext } from "context/CountContext";
-// Images
-import Messages from "images/Messages.png";
 
 const Name = lazy(() => import("components/interface/Name.jsx"));
 const Contact = lazy(() => import("components/interface/Contact.jsx"));
@@ -97,15 +95,17 @@ export default function App() {
                     </span>
                 </article>
                 <article className="saved-countdowns">
-                    <img src={Messages}alt="" className="app-image"/>
+                    <img src="images/messages.png" alt="" className="app-image"/>
                     <section 
                         className="btn-container" 
                         onClick={() => verifyLoginState(auth, id)}
                     >
-                        <Button 
-                            message="Pull data from the database" 
-                            className="pull-data"
-                        />
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <Button 
+                                message="Pull data from the database" 
+                                className="pull-data"
+                            />
+                        </Suspense>
                     </section>
                 </article>
             </main>

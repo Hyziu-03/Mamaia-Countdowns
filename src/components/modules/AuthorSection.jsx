@@ -1,5 +1,3 @@
-// Images
-import Creator from "images/creator.webp";
 // React
 import { lazy, Suspense } from "react";
 
@@ -20,7 +18,7 @@ export default function AuthorSection() {
         />
       </Suspense>
       <img
-        src={Creator}
+        src="images/creator.webp"
         alt="Headshot of the creator - Szymon Hyziak."
         className="creator" 
       />

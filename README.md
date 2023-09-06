@@ -37,7 +37,7 @@ No matter if it’s Christmas or an important exam to take!
 ✅ Lazily load components in `App.jsx` and `Home.jsx` \
 ✅ Reduce network payloads using text compression \
 ✅ Remove unused JavaScript \
-🔲 Preload images from `src/images` directory \
-🔲 Move to Firebase hosting \
-🔲 Set up caching for static assets as described here <https://stackoverflow.com/questions/40375694/how-to-leverage-browser-caching-in-firebase-hosting> \
+✅ Preload images from `src/images` directory \
+✅ Move to Firebase hosting \
+✅ Set up caching for static assets as described here <https://stackoverflow.com/questions/40375694/how-to-leverage-browser-caching-in-firebase-hosting> \
 🔲 Audit the app with Lighthouse again

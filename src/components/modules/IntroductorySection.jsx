@@ -1,5 +1,3 @@
-// Images
-import Calendar from "images/calendar.svg";
 // React
 import { lazy, Suspense } from "react";
 
@@ -15,7 +13,7 @@ export default function IntroductorySection() {
         />
       </Suspense>
       <img
-        src={Calendar}
+        src="images/calendar.svg"
         alt="Illustration showing a young man holding a giant pencil. He is standing in front of a calendar and he is looking at the horizon."
         className="calendar" />
     </article>

@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.da12ec0e.css",
+    "main.css": "/static/css/main.7f3b2b33.css",
     "main.js": "/static/js/main.cba746fe.js",
     "static/js/274.f901e99b.chunk.js": "/static/js/274.f901e99b.chunk.js",
     "static/js/380.39256041.chunk.js": "/static/js/380.39256041.chunk.js",
@@ -18,7 +18,6 @@
     "static/js/569.d22f9a25.chunk.js": "/static/js/569.d22f9a25.chunk.js",
     "static/js/595.9c2f1cfc.chunk.js": "/static/js/595.9c2f1cfc.chunk.js",
     "static/js/635.212579d1.chunk.js": "/static/js/635.212579d1.chunk.js",
-    "static/media/fallback.woff2": "/static/media/fallback.2866c5df8d063b04b51e.woff2",
     "static/media/dialog-background.png": "/static/media/dialog-background.7beedcc6b4130534a77b.png",
     "static/media/montserrat.ttf": "/static/media/montserrat.94bb495fba6077f669ed.ttf",
     "static/media/roboto-slab.ttf": "/static/media/roboto-slab.6065b9ecc22c5d132f5c.ttf",
@@ -31,7 +30,7 @@
     "static/media/roboto-slab.woff2": "/static/media/roboto-slab.b001e47071e8e4cb4cc2.woff2",
     "static/media/montserrat.woff2": "/static/media/montserrat.636be5d921ff8c415347.woff2",
     "index.html": "/index.html",
-    "main.da12ec0e.css.map": "/static/css/main.da12ec0e.css.map",
+    "main.7f3b2b33.css.map": "/static/css/main.7f3b2b33.css.map",
     "main.cba746fe.js.map": "/static/js/main.cba746fe.js.map",
     "274.f901e99b.chunk.js.map": "/static/js/274.f901e99b.chunk.js.map",
     "380.39256041.chunk.js.map": "/static/js/380.39256041.chunk.js.map",
@@ -51,7 +50,7 @@
     "635.212579d1.chunk.js.map": "/static/js/635.212579d1.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.da12ec0e.css",
+    "static/css/main.7f3b2b33.css",
     "static/js/main.cba746fe.js"
   ]
 }

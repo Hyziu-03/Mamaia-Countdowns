@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmamaia_countdowns=self.webpackChunkmamaia_countdowns||[]).push([[274],{274:function(n,e,a){a.r(e),a.d(e,{default:function(){return c}});var s=a(23),t=a(184);function c(){return(0,t.jsx)("a",{href:"/",children:(0,t.jsxs)("h1",{className:"name hover touch-target",tabIndex:"0",children:[(0,t.jsx)("span",{className:"icon",children:"event_note"}),"\xa0",s.ss,"\u2122"]})})}}}]);
+//# sourceMappingURL=274.f901e99b.chunk.js.map

@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmamaia_countdowns=self.webpackChunkmamaia_countdowns||[]).push([[211],{6211:function(e,a,n){n.r(a),n.d(a,{default:function(){return t}});var s=n(184);function t(e){var a=e.message,n=e.id,t=e.className,c="";return c="Share"===a?(0,s.jsx)("span",{className:"icon share",children:"share"}):"Delete"===a?(0,s.jsx)("span",{className:"icon delete",children:"delete"}):a,(0,s.jsx)("button",{className:"btn hover touch-target ".concat(t),tabIndex:"-1",id:n,children:c})}}}]);
+//# sourceMappingURL=211.375fbab9.chunk.js.map

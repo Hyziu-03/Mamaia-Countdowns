@@ -1,13 +1,13 @@
+// Icons
+import Delete from "components/icons/material/Delete";
+import Share from "components/icons/material/Share";
+
 export default function Button(props) {
     const { message, id, className } = props;
    
-    let finalMessage = "";
-    if(message === "Share") 
-        finalMessage = <span className="icon share">share</span>;
-    else if(message === "Delete")
-        finalMessage = <span className="icon delete">delete</span>;
-    else 
-        finalMessage = message;
+    const finalMessage = (message === "Share") ? <Share /> : 
+        (message === "Delete") ? <Delete /> : 
+        message;
 
     return (
         <button 

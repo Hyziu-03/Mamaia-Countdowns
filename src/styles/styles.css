@@ -9,7 +9,8 @@
   src: local(""), url("../fonts/roboto-slab.eot?#iefix") format("embedded-opentype"), url("../fonts/roboto-slab.woff2") format("woff2"), url("../fonts/roboto-slab.woff") format("woff"), url("../fonts/roboto-slab.ttf") format("truetype"), url("../fonts/roboto-slab.svg#RobotoSlab") format("svg");
   /* Legacy iOS */
 }
-/* montserrat-regular - vietnamese_latin-ext_latin_cyrillic-ext_cyrillic */
+/* Montserrat regular
+ * vietnamese, latin extended, latin cyrillic extended, cyrillic */
 @font-face {
   font-display: swap;
   font-family: "Montserrat";
@@ -58,14 +59,12 @@
 
 .icon {
   font-size: 42px;
+  height: 42px;
+  width: 42px;
   font-family: "Material Symbols Rounded";
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-}
-
-.done {
-  background: linear-gradient(to right, lightgreen 50%, green 0);
 }
 
 .contact-form-container {
@@ -105,7 +104,7 @@
 }
 
 #events-name, #events-date, #events-description, #events-distance {
-  margin: 20px 0;
+  margin: 20px 8px;
 }
 
 .btn-container {
@@ -458,6 +457,9 @@ body {
 
 .share, .delete {
   font-size: inherit;
+}
+.share path, .delete path {
+  fill: rgb(239, 239, 239);
 }
 
 @media (max-width: 1300px) {

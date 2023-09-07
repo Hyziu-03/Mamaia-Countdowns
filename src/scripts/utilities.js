@@ -179,7 +179,8 @@ export function verifyLoginState(auth, verificationNumber) {
 export function awaitRedirect(auth) {
   try {
     const btn = document.querySelector(".dialog-login-btn");
-    if (btn !== null) btn.addEventListener("click", login(auth));
+    if (btn !== null) 
+      btn.addEventListener("click", login(auth));
   } catch (error) {
     console.log("⚠️ Error awaiting redirect");
   }

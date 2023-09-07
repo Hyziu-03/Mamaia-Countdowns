@@ -10,6 +10,13 @@ import { deleteEvent, copy } from "scripts/events";
 // Context
 import { AuthContext } from "context/AuthContext";
 import { CountContext } from "context/CountContext";
+// Icons
+import ArrowBack from "components/icons/material/ArrowBack";
+import ArrowForward from "components/icons/material/ArrowForward";
+import Tag from "components/icons/material/Tag";
+import SMS from "components/icons/material/SMS";
+import Distance from "components/icons/material/Distance";
+import CalendarMonth from "components/icons/material/CalendarMonth";
 
 const DialogBlueprint = lazy(() => import("./DialogBlueprint"));
 const Button = lazy(() => import("./Button"));
@@ -116,22 +123,22 @@ export default function Dialog(props) {
             <h1 className="heading" id="events-name"> </h1>
 
             <section className="event-line">
-                <span className="icon">calendar_month</span>
+                <span className="icon"><CalendarMonth /></span>
                 <p className="description" id="events-date"></p>
             </section>
 
             <section className="event-line">
-                <span className="icon">distance</span>
+                <span className="icon"><Distance /></span>
                 <p className="description" id="events-distance"></p>
             </section>
 
             <section className="event-line">
-                <span className="icon">sms</span>
+                <span className="icon"><SMS /></span>
                 <p className="description" id="events-description"></p>
             </section>
 
             <section className="event-line">
-                <span className="icon">tag</span>
+                <span className="icon"><Tag /></span>
                 <p className="description" id="events-count">
                     You are browsing {numeral + 1}/{documentCount} event
                 </p>
@@ -139,10 +146,10 @@ export default function Dialog(props) {
 
             <div className="arrow-navigation-container">
                 <button className="arrow-btn" onClick={decrementNumeral}>
-                    <span className="icon arrow">arrow_back</span>
+                    <span className="icon arrow"><ArrowBack/></span>
                 </button>
                 <button className="arrow-btn" onClick={incrementNumeral}>
-                    <span className="icon arrow">arrow_forward</span>
+                    <span className="icon arrow"><ArrowForward /></span>
                 </button>
             </div>
             

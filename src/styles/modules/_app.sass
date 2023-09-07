@@ -14,11 +14,10 @@
 
 .icon
     font-size: 1.75 * $size
+    height: 1.75 * $size
+    width: 1.75 * $size
     font-family: 'Material Symbols Rounded'
     user-select: none
-
-.done
-    background: linear-gradient(to right, lightgreen 50%, green 0)
 
 .contact-form-container
     @include flex-center
@@ -45,7 +44,7 @@
         @include app-paragraph
 
 #events-name, #events-date, #events-description, #events-distance
-    margin: $unit * 5 0
+    margin: $unit * 5 $unit * 2
 
 .btn-container
     display: flex

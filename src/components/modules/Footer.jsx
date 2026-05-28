@@ -16,7 +16,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noreferrer noopener"
                 >
-                    Illustrations by Rafiki from Storyset
+                    Illustrations by Rafiki from Storyset (opens in new window)
                 </a>
             </p>
             <section className="contact-links">
@@ -29,7 +29,7 @@ export default function Footer() {
                     <Suspense fallback={<div>Loading...</div>}>
                         <LinkedInIcon />
                     </Suspense>
-                    <span className="icon-name">LinkedIn</span>
+                    <span className="icon-name">LinkedIn (opens in new window)</span>
                 </a>
                 <a
                     href="https://github.com/Hyziu-03/"
@@ -40,10 +40,9 @@ export default function Footer() {
                     <Suspense fallback={<div>Loading...</div>}>
                         <GitHubIcon />
                     </Suspense>
-                    <span className="icon-name">GitHub</span>
+                    <span className="icon-name">GitHub (opens in new window</span>
                 </a>
                 <a href="mailto:szymonhyziak@student.agh.edu.pl"
-                    target="_blank"
                     rel="noreferrer noopener"
                     className="footer-icon"
                 >
@@ -61,7 +60,7 @@ export default function Footer() {
                     <Suspense fallback={<div>Loading...</div>}>
                         <BuyMeCoffee />
                     </Suspense>
-                    <span className="icon-name">Buy me a coffee</span>
+                    <span className="icon-name">Buy me a coffee (opens in new window)</span>
                 </a>
             </section>
         </footer>

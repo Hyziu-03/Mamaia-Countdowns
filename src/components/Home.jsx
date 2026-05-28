@@ -16,7 +16,7 @@ export default function Home() {
             <Suspense fallback={<div>Loading...</div>}>
                 <Header />
             </Suspense>
-            <main className="main-content">
+            <main className="main-content" tabinex="-1" id="main">
                 <Suspense fallback={<div>Loading...</div>}>
                     <IntroductorySection />
                 </Suspense>

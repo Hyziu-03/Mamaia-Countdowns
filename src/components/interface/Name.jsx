@@ -5,7 +5,7 @@ import EventNote from "components/icons/material/EventNote";
 
 export default function Name() {
     return (
-        <a href="/">
+        <a href="#main">
             <h1 className="name hover touch-target" tabIndex="0">
                 <EventNote />
                 &nbsp;{displayName}&trade;    

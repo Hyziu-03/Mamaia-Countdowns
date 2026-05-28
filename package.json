@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@adobe/css-tools": "4.3",
-    "@babel/traverse": "7.2",
+    "@babel/traverse": "7.23.2",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",

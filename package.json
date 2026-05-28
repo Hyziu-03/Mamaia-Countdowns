@@ -15,7 +15,7 @@
     "ejs": "^3.1.8",
     "email-validator": "^2.0.4",
     "firebase": "^9.9.3",
-    "follow-redirects": "1.1",
+    "follow-redirects": "1.15.4",
     "glob-parent": "^6.0.2",
     "immer": "^9.0.14",
     "isola": "^1.1.2",

@@ -120,7 +120,7 @@ export default function Dialog(props) {
                 </Suspense>
             </div>
 
-            <h1 className="heading" id="events-name"> </h1>
+            <h2 className="heading" id="events-name"> </h2>
 
             <section className="event-line">
                 <span className="icon"><CalendarMonth /></span>

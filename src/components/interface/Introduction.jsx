@@ -9,9 +9,9 @@ export default function Introduction(props) {
     return (
         <article className="introduction">
             <section className="text-section">
-                <h1 className="heading" tabIndex="0">
+                <h2 className="heading" tabIndex="0">
                     {heading}
-                </h1>
+                </h2>
                 <p className="description" tabIndex="0">
                     {description}
                 </p>

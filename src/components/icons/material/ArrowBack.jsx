@@ -5,6 +5,7 @@ export default function ArrowBack() {
         viewBox="0 -960 960 960"
         className="icon"
     >
+        <title>Arrow Back</title>
         <path 
             d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z" 
         />

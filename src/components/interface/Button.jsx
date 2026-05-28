@@ -15,7 +15,7 @@ export default function Button(props) {
             tabIndex="-1" 
             id={id}
         >
-            {finalMessage}
+            {finalMessage || "clickable"}
         </button>
     );
 }

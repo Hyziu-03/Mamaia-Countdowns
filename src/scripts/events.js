@@ -7,21 +7,26 @@ import { setDoc, doc, deleteDoc} from "firebase/firestore";
 import { db } from "components/App";
 
 export function populateEvents(currentEvent) {
-  try {
+ try {
     const eventName = document.getElementById("events-name");
     const eventDate = document.getElementById("events-date");
     const eventDescription = document.getElementById("events-description");
     const eventDistance = document.getElementById("events-distance");
 
     const dataReceived = currentEvent !== undefined;
-    const elementsRendered = !(
+    const elementsNotRendered =
       eventName === null ||
       eventDate === null ||
       eventDescription === null ||
       eventDistance === null
-    );
-    
-    if (elementsRendered && dataReceived) {
+    ;
+
+    if (elementsNotRendered) {
+      console.log("⚠️ Error populating events");
+      return;
+    }
+
+    if (dataReceived) {
       eventName.innerHTML = currentEvent.name;
       eventDate.innerHTML = currentEvent.date;
       eventDistance.innerHTML = loadDifference(currentEvent);
